@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { VentanaLienzo } from 'eco-unp/ui';
+import { Route, Routes } from 'react-router-dom';
+import { OrdenesTrabajo } from './pages/ordenesTrabajo'
+import { Entrevista } from './pages/entrevista';
+import { Entorno } from './pages/entorno';
+import { Terceros } from './pages/terceros';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <VentanaLienzo>
+      <Routes>
+        <Route path="/" element={<OrdenesTrabajo />} />
+        <Route path="/entrevista" element={<Entrevista />} />
+        <Route path="/entorno" element={<Entorno />} />
+        <Route path="/terceros" element={<Terceros />} />
+      </Routes>
+    </VentanaLienzo>
   );
 }
 

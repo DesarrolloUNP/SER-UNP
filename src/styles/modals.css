@@ -1,0 +1,78 @@
+.modal_proccess_container{
+    margin: 0.5rem 1rem;
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.item_container{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 1px solid #F4F4F4;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px gainsboro;
+    color: #303D50;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.iconLabel_container{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.iconProcess_menu, .stateContainer{
+    font-size: 20px;
+}
+
+.item_container:hover{
+    background-color: #303D50;
+    color: white;
+    transition: all 0.3s ease-in-out
+}
+
+.unp-row-subtitle{
+    margin-bottom: 2rem;
+}
+
+.modal_subtitle_container{
+    display: flex;
+    gap: 0.5rem;
+    font-size: 18px;
+    font-weight: 400;
+    align-items: center;
+}
+
+.files_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+}
+
+.anexo_item{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: #303D50;
+    border-radius: 10px;
+    border: 1px solid #F4F4F4;
+    box-shadow: 3px 3px 5px gainsboro;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.file_icon_container{
+    font-size: 1.5rem;
+}
+
+.anexo_item:hover{
+    background-color: #303D50;
+    color: white;
+    transition: all 0.3s ease-in-out
+}
+
