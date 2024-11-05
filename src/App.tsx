@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<OrdenesTrabajo />} />
         <Route path="/entrevista" element={<Entrevista />} />
-        <Route path="/entorno" element={<Entorno />} />
+        <Route path="/entornos" element={<Entorno />} />
         <Route path="/terceros" element={<Terceros />} />
       </Routes>
     </VentanaLienzo>
