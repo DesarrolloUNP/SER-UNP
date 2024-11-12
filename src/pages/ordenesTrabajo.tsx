@@ -18,7 +18,7 @@ export const OrdenesTrabajo: React.FC = ({ }) => {
         { key: "nombre_evaluado", label: "Nombre del Evaluado" },
         { key: "id_evaluado", label: "Identificación" },
         { key: "fecha_asignacion", label: "Fecha de asignación" },
-        { key: "dias_habiles", label: "Días hábiles" },
+        { key: "diasHabiles", label: "Días hábiles" },
         { key: "poblacion", label: "Población" },
         { key: "tipo_estudio", label: "Tipo de estudio" },
         { key: "anexos", label: "Anexos", hasModal: true },

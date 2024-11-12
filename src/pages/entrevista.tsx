@@ -1,5 +1,5 @@
 import { Encabezado } from 'eco-unp/ui'
-import { FormularioEntrevista } from '../components/forms/formularioEntrevista'
+import { FormularioEntrevista } from '../components/forms/entrevista/formularioEntrevista'
 
 export const Entrevista: React.FC = ({ }) => {
     return (
