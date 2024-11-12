@@ -1,3 +1,21 @@
-.main_container{
-    margin: 3rem 1rem ;
+.main_container {
+    margin: 3rem 1rem;
+}
+
+.main-info {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 1rem;
+    padding: 0.5rem 0;
+}
+
+.unp-container {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.bg-unp{
+    border-radius: 6px 6px 0 0 !important;
 }
