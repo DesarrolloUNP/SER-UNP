@@ -1,5 +1,5 @@
 import { Encabezado } from 'eco-unp/ui'
-import { FormularioEntorno } from '../components/forms/formularioEntorno'
+import { FormularioEntorno } from '../components/forms/entorno/formularioEntorno'
 
 export const Entorno: React.FC = ({ }) => {
     return (
