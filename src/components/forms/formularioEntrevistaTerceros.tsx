@@ -9,26 +9,27 @@ import {
   FormGroup,
   FormLabel,
   FormControl,
+  Table,
+  FormSelect,
 } from "react-bootstrap";
-import {FaCalendarAlt} from "react-icons/fa";
+import { FaCalendarAlt } from "react-icons/fa";
 import "../../styles/formularioEntorno.css";
 import { SubtituloForm } from "eco-unp/ui";
 
 export const FormularioEntrevistaTerceros: React.FC = () => {
-
-    const datos = {
-        ordenTrabajoNo: "12345",
-        fechaSolicitudUNP: { dia: "01", mes: "01", año: "2023" },
-        fechaReciboER: { dia: "02", mes: "01", año: "2023" },
-        fechaExpedicion: { dia: "03", mes: "01", año: "2023" },
-        tipoIdentificacion: "Cédula",
-        numeroIdentificacion: "987654321",
-        sexo: "Masculino",
-        primerNombre: "Juan",
-        segundoNombre: "Carlos",
-        primerApellido: "Pérez",
-        segundoApellido: "González",
-      };
+  const datos = {
+    ordenTrabajoNo: "12345",
+    fechaSolicitudUNP: { dia: "01", mes: "01", año: "2023" },
+    fechaReciboER: { dia: "02", mes: "01", año: "2023" },
+    fechaExpedicion: { dia: "03", mes: "01", año: "2023" },
+    tipoIdentificacion: "Cédula",
+    numeroIdentificacion: "987654321",
+    sexo: "Masculino",
+    primerNombre: "Juan",
+    segundoNombre: "Carlos",
+    primerApellido: "Pérez",
+    segundoApellido: "González",
+  };
   return (
     <div>
       <Card className="border-0 rounded-3 shadow mt-4">
@@ -38,41 +39,54 @@ export const FormularioEntrevistaTerceros: React.FC = () => {
         <CardBody>
           <Form>
             <SubtituloForm
-              subtitulo="Fecha de Solicitud en la UNP"
+              subtitulo="Fecha de la Entrevista"
               icon={FaCalendarAlt}
             />
+            <Table striped bordered responsive className="mb-4">
+              <tbody>
+                <tr>
+                  <th className="text-start">Fecha de la Entrevista</th>
+                  <td>
+                    <FormControl type="date" value={""}></FormControl>
+                  </td>
+                </tr>
+                <tr>
+                  <th className="text-start">Entrevista Realizada</th>
+                  <td>
+                    <FormControl type="text" value={""}></FormControl>
+                  </td>
+                </tr>
+                <tr>
+                <th className="text-start">Tipo de Entrevista</th>
+                  <FormSelect className="text-start">
+                    <option value="">Seleccione...</option>
+                    <option>Entrevista Realizada Personalmente</option>
+                    <option>Entrevista Realizada Telefónicamente</option>
+                    
+                  </FormSelect>
+                </tr>
+              </tbody>
+            </Table>
             <Row>
               <Col md={4} sm={12} className="mb-3">
                 <FormGroup>
                   <FormLabel>Día</FormLabel>
-                  <FormControl
-                    type="text"
-                    value={""}
-                  />
+                  <FormControl type="text" value={""} />
                 </FormGroup>
               </Col>
               <Col md={4} sm={12} className="mb-3">
                 <FormGroup>
                   <FormLabel>Mes</FormLabel>
-                  <FormControl
-                    type="text"
-                    value={""}
-  
-                  />
+                  <FormControl type="text" value={""} />
                 </FormGroup>
               </Col>
               <Col md={4} sm={12} className="mb-3">
                 <FormGroup>
                   <FormLabel>Año</FormLabel>
-                  <FormControl
-                    type="text"
-                    value={""}
-                    
-                  />
+                  <FormControl type="text" value={""} />
                 </FormGroup>
               </Col>
             </Row>
-            
 
             {/* Información Personal */}
             <FormGroup className="mb-3">

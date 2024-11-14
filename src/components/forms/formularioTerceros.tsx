@@ -1,28 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Row,
   Col,
   Card,
   CardHeader,
   CardBody,
-  Form,
-  FormGroup,
-  FormLabel,
-  FormControl,
+  Button,
 } from "react-bootstrap";
-import {
-  FaFileAlt,
-  FaCalendarAlt,
-  FaIdCard,
-  FaGenderless,
-  FaUser,
-} from "react-icons/fa";
+import { FaUsers } from "react-icons/fa";
 import "../../styles/formularioEntorno.css";
 import { SubtituloForm } from "eco-unp/ui";
-import { FormularioEntrevistaTerceros } from "./formularioEntrevistaTerceros";
+import InformacionOrdenTrabajo from "../../shared/informacionOrdenTrabajo";
+import { ModalRegistroAnalista } from "./Terceros/ModalEntrevistaTercero";
+import "../../styles/panel.css"; // Asegúrate de tener este archivo CSS
 
 export const FormularioTerceros: React.FC = () => {
-  const datos = {
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+
+  const datosOrden = {
     ordenTrabajoNo: "12345",
     fechaSolicitudUNP: { dia: "01", mes: "01", año: "2023" },
     fechaReciboER: { dia: "02", mes: "01", año: "2023" },
@@ -35,246 +30,46 @@ export const FormularioTerceros: React.FC = () => {
     primerApellido: "Pérez",
     segundoApellido: "González",
   };
+
+  // Función para manejar el clic en el botón y alternar el panel
+  const togglePanel = () => {
+    setIsPanelOpen(!isPanelOpen);
+  };
+
   return (
-    <div>
-      <Card className="border-0 rounded-3 shadow mt-4">
-        <CardHeader className="text-center bg-unp text-light rounded-3 py-3">
-          <h5>INFORMACIÓN DE LA ORDEN DE TRABAJO</h5>
-        </CardHeader>
-        <CardBody>
-          <Form>
-            <SubtituloForm subtitulo="Orden de trabajo" icon={FaFileAlt} />
-            <Row>
-              <Col md={12} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Orden de trabajo No.</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.ordenTrabajoNo}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
+    <Card className="border-0 shadow mt-4 mt-4">
+      <CardHeader className="text-center bg-unp text-light py-3">
+        <span className="formMainTitle">ENTREVISTA TERCEROS</span>
+      </CardHeader>
+      <InformacionOrdenTrabajo datos={datosOrden} />
+      <CardHeader className="text-center bg-unp text-light py-3">
+        <span className="formMainTitle">INFORMACIÓN DE LAS ENTREVISTAS</span>
+      </CardHeader>
+      <CardBody>
+        <div className="d-flex justify-content-between align-items-center">
+          <SubtituloForm subtitulo="Terceros" icon={FaUsers} />
+          <Button
+            variant="primary"
+            onClick={togglePanel}
+            className="ml-auto"
+            style={{
+              backgroundColor: "#303D50",
+              borderColor: "#303D50",
+            }}
+          >
+            Agregar Entrevista
+          </Button>
+        </div>
+      </CardBody>
 
-            <SubtituloForm
-              subtitulo="Fecha de Solicitud en la UNP"
-              icon={FaCalendarAlt}
-            />
-            <Row>
-              <Col md={4} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Día</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.fechaSolicitudUNP.dia}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-              <Col md={4} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Mes</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.fechaSolicitudUNP.mes}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-              <Col md={4} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Año</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.fechaSolicitudUNP.año}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-
-            <SubtituloForm
-              subtitulo="Fecha Recibo Subdirección ER"
-              icon={FaCalendarAlt}
-            />
-            <Row>
-              <Col md={4} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Día</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.fechaReciboER.dia}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-              <Col md={4} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Mes</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.fechaReciboER.mes}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-              <Col md={4} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Año</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.fechaReciboER.año}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-
-            <SubtituloForm
-              subtitulo="Fecha Expedición de la Orden"
-              icon={FaCalendarAlt}
-            />
-            <Row>
-              <Col md={4} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Día</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.fechaExpedicion.dia}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-              <Col md={4} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Mes</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.fechaExpedicion.mes}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-              <Col md={4} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Año</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.fechaExpedicion.año}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-
-            <SubtituloForm subtitulo="Identificación" icon={FaIdCard} />
-            <Row>
-              <Col md={6} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Tipo de Identificación</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.tipoIdentificacion}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-              <Col md={6} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Número de Identificación</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.numeroIdentificacion}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-
-            <SubtituloForm subtitulo="Sexo" icon={FaGenderless} />
-            <Row>
-              <Col md={12} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Sexo</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.sexo}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-
-            <SubtituloForm subtitulo="Nombre del Evaluado" icon={FaUser} />
-            <Row>
-              <Col md={6} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Primer Nombre de la persona a evaluar</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.primerNombre}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-              <Col md={6} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Segundo Nombre</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.segundoNombre}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={6} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Primer Apellido de la persona a evaluar</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.primerApellido}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-              <Col md={6} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Segundo Apellido</FormLabel>
-                  <FormControl
-                    type="text"
-                    readOnly
-                    value={datos.segundoApellido}
-                    className="readonly-field"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            
-          </Form>
-        </CardBody>
-      </Card>
-      <Card>
-        <FormularioEntrevistaTerceros/>    
-      </Card>
-    </div>
+      {/* Panel lateral */}
+      <div className={`side-panel ${isPanelOpen ? "open" : ""}`}>
+        
+        <ModalRegistroAnalista /> {/* Tu componente de modal */}
+        <Button variant="secondary" onClick={togglePanel}>
+          Cerrar
+        </Button>
+      </div>
+    </Card>
   );
 };

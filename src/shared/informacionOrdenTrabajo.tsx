@@ -30,9 +30,6 @@ interface InformacionOrdenTrabajoProps {
 const InformacionOrdenTrabajo: React.FC<InformacionOrdenTrabajoProps> = ({ datos }) => {
     return (
         <Card className="border-0 shadow mt-4 mt-4">
-            <CardHeader className="text-center bg-unp text-light py-3">
-                <span className="formMainTitle">ENTORNOS</span>
-            </CardHeader>
             <CardBody>
                 <div>
                     <SubtituloForm subtitulo={`Orden de trabajo No. ${datos.ordenTrabajoNo}`} icon={FaUserCircle} />

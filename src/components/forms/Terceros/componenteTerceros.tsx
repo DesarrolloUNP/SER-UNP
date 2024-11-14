@@ -43,8 +43,10 @@ const TercerosInfo: React.FC<TerceroInfoProps> = ({ entrevistas, handleTerceroCh
                 </Button>
             </div>
 
-            {entrevistas.length > 0 && entrevistas.map((hijo, index) => (
+            
         </>
     )
 
 };
+
+export default TercerosInfo;
