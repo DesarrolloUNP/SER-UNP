@@ -5,6 +5,7 @@ import { OrdenesTrabajo } from './pages/ordenesTrabajo'
 import { Entrevista } from './pages/entrevista';
 import { Entorno } from './pages/entorno';
 import { Terceros } from './pages/terceros';
+import { Escoltas } from './pages/escoltas';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/entrevista" element={<Entrevista />} />
         <Route path="/entornos" element={<Entorno />} />
         <Route path="/terceros" element={<Terceros />} />
+        <Route path="/escoltas" element={<Escoltas />} />
       </Routes>
     </VentanaLienzo>
   );
