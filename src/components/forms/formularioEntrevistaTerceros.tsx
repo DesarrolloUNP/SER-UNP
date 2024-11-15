@@ -42,7 +42,7 @@ export const FormularioEntrevistaTerceros: React.FC = () => {
               subtitulo="Fecha de la Entrevista"
               icon={FaCalendarAlt}
             />
-            <Table striped bordered responsive className="mb-4">
+       
               <tbody>
                 <tr>
                   <th className="text-start">Fecha de la Entrevista</th>
@@ -66,112 +66,8 @@ export const FormularioEntrevistaTerceros: React.FC = () => {
                   </FormSelect>
                 </tr>
               </tbody>
-            </Table>
-            <Row>
-              <Col md={4} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Día</FormLabel>
-                  <FormControl type="text" value={""} />
-                </FormGroup>
-              </Col>
-              <Col md={4} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Mes</FormLabel>
-                  <FormControl type="text" value={""} />
-                </FormGroup>
-              </Col>
-              <Col md={4} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Año</FormLabel>
-                  <FormControl type="text" value={""} />
-                </FormGroup>
-              </Col>
-            </Row>
-
-            {/* Información Personal */}
-            <FormGroup className="mb-3">
-              <FormLabel>Departamento *</FormLabel>
-              <FormControl type="text" />
-            </FormGroup>
-            <FormGroup className="mb-3">
-              <FormLabel>Municipio *</FormLabel>
-              <FormControl type="text" />
-            </FormGroup>
-            <FormGroup className="mb-3">
-              <FormLabel>Dirección</FormLabel>
-              <FormControl type="text" />
-            </FormGroup>
-
-            {/* Teléfono */}
-            <FormGroup className="mb-3">
-              <FormLabel>Número Teléfono Origen</FormLabel>
-              <FormControl type="text" />
-            </FormGroup>
-            <FormGroup className="mb-3">
-              <FormLabel>Número Teléfono Destino</FormLabel>
-              <FormControl type="text" />
-            </FormGroup>
-
-            {/* Persona Entrevistada */}
-            <FormGroup className="mb-3">
-              <FormLabel>Nombre de la Persona Entrevistada</FormLabel>
-              <FormControl type="text" />
-            </FormGroup>
-            <Row>
-              <Col md={6} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Tipo de Identificación *</FormLabel>
-                  <FormControl type="text" />
-                </FormGroup>
-              </Col>
-              <Col md={6} sm={12} className="mb-3">
-                <FormGroup>
-                  <FormLabel>Número de Identificación</FormLabel>
-                  <FormControl type="text" />
-                </FormGroup>
-              </Col>
-            </Row>
-
-            {/* Sinopsis de la Información */}
-            <FormGroup className="mb-3">
-              <FormLabel>En su calidad de</FormLabel>
-              <FormControl type="text" />
-            </FormGroup>
-
-            {/* Firma */}
-            <Row className="mt-4">
-              <Col md={6} sm={12}>
-                <FormGroup>
-                  <FormLabel>Firma de la persona entrevistada</FormLabel>
-                  <FormControl type="text" />
-                </FormGroup>
-              </Col>
-              <Col md={6} sm={12}>
-                <FormGroup>
-                  <FormLabel>
-                    Firma analista Unidad Nacional de Protección
-                  </FormLabel>
-                  <FormControl type="text" />
-                </FormGroup>
-              </Col>
-            </Row>
-
-            {/* Documento de Identidad */}
-            <Row className="mt-4">
-              <Col md={6} sm={12}>
-                <FormGroup>
-                  <FormLabel>Nombre</FormLabel>
-                  <FormControl type="text" />
-                </FormGroup>
-              </Col>
-              <Col md={6} sm={12}>
-                <FormGroup>
-                  <FormLabel>Documento de Identidad</FormLabel>
-                  <FormControl type="text" />
-                </FormGroup>
-              </Col>
-            </Row>
-          </Form>
+           
+            </Form>
         </CardBody>
       </Card>
     </div>
