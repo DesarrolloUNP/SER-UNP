@@ -38,10 +38,7 @@ export const FormularioTerceros: React.FC = () => {
 
   return (
     <Card className="border-0 shadow mt-4 mt-4">
-      <CardHeader className="text-center bg-unp text-light py-3">
-        <span className="formMainTitle">ENTREVISTA TERCEROS</span>
-      </CardHeader>
-      <InformacionOrdenTrabajo datos={datosOrden} />
+      <InformacionOrdenTrabajo datos={datosOrden} titulo="TERCEROS"/>
       <CardHeader className="text-center bg-unp text-light py-3">
         <span className="formMainTitle">INFORMACIÓN DE LAS ENTREVISTAS</span>
       </CardHeader>

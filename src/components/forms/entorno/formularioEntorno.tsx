@@ -24,10 +24,8 @@ export const FormularioEntorno: React.FC = () => (
     <Form>
 
         <Card className="border-0 shadow mt-4 mt-4">
-            <CardHeader className="text-center bg-unp text-light py-3">
-                <span className="formMainTitle">ENTORNOS</span>
-            </CardHeader>
-            <InformacionOrdenTrabajo datos={datosOrden} />
+            
+            <InformacionOrdenTrabajo datos={datosOrden} titulo={"Entornos"} />
         </Card>
 
         <Card className="border-0 shadow mt-4">

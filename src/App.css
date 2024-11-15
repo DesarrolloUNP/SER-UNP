@@ -31,3 +31,7 @@
     font-weight: 600;
     letter-spacing: 2px;
 }
+
+.card-body {
+    padding: 0 1rem !important;
+}

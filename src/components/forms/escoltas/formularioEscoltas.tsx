@@ -46,10 +46,8 @@ export const FormularioEscoltas: React.FC = () => {
     return (
         <Form>
             <Card className="border-0 shadow mt-4">
-                <CardHeader className="text-center bg-unp text-light py-3">
-                    <span className="formMainTitle">ESCOLTAS</span>
-                </CardHeader>
-                <InformacionOrdenTrabajo datos={datosOrden} />
+                
+                <InformacionOrdenTrabajo datos={datosOrden} titulo={"ESCOLTAS"} />
             </Card>
 
             <Card className="border-0 shadow mt-4">
