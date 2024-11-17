@@ -1,7 +1,8 @@
 import { SubtituloForm } from "eco-unp/ui";
 import React, { ChangeEvent } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
-import { FaUsers, FaTrash } from "react-icons/fa6";
+import { FaTrash } from "react-icons/fa6";
+import { MdFamilyRestroom } from "react-icons/md";
 
 interface Hijo {
     nombre: string;
@@ -21,7 +22,7 @@ const HijosInfo: React.FC<HijosInfoProps> = ({ hijos, handleHijoChange, handleAd
     return (
         <>
             <div className="d-flex justify-content-between align-items-center">
-                <SubtituloForm subtitulo="Hijos" icon={FaUsers} />
+                <SubtituloForm subtitulo="Hijos" icon={MdFamilyRestroom} />
                 <Button
                     variant="primary"
                     onClick={handleAddHijo}

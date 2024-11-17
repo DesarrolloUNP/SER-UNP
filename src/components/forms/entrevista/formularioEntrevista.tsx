@@ -4,40 +4,12 @@ import UbicacionFecha from "./infoGeneral";
 import HijosInfo from "./componenteFamiliar";
 import ComponenteBiografico from "./componenteBiografico";
 import { InfoLaboral } from "./componenteLaboral";
-
-interface Hijo {
-    nombre: string;
-    edad: string;
-    actividad: string;
-    residencia: string;
-}
-
+import { ComponenteConyugal } from "./componenteConyugal"
+import { ComponentePadres } from "./componentePadres";
+import { camposForm } from "./configForm";
 
 export const FormularioEntrevista: React.FC = () => {
-    const [formData, setFormData] = useState({
-        departamento: "",
-        ciudad: "",
-        direccion: "",
-        fechaHora: "",
-        primerNombre: "",
-        segundoNombre: "",
-        primerApellido: "",
-        SegundoApellido: "",
-        tipoId: "",
-        noId: "",
-        sexo: "",
-        fechaNacimiento: "",
-        edad: "",
-        pais: "",
-        departamentoNacimiento: "",
-        municipio: "",
-        estadoCivil: "",
-        nivelAcademico: "",
-        tipoSangre: "",
-        rh: "",
-        hijos: [] as Hijo[],
-        observaciones: ""
-    });
+    const [formData, setFormData] = useState(camposForm);
 
     const [validated, setValidated] = useState(false);
 
@@ -92,12 +64,14 @@ export const FormularioEntrevista: React.FC = () => {
             <Card className="border-0 shadow mt-4">
                 <CardHeader className="text-right bg-unp text-light py-3">Componente familiar</CardHeader>
                 <CardBody>
+                    <ComponenteConyugal formData={formData} handleChange={handleChange} />
                     <HijosInfo
                         hijos={formData.hijos}
                         handleHijoChange={handleHijoChange}
                         handleAddHijo={handleAddHijo}
                         handleRemoveHijo={handleRemoveHijo}
                     />
+                    <ComponentePadres formData={formData} handleChange={handleChange} />
                 </CardBody>
             </Card>
 
