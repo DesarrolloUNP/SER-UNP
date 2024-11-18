@@ -1,7 +1,6 @@
 import { SubtituloForm } from "eco-unp/ui";
 import React, { ChangeEvent } from "react";
 import { Row, Col, Form } from "react-bootstrap";
-import { FaClipboardUser } from "react-icons/fa6";
 import { HiUsers } from "react-icons/hi2";
 
 interface ComponenteConyugalProps {
@@ -49,7 +48,7 @@ export const ComponenteConyugal: React.FC<ComponenteConyugalProps> = ({ formData
                         name="apellidoConyuge"
                         value={formData.apellidoConyuge}
                         onChange={handleChange}
-                        placeholder="Ingresa el segundo nombre"
+                        placeholder="Ingresa los apellidos del cónyuge"
                     />
                     <Form.Control.Feedback type="invalid">Este campo es obligatorio.</Form.Control.Feedback>
                 </Form.Group>
@@ -100,8 +99,10 @@ export const ComponenteConyugal: React.FC<ComponenteConyugalProps> = ({ formData
                     />
                     <Form.Control.Feedback type="invalid">Este campo es obligatorio.</Form.Control.Feedback>
                 </Form.Group>
-            </Col>
-            <Col md={4}>
+            </Col>   
+        </Row>
+        <Row className="mb-3">
+        <Col md={6}>
             <Form.Group controlId="celConyuge">
                     <Form.Label>Celular</Form.Label>
                     <Form.Control
@@ -115,9 +116,7 @@ export const ComponenteConyugal: React.FC<ComponenteConyugalProps> = ({ formData
                     <Form.Control.Feedback type="invalid">Este campo es obligatorio.</Form.Control.Feedback>
                 </Form.Group>
             </Col>
-        </Row>
-        <Row className="mb-3">
-            <Col md={4}>
+            <Col md={6}>
                 <Form.Group controlId="departamentoConyuge">
                     <Form.Label>Departamento</Form.Label>
                     <Form.Control
@@ -131,7 +130,9 @@ export const ComponenteConyugal: React.FC<ComponenteConyugalProps> = ({ formData
                     <Form.Control.Feedback type="invalid">Este campo es obligatorio.</Form.Control.Feedback>
                 </Form.Group>
             </Col>
-            <Col md={4}>
+        </Row>
+        <Row className="mb-3">
+            <Col md={6}>
                 <Form.Group controlId="municipioConyuge">
                     <Form.Label>Municipio</Form.Label>
                     <Form.Control
@@ -145,7 +146,7 @@ export const ComponenteConyugal: React.FC<ComponenteConyugalProps> = ({ formData
                     <Form.Control.Feedback type="invalid">Este campo es obligatorio.</Form.Control.Feedback>
                 </Form.Group>
             </Col>
-            <Col md={4}>
+            <Col md={6}>
                 <Form.Group controlId="direccionConyuge">
                     <Form.Label>Dirección</Form.Label>
                     <Form.Control
@@ -161,7 +162,7 @@ export const ComponenteConyugal: React.FC<ComponenteConyugalProps> = ({ formData
             </Col>
         </Row>
         <Row className="mb-3">
-            <Col md={4}>
+            <Col md={6}>
                 <Form.Group controlId="ocupacionConyuge">
                     <Form.Label>Ocupación</Form.Label>
                     <Form.Control
@@ -175,7 +176,7 @@ export const ComponenteConyugal: React.FC<ComponenteConyugalProps> = ({ formData
                     <Form.Control.Feedback type="invalid">Este campo es obligatorio.</Form.Control.Feedback>
                 </Form.Group>
             </Col>
-            <Col md={4}>
+            <Col md={6}>
                 <Form.Group controlId="empresaConyuge">
                     <Form.Label>Empresa</Form.Label>
                     <Form.Control
@@ -189,19 +190,27 @@ export const ComponenteConyugal: React.FC<ComponenteConyugalProps> = ({ formData
                     <Form.Control.Feedback type="invalid">Este campo es obligatorio.</Form.Control.Feedback>
                 </Form.Group>
             </Col>
-            <Col md={4}>
-                <Form.Group controlId="causaMuerteConyuge">
-                    <Form.Label>Causa de muerte (Si aplica)</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="causaMuerteConyuge"
-                        value={formData.causaMuerteConyuge}
-                        onChange={handleChange}
-                        placeholder="Ingresa la causa de muerte"
-                    />
-                </Form.Group>
-            </Col>
+        </Row>
+        <Row className="mb-3">
+        <Form.Group controlId="causaMuerteConyuge">
+            <Form.Label>Causa de muerte (Si aplica)</Form.Label>
+            <Form.Control
+                as="textarea"
+                name="causaMuerteConyuge"
+                value={formData.causaMuerteConyuge}
+                onChange={handleChange}
+                placeholder="Ingresa una descripción (máximo 100 caracteres)"
+                maxLength={100}
+                rows={1}
+            />
+            <Form.Text muted>
+                {100 - formData.causaMuerteConyuge.length} caracteres restantes
+            </Form.Text>
+            <Form.Control.Feedback type="invalid">
+                Este campo debe tener máximo 100 caracteres.
+            </Form.Control.Feedback>
+        </Form.Group>
         </Row>
     </>
-);
+); 
 

@@ -1,7 +1,7 @@
 import { Encabezado } from 'eco-unp/ui'
 import { FormularioEntrevista } from '../components/forms/entrevista/formularioEntrevista'
 
-export const Entrevista: React.FC = ({ }) => {
+export const Entrevista: React.FC = () => {
     return (
         <div className='main_container'>
             <div className='my-3 container'>
