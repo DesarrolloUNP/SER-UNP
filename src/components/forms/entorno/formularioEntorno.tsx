@@ -6,7 +6,7 @@ import ComponenteSeguridad from "./componenteSeguridad";
 import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
 import { Card, CardHeader, CardBody, Form } from "react-bootstrap";
 
-const datosOrden = {
+export const datosOrden = {
     ordenTrabajoNo: "12345",
     fechaSolicitudUNP: { dia: "01", mes: "01", año: "2023" },
     fechaReciboER: { dia: "02", mes: "01", año: "2023" },

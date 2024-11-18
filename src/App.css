@@ -16,22 +16,43 @@
     grid-template-columns: 1fr 1fr;
 }
 
-.bg-unp{
-    border-radius: 6px 6px 0 0 !important;
-}
-
-.infoMainContainer{
+.infoMainContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
 }
 
-.formMainTitle{
-    font-size: 20px;
+.bg-unp{
+    border-radius: 6px !important;
+}
+
+.formMainTitle {
+    font-size: 18px;
     font-weight: 600;
     letter-spacing: 2px;
 }
 
 .card-body {
     padding: 0 1rem !important;
+}
+
+.buttonToggleCardButtom {
+    background-color: transparent !important;
+    color: white !important;
+    font-size: 1.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center!important;
+    border: none !important;
+    outline: none !important;
+    padding: 0 !important
+}
+
+.buttonToggleCardButtom:hover{
+    color: #D13C47 !important;
+}
+
+.card-body-container {
+    overflow: hidden;
+    transition: max-height 0.4s ease-in;
 }

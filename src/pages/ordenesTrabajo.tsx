@@ -4,7 +4,7 @@ import { Anexos } from '../components/modals/anexos'
 import { BootstrapTable } from 'eco-unp/ui'
 import { TipoSolicitud } from '../shared/tipoSolicitud'
 
-export const OrdenesTrabajo: React.FC = ({ }) => {
+export const OrdenesTrabajo: React.FC = () => {
 
     const dataTable: any[] = data
 

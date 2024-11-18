@@ -1,44 +1,19 @@
 import React, { useState } from "react";
-import { Card, CardHeader, CardBody, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import UbicacionFecha from "./infoGeneral";
 import HijosInfo from "./componenteFamiliar";
 import ComponenteBiografico from "./componenteBiografico";
 import { InfoLaboral } from "./componenteLaboral";
-
-interface Hijo {
-    nombre: string;
-    edad: string;
-    actividad: string;
-    residencia: string;
-}
-
+import { ComponenteConyugal } from "./componenteConyugal"
+import { ComponentePadres } from "./componentePadres";
+import { camposForm } from "./configForm";
+import { datosOrden } from "../entorno/formularioEntorno";
+import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
+import ExpandableCard from "../../../shared/tarjetaExpandible";
 
 export const FormularioEntrevista: React.FC = () => {
-    const [formData, setFormData] = useState({
-        departamento: "",
-        ciudad: "",
-        direccion: "",
-        fechaHora: "",
-        primerNombre: "",
-        segundoNombre: "",
-        primerApellido: "",
-        SegundoApellido: "",
-        tipoId: "",
-        noId: "",
-        sexo: "",
-        fechaNacimiento: "",
-        edad: "",
-        pais: "",
-        departamentoNacimiento: "",
-        municipio: "",
-        estadoCivil: "",
-        nivelAcademico: "",
-        tipoSangre: "",
-        rh: "",
-        hijos: [] as Hijo[],
-        observaciones: ""
-    });
 
+    const [formData, setFormData] = useState(camposForm);
     const [validated, setValidated] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -75,38 +50,31 @@ export const FormularioEntrevista: React.FC = () => {
 
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
-            <Card className="border-0 shadow mt-4">
-                <CardHeader className="text-right bg-unp text-light py-3">Información general de la entrevista</CardHeader>
-                <CardBody>
-                    <UbicacionFecha formData={formData} handleChange={handleChange} />
-                </CardBody>
-            </Card>
 
-            <Card className="border-0 shadow mt-4">
-                <CardHeader className="text-right bg-unp text-light py-3">Componente biográfico</CardHeader>
-                <CardBody>
-                    <ComponenteBiografico formData={formData} handleChange={handleChange} />
-                </CardBody>
-            </Card>
+            <InformacionOrdenTrabajo datos={datosOrden} titulo={"Entrevista"} />
 
-            <Card className="border-0 shadow mt-4">
-                <CardHeader className="text-right bg-unp text-light py-3">Componente familiar</CardHeader>
-                <CardBody>
-                    <HijosInfo
-                        hijos={formData.hijos}
-                        handleHijoChange={handleHijoChange}
-                        handleAddHijo={handleAddHijo}
-                        handleRemoveHijo={handleRemoveHijo}
-                    />
-                </CardBody>
-            </Card>
+            <ExpandableCard title="Información general de la entrevista">
+                <UbicacionFecha formData={formData} handleChange={handleChange} />
+            </ExpandableCard>
 
-            <Card className="border-0 shadow mt-4">
-                <CardHeader className="text-right bg-unp text-light py-3">Componente laboral</CardHeader>
-                <CardBody>
-                    <InfoLaboral formData={formData} handleChange={handleChange} />
-                </CardBody>
-            </Card>
+            <ExpandableCard title="Componente biográfico">
+                <ComponenteBiografico formData={formData} handleChange={handleChange} />
+            </ExpandableCard>
+
+            <ExpandableCard title="Componente familiar">
+                <ComponenteConyugal formData={formData} handleChange={handleChange} />
+                <HijosInfo
+                    hijos={formData.hijos}
+                    handleHijoChange={handleHijoChange}
+                    handleAddHijo={handleAddHijo}
+                    handleRemoveHijo={handleRemoveHijo}
+                />
+                <ComponentePadres formData={formData} handleChange={handleChange} />
+            </ExpandableCard>
+
+            <ExpandableCard title="Componente laboral">
+                <InfoLaboral formData={formData} handleChange={handleChange} />
+            </ExpandableCard>
 
             <div className="d-flex justify-content-end mt-4 mb-4">
                 <Button type="submit" variant="primary">
