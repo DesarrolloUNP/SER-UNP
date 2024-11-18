@@ -1,5 +1,5 @@
 import { Encabezado } from 'eco-unp/ui'
-import { FormularioTerceros } from '../components/forms/formularioTerceros'
+import { FormularioTerceros } from '../components/forms/Terceros/formularioTerceros'
 export const Terceros: React.FC = ({}) => {
     return (
         <>
