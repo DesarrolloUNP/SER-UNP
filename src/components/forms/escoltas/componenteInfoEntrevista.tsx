@@ -27,7 +27,7 @@ interface ComponenteInfoEntrevistaProps {
 }
 
 const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ formData, handleChange }) => (
-    <Form>
+    <>
         {/* Selector de tipo de entrevista y campo de fecha y hora en el mismo renglón */}
         <Row className="mb-3">
             <Col md={6}>
@@ -275,7 +275,7 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
                 placeholder="Describa conductas inapropiadas si existen"
             />
         </FormGroup>
-    </Form>
+    </>
 );
 
 export default ComponenteInfoEntrevista;

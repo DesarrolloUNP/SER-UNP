@@ -3,7 +3,7 @@ import { Card, CardHeader, CardBody, Form, FormGroup, FormLabel, FormControl } f
 
 const ComponenteSeguridad: React.FC = () => (
     <>
-        <Form>
+        
             <div className="mb-4 p-3 border rounded shadow-sm">
                 <FormLabel className="d-block mb-2"><strong>Mencione las barreras físicas y/o naturales *</strong></FormLabel>
                 <FormGroup className="mb-3">
@@ -58,7 +58,7 @@ const ComponenteSeguridad: React.FC = () => (
                     <FormControl as="textarea" rows={5} placeholder="Ingrese el análisis detallado aquí" />
                 </FormGroup>
             </div>
-        </Form>
+    
     </>
 );
 

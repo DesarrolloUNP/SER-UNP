@@ -10,6 +10,7 @@ import { camposForm } from "./configForm";
 import { datosOrden } from "../entorno/formularioEntorno";
 import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
 import ExpandableCard from "../../../shared/tarjetaExpandible";
+import PersonasCargoInfo from "./componentePersonasAcargo";
 
 export const FormularioEntrevista: React.FC = () => {
 
@@ -21,6 +22,7 @@ export const FormularioEntrevista: React.FC = () => {
         setFormData({ ...formData, [name]: value });
     };
 
+    //Hijos
     const handleHijoChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         const newHijos = [...formData.hijos];
@@ -35,6 +37,23 @@ export const FormularioEntrevista: React.FC = () => {
     const handleRemoveHijo = (index: number) => {
         const newHijos = formData.hijos.filter((_, i) => i !== index);
         setFormData({ ...formData, hijos: newHijos });
+    };
+
+    //Personas a cargo
+    const handlePersonaAcargoChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        const newPersonasCargo = [...formData.personasCargo];
+        newPersonasCargo[index] = { ...newPersonasCargo[index], [name]: value };
+        setFormData({ ...formData, personasCargo: newPersonasCargo });
+    };
+
+    const handleAddPersonaAcargo = () => {
+        setFormData({ ...formData, personasCargo: [...formData.personasCargo, { nombres: "", edad: "", parentesco: "", residencia: "" }] });
+    };
+
+    const handleRemovePersonaAcargo = (index: number) => {
+        const newPersonasCargo = formData.personasCargo.filter((_, i) => i !== index);
+        setFormData({ ...formData, personasCargo: newPersonasCargo });
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -70,6 +89,12 @@ export const FormularioEntrevista: React.FC = () => {
                     handleRemoveHijo={handleRemoveHijo}
                 />
                 <ComponentePadres formData={formData} handleChange={handleChange} />
+                <PersonasCargoInfo
+                    personasCargo={formData.personasCargo}
+                    handlePersonaAcargoChange={handlePersonaAcargoChange}
+                    handleAddPersonaAcargo={handleAddPersonaAcargo}
+                    handleRemovePersonaAcargo={handleRemovePersonaAcargo}
+                />
             </ExpandableCard>
 
             <ExpandableCard title="Componente laboral">

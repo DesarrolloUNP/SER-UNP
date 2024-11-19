@@ -41,7 +41,7 @@ export const OrdenesTrabajo: React.FC = () => {
                 columns={columns}
                 data={dataTable}
                 renderModalContent={renderModalContent}
-                totalDias={50} 
+                totalDias={30} 
                 subtitle={'Subdirección de Evaluación de Riesgo'} 
                 items={'Órdenes de trabajo'} />
         </div>

@@ -5,6 +5,13 @@ export interface Hijo {
     residencia: string;
 }
 
+export interface PersonasAcargo {
+    nombres: string;
+    edad: string;
+    parentesco: string;
+    residencia: string;
+}
+
 export const camposForm = {
     departamento: "",
     ciudad: "",
@@ -49,5 +56,7 @@ export const camposForm = {
     ocupacionMadre:"",
     empresaMadre:"",
     causaMuerteMadre:"",
-    observaciones: ""
+    observaciones: "",
+    personasCargo: [] as PersonasAcargo[],
+    relacionFamiliar:''
 }
