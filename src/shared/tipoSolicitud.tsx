@@ -1,76 +1,78 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
-import { BsArrowUpCircleFill, BsExclamationCircleFill, BsFillAwardFill, BsArrowRepeat } from 'react-icons/bs';
+import { FaExclamationTriangle, FaBalanceScale, FaSync, FaUserShield } from 'react-icons/fa';
 
 interface IconTooltipProps {
     solicitud: number;
 }
 
 export const TipoSolicitud: React.FC<IconTooltipProps> = ({ solicitud }) => {
-    
     const [showTooltip, setShowTooltip] = useState(false);
 
-    // Manejo del tooltip según el tipo de solicitud
     let tooltipText = '';
-    let variant = '';
+    let color = '';
     let Icon = null;
 
     switch (solicitud) {
         case 1:
-            tooltipText = "Servicio al Ciudadano";
-            variant = "success";
-            Icon = BsArrowUpCircleFill;
+            tooltipText = "Emergencia";
+            color = "#FF0000";
+            Icon = FaExclamationTriangle;
             break;
         case 2:
-            tooltipText = "Caso de Emergencia";
-            variant = "danger";
-            Icon = BsExclamationCircleFill;
+            tooltipText = "Jurídico";
+            color = "#FFA500";
+            Icon = FaBalanceScale;
             break;
         case 3:
-            tooltipText = "Caso Jurídico";
-            variant = "secondary";
-            Icon = BsFillAwardFill;
+            tooltipText = "Reasignación";
+            color = "#FFFF00";
+            Icon = FaSync;
             break;
         case 4:
-            tooltipText = "Reasignación";
-            variant = "warning";
-            Icon = BsArrowRepeat;
+            tooltipText = "Caso por Nombrar";
+            color = "#0000FF";
+            Icon = FaUserShield;
             break;
         default:
             return null;
     }
 
-    // Funciones para mostrar y ocultar el tooltip
     const handleMouseEnter = () => setShowTooltip(true);
     const handleMouseLeave = () => setShowTooltip(false);
 
     return (
         <div style={{ position: "relative", display: "inline-block" }}>
-            <Button
-                variant={variant}
+            <div
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
-                style={{ position: "relative", zIndex: 1 }} // Asegura que el botón esté por encima de otros elementos
+                style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "1.5em",
+                    color,
+                    cursor: "pointer",
+                }}
             >
                 <Icon />
-            </Button>
+            </div>
             {showTooltip && (
                 <div
                     style={{
                         position: "absolute",
-                        top: "50%", // Ajusta la posición vertical al centro del ícono
-                        left: "110%", // Posiciona el tooltip a la derecha del ícono
-                        transform: "translateY(-50%)", // Centra el tooltip verticalmente
+                        top: "50%", 
+                        left: "110%", 
+                        transform: "translateY(-50%)", 
                         backgroundColor: "#333",
                         color: "#fff",
                         padding: "8px 12px",
                         borderRadius: "8px",
                         fontSize: "0.9em",
                         whiteSpace: "nowrap",
-                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.15)", // Sombra para mayor visibilidad
-                        opacity: showTooltip ? 1 : 0, // Transición de opacidad
-                        visibility: showTooltip ? "visible" : "hidden", // Manejo de visibilidad
-                        zIndex: 1000, // Asegúrate de que esté por encima de otros elementos
+                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.15)", 
+                        opacity: showTooltip ? 1 : 0, 
+                        visibility: showTooltip ? "visible" : "hidden", 
+                        zIndex: 1000, 
                         transition: "opacity 0.3s ease, visibility 0.3s ease",
                     }}
                 >

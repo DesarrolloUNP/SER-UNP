@@ -28,7 +28,6 @@ interface ComponenteInfoEntrevistaProps {
 
 const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ formData, handleChange }) => (
     <>
-        {/* Selector de tipo de entrevista y campo de fecha y hora en el mismo renglón */}
         <Row className="mb-3">
             <Col md={6}>
                 <Form.Group controlId="tipoEntrevista">
@@ -59,7 +58,6 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
             </Col>
         </Row>
 
-        {/* Campos condicionales justo debajo de tipo de entrevista y fecha y hora */}
         {formData.tipoEntrevista === "personal" && (
             <>
                 <SubtituloForm subtitulo="Para las entrevistas realizadas personalmente:" icon={FaMapMarkedAlt} />
@@ -141,7 +139,6 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
             </>
         )}
 
-        {/* Campos comunes para identificación y nombres */}
         <Row className="mb-3">
             <Col md={6}>
                 <Form.Group controlId="numeroIdentificacion">
@@ -227,9 +224,8 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
             </Col>
         </Row>
 
-        {/* Campos de amenazas, desplazamientos, actividades y conductas */}
         <FormGroup className="mb-3">
-            <FormLabel>¿Conoce de situaciones de amenazas?</FormLabel>
+            <FormLabel>¿Conoce de situaciones de amenazas contra la persona beneficiaria de medidas de protección de la UNP? En caso positivo, realicé una descripción en tiempo, modo y lugar de los hechos conocidos por usted, refiriendo la fuente de información.</FormLabel>
             <FormControl
                 as="textarea"
                 rows={3}
@@ -241,7 +237,7 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
         </FormGroup>
 
         <FormGroup className="mb-3">
-            <FormLabel>Describa los desplazamientos</FormLabel>
+            <FormLabel>Describa los desplazamientos que la persona beneficiaria de medidas de protección de la UNP realiza en razón a sus actividades personales y poblacional.</FormLabel>
             <FormControl
                 as="textarea"
                 rows={3}
@@ -253,7 +249,7 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
         </FormGroup>
 
         <FormGroup className="mb-3">
-            <FormLabel>Indique las actividades específicas</FormLabel>
+            <FormLabel>Indique las actividades específicas que realiza la persona beneficiaria de medidas de protección de la UNP en relación con el grupo o grupos poblacionales al que hace parte.</FormLabel>
             <FormControl
                 as="textarea"
                 rows={3}
@@ -265,7 +261,7 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
         </FormGroup>
 
         <FormGroup className="mb-3">
-            <FormLabel>Refiera conductas inapropiadas</FormLabel>
+            <FormLabel>Refiera si la persona beneficiaria de medidas de protección de la UNP realiza conductas inapropiadas que le puedan generar riesgo adicional.</FormLabel>
             <FormControl
                 as="textarea"
                 rows={3}

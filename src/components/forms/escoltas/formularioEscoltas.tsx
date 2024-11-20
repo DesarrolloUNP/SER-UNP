@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
 import { Card, CardHeader, CardBody, Form, Button } from "react-bootstrap";
-import ComponenteInfoEntrevista from "./componenteInfoEntrevista"; // Nombre ajustado aquí
+import ComponenteInfoEntrevista from "./componenteInfoEntrevista";
+import ComponenteObservaciones from "./comportenteObservaciones";
+import ExpandableCard from "../../../shared/tarjetaExpandible";
+
 
 const datosOrden = {
     ordenTrabajoNo: "12345",
@@ -38,6 +41,7 @@ export const FormularioEscoltas: React.FC = () => {
         desplazamientos: "",
         actividades: "",
         conductas: "",
+        observaciones: "",
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -58,24 +62,17 @@ export const FormularioEscoltas: React.FC = () => {
 
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
-            <Card className="border-0 shadow mt-4">
-                
-                <InformacionOrdenTrabajo datos={datosOrden} titulo={"ESCOLTAS"} />
-            </Card>
 
-            <Card className="border-0 shadow mt-4">
-                <CardHeader className="text-right bg-unp text-light py-3">INFORMACIÓN DE LA ENTREVISTA</CardHeader>
-                <CardBody>
-                    <ComponenteInfoEntrevista formData={formData} handleChange={handleChange} />
-                </CardBody>
-            </Card>
+            <InformacionOrdenTrabajo datos={datosOrden} titulo={"ESCOLTAS"} />
 
-            <Card className="border-0 shadow mt-4">
-                <CardHeader className="text-right bg-unp text-light py-3">OBSERVACIONES</CardHeader>
-                <CardBody>
-                    {/* Aquí puedes agregar campos adicionales para observaciones si es necesario */}
-                </CardBody>
-            </Card>
+            <ExpandableCard title="Información de la Entrevista">
+                <ComponenteInfoEntrevista formData={formData} handleChange={handleChange} />
+            </ExpandableCard>
+
+            <ExpandableCard title="Observaciones">
+                <ComponenteObservaciones formData={formData} handleChange={handleChange} />
+            </ExpandableCard>
+
             <div className="d-flex justify-content-end mt-4 mb-4">
                 <Button type="submit" variant="primary">
                     Enviar

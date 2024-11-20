@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useState, ChangeEvent } from "react";
 import ComponenteActividad from "./componenteActividad";
 import ComponenteAnalisis from "./componenteAnalisis";
 import ComponenteResidencial from "./componenteResidencial";
 import ComponenteSeguridad from "./componenteSeguridad";
 import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
-import { Card, CardHeader, CardBody, Form } from "react-bootstrap";
+import { Card, CardHeader, CardBody, Form, Button } from "react-bootstrap";
+import ExpandableCard from "../../../shared/tarjetaExpandible";
+
+interface FormData {
+    inspeccionFecha: {
+        dia: string;
+        mes: string;
+        año: string;
+    };
+    residencialDistancia: string;
+    actividadDistancia: string;
+    barrerasFisicasResidencia: string;
+    barrerasFisicasActividad: string;
+    controlIngresoResidencia: string;
+    controlIngresoActividad: string;
+    medidasTecnicasResidencia: string;
+    medidasTecnicasActividad: string;
+    puntosApoyoResidencia: string;
+    puntosApoyoActividad: string;
+    analisisDesplazamientos: string;
+}
 
 export const datosOrden = {
     ordenTrabajoNo: "12345",
@@ -20,43 +40,78 @@ export const datosOrden = {
     segundoApellido: "González",
 };
 
-export const FormularioEntorno: React.FC = () => (
-    <Form>
+export const FormularioEntorno: React.FC = () => {
+    const [validated, setValidated] = useState(false);
+    const [formData, setFormData] = useState<FormData>({
+        inspeccionFecha: { dia: "", mes: "", año: "" },
+        residencialDistancia: "",
+        actividadDistancia: "",
+        barrerasFisicasResidencia: "",
+        barrerasFisicasActividad: "",
+        controlIngresoResidencia: "",
+        controlIngresoActividad: "",
+        medidasTecnicasResidencia: "",
+        medidasTecnicasActividad: "",
+        puntosApoyoResidencia: "",
+        puntosApoyoActividad: "",
+        analisisDesplazamientos: "",
+    });
 
-        <Card className="border-0 shadow mt-4 mt-4">
-            
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+
+        if (name.startsWith("inspeccionFecha.")) {
+            const key = name.split(".")[1];
+            setFormData({
+                ...formData,
+                inspeccionFecha: { ...formData.inspeccionFecha, [key]: value },
+            });
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+
+        if (form.checkValidity() === false) {
+            e.stopPropagation();
+        } else {
+            console.log("Formulario enviado:", formData);
+        }
+        setValidated(true);
+    };
+
+    return (
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+
             <InformacionOrdenTrabajo datos={datosOrden} titulo={"Entornos"} />
-        </Card>
 
-        <Card className="border-0 shadow mt-4">
-            <CardHeader className="text-right bg-unp text-light py-3">ANÁLISIS E INSPECCIÓN</CardHeader>
-            <CardBody>
+            <ExpandableCard title="ANÁLISIS E INSPECCIÓN">
                 <ComponenteAnalisis />
-            </CardBody>
-        </Card>
+            </ExpandableCard>
 
-        <Card className="border-0 shadow mt-4">
-            <CardHeader className="text-right bg-unp text-light py-3">RESIDENCIAL</CardHeader>
-            <CardBody>
-                <ComponenteResidencial />
-            </CardBody>
-        </Card>
+            <ExpandableCard title="RESIDENCIAL">
+                <ComponenteResidencial formData={formData} handleChange={handleChange} />
+            </ExpandableCard>
 
-        <Card className="border-0 shadow mt-4">
-            <CardHeader className="text-right bg-unp text-light py-3">Actividad o función (poblacional) programa UNP</CardHeader>
-            <CardBody>
-                <ComponenteActividad />
-            </CardBody>
-        </Card>
+            <ExpandableCard title="Actividad o función (poblacional) programa UNP">
+                <ComponenteActividad formData={formData} handleChange={handleChange} />
+            </ExpandableCard>
 
-        <Card className="border-0 shadow mt-4">
-            <CardHeader className="text-right bg-unp text-light py-3">SEGURIDAD DEL SITIO</CardHeader>
-            <CardBody>
-                <ComponenteSeguridad />
-            </CardBody>
-        </Card>
+            <ExpandableCard title="SEGURIDAD DEL SITIO">
+                <ComponenteSeguridad formData={formData} handleChange={handleChange} />
+            </ExpandableCard>
 
-    </Form>
-);
+            <div className="d-flex justify-content-end mt-4 mb-4">
+                <Button type="submit" variant="primary">
+                    Enviar
+                </Button>
+            </div>
+            
+        </Form >
+    );
+};
 
 export default FormularioEntorno;
