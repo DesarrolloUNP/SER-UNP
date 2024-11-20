@@ -3,10 +3,10 @@ import { Row, Col, Card, CardHeader, CardBody, Button } from "react-bootstrap";
 import { FaUsers } from "react-icons/fa";
 import { SubtituloForm } from "eco-unp/ui";
 import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
-import Entrevistas from "./componenteEntrevistaTerceros";
+import DetalleInformacionDocumental from "./componenteDocumental";
 
 
-export const FormularioTerceros: React.FC = () => {
+export const FormularioDocumental: React.FC = () => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   const datosOrden = {
@@ -30,12 +30,12 @@ export const FormularioTerceros: React.FC = () => {
 
   return (
     <Card className="border-0 shadow mt-4 mt-4">
-      <InformacionOrdenTrabajo datos={datosOrden} titulo="TERCEROS" />
+      <InformacionOrdenTrabajo datos={datosOrden} titulo="Documental" />
       <CardHeader className="text-center bg-unp text-light py-3">
-        <span className="formMainTitle">INFORMACIÓN DE LAS ENTREVISTAS</span>
+        <span className="formMainTitle">DETALLE DE LA INFORMACIÓN DOCUMENTAL Y OTRAS ACTIVIDADES DESARROLLADAS</span>
       </CardHeader>
       <CardBody>
-        <Entrevistas />
+        <DetalleInformacionDocumental/>
       </CardBody>
 
      

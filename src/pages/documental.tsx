@@ -1,6 +1,6 @@
 import { Encabezado } from 'eco-unp/ui'
-import { FormularioTerceros } from '../components/forms/terceros/formularioTerceros'
-export const Terceros: React.FC = ({}) => {
+import { FormularioDocumental } from '../components/forms/documental/formularioDocumental'
+export const Documental: React.FC = ({}) => {
     return (
         <>
         <div className='main_container'>
@@ -8,7 +8,7 @@ export const Terceros: React.FC = ({}) => {
                 <div className='justify-content-center row'>
                     <div className='col-xl-9 col-lg-11'>
                         <Encabezado dependencia={'Subdirección de Evaluación de Riesgo'}></Encabezado>
-                        <FormularioTerceros></FormularioTerceros>
+                        <FormularioDocumental></FormularioDocumental>
                     </div>
                 </div>
             </div>
