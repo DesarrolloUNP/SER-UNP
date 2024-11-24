@@ -37,6 +37,7 @@ export const OrdenesTrabajo: React.FC = () => {
 
     return (
         <div className='main_container'>
+            
             <BootstrapTable
                 columns={columns}
                 data={dataTable}
