@@ -41,7 +41,7 @@ const InformacionOrdenTrabajo: React.FC<InformacionOrdenTrabajoProps> = ({  dato
             icon={FaUserCircle}
           />
           <div className="infoMainContainer">
-            <Table striped bordered responsive className="mb-4">
+            <Table responsive className="mb-4">
               <tbody>
                 <tr>
                   <th className="text-start">Nombre del Evaluado</th>
@@ -57,7 +57,7 @@ const InformacionOrdenTrabajo: React.FC<InformacionOrdenTrabajoProps> = ({  dato
                 </tr>
               </tbody>
             </Table>
-            <Table striped bordered responsive className="mb-4">
+            <Table responsive className="mb-4">
               <tbody>
                 <tr>
                   <th className="text-start">Fecha Solicitud UNP</th>

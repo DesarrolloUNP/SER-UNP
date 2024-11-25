@@ -3,7 +3,7 @@ import { Row, Col, Card, CardHeader, CardBody, Button } from "react-bootstrap";
 import { FaUsers } from "react-icons/fa";
 import { SubtituloForm } from "eco-unp/ui";
 import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
-import Entrevistas from "./componenteEntrevistaTerceros";
+import Entrevistas from "../Terceros/componenteEntrevistaTerceros";
 
 
 export const FormularioTerceros: React.FC = () => {
