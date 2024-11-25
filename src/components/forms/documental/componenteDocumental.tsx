@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CardHeader } from "react-bootstrap";
 
-// Define la interfaz Seccion con campos específicos
+// Define la interfaz Seccion con campos específicos, incluyendo el nuevo campo para archivos
 interface Seccion {
   fechaConsulta: string;
   fechaRespuesta: string;
   resultadosObtenidos: string;
+  archivo?: File | null; // Nuevo campo opcional para adjuntar un archivo
 }
 
 const DetalleInformacionDocumental: React.FC = () => {
@@ -19,11 +20,16 @@ const DetalleInformacionDocumental: React.FC = () => {
         fechaConsulta: "",
         fechaRespuesta: "",
         resultadosObtenidos: "",
+        archivo: null, // Inicializa el nuevo campo como null
       },
     ]);
   };
 
-  const handleChange = (index: number, campo: keyof Seccion, valor: string) => {
+  const handleChange = (
+    index: number,
+    campo: keyof Seccion,
+    valor: string | File | null
+  ) => {
     const seccionesActualizadas = secciones.map((seccion, i) =>
       i === index ? { ...seccion, [campo]: valor } : seccion
     );
@@ -93,6 +99,20 @@ const DetalleInformacionDocumental: React.FC = () => {
                 value={seccion.resultadosObtenidos}
                 onChange={(e) =>
                   handleChange(index, "resultadosObtenidos", e.target.value)
+                }
+              />
+            </div>
+            <div className="col-12">
+              <label>Adjuntar Archivo</label>
+              <input
+                type="file"
+                className="form-control"
+                onChange={(e) =>
+                  handleChange(
+                    index,
+                    "archivo",
+                    e.target.files ? e.target.files[0] : null
+                  )
                 }
               />
             </div>

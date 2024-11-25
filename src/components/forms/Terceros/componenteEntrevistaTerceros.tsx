@@ -13,6 +13,7 @@ interface Seccion {
   direccion?: string;
   telefonoOrigen?: string;
   telefonoDestino?: string;
+  archivo?: File | null;
   nombreEntrevistado: string;
   tipoIdentificacion: string;
   numeroIdentificacion: string;
@@ -47,12 +48,17 @@ const Entrevistas: React.FC = () => {
     ]);
   };
 
-  const handleChange = (index: number, campo: keyof Seccion, valor: string) => {
+  const handleChange = (
+    index: number,
+    campo: keyof Seccion,
+    valor: string | File | null
+  ) => {
     const seccionesActualizadas = secciones.map((seccion, i) =>
       i === index ? { ...seccion, [campo]: valor } : seccion
     );
     setSecciones(seccionesActualizadas);
   };
+  
 
   const handleSave = (index: number) => {
     console.log("Sección guardada:", secciones[index]);
@@ -97,17 +103,6 @@ const Entrevistas: React.FC = () => {
               />
             </div>
             <div className="col-md-6">
-              <label>Entrevista Realizada</label>
-              <input
-                type="text"
-                className="form-control"
-                value={seccion.entrevistaRealizada}
-                onChange={(e) =>
-                  handleChange(index, "entrevistaRealizada", e.target.value)
-                }
-              />
-            </div>
-            <div className="col-md-6">
               <label>Tipo de Entrevista</label>
               <select
                 className="form-control"
@@ -126,37 +121,41 @@ const Entrevistas: React.FC = () => {
 
             {seccion.tipoEntrevista === "personal" && (
               <>
-                <div className="col-md-6">
-                  <label>Departamento</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    onChange={(e) =>
-                      handleChange(index, "departamento", e.target.value)
-                    }
-                  />
-                </div>
-                <div className="col-md-6">
-                  <label>Municipio</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    onChange={(e) =>
-                      handleChange(index, "municipio", e.target.value)
-                    }
-                  />
-                </div>
-                <div className="col-md-6">
-                  <label>Dirección</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    onChange={(e) =>
-                      handleChange(index, "direccion", e.target.value)
-                    }
-                  />
-                </div>
-              </>
+              <div className="col-md-6">
+                <label>Departamento</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e) => handleChange(index, "departamento", e.target.value)}
+                />
+              </div>
+              <div className="col-md-6">
+                <label>Municipio</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e) => handleChange(index, "municipio", e.target.value)}
+                />
+              </div>
+              <div>
+                <label>Dirección</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e) => handleChange(index, "direccion", e.target.value)}
+                />
+              </div>
+              <div>
+                <label>Adjuntar archivo</label>
+                <input
+                  type="file"
+                  className="form-control"
+                  onChange={(e) =>
+                    handleChange(index, "archivo", e.target.files ? e.target.files[0] : null)
+                  }
+                />
+              </div>
+            </>            
             )}
 
             {seccion.tipoEntrevista === "telefono" && (
