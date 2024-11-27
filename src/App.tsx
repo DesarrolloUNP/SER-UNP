@@ -9,6 +9,8 @@ import { Escoltas } from './pages/escoltas';
 import { Documental } from './pages/documental';
 import { Informe } from './pages/informe';
 
+
+
 function App() {
   return (
     <VentanaLienzo>
