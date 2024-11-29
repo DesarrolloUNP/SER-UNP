@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
 import { Card, CardHeader, CardBody, Form, Button } from "react-bootstrap";
 import ComponenteInfoEntrevista from "./componenteInfoEntrevista";
 import ComponenteObservaciones from "./comportenteObservaciones";
 import ExpandableCard from "../../../shared/tarjetaExpandible";
+import CamposRurales from "../../../shared/camposRurales";
+import CamposUrbanos from "../../../shared/camposUrbanos";
+import { fetchDepartamentos, fetchMunicipios } from "../../../services/ubicacion";
 
 
 const datosOrden = {
@@ -32,7 +35,6 @@ export const FormularioEscoltas: React.FC = () => {
         segundoNombre: "",
         primerApellido: "",
         segundoApellido: "",
-        direccion: "",
         departamento: "",
         municipio: "",
         telefonoOrigen: "",
@@ -42,6 +44,9 @@ export const FormularioEscoltas: React.FC = () => {
         actividades: "",
         conductas: "",
         observaciones: "",
+        zona: "",
+        ruralFields: {},
+        urbanaFields: {},
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -60,13 +65,27 @@ export const FormularioEscoltas: React.FC = () => {
         setValidated(true);
     };
 
+    const handleFieldChange = (e: React.ChangeEvent<any>, location: string) => {
+        console.log(`Cambiando el campo ${e.target.name} a ${e.target.value}  que es ${location}`);
+        const { name, value, type, checked } = e.target;
+        const fieldValue = type === "checkbox" ? checked : value;
+
+        setFormData((prevState: any) => ({
+            ...prevState,
+            [location + "Fields"]: {
+                ...prevState[location + "Fields"],
+                [name]: fieldValue,
+            },
+        }));
+    };
+
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
             <InformacionOrdenTrabajo datos={datosOrden} titulo={"ESCOLTAS"} />
 
             <ExpandableCard title="Información de la Entrevista">
-                <ComponenteInfoEntrevista formData={formData} handleChange={handleChange} />
+                <ComponenteInfoEntrevista formData={formData} handleChange={handleChange} handleFieldChange={handleFieldChange} />
             </ExpandableCard>
 
             <ExpandableCard title="Observaciones">
