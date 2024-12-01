@@ -15,7 +15,7 @@ const ComponenteResidencial: React.FC<ComponenteResidencialProps> = ({ formData,
     <>
         <SubtituloForm subtitulo="Fecha de realización de la inspección" icon={FaCalendarAlt} />
         <Row>
-            <Col md={12} sm={12} className="mb-3">
+            <Col md={6} className="mb-3">
                 <FormGroup>
                     <FormLabel>Fecha *</FormLabel>
                     <FormControl
@@ -30,7 +30,7 @@ const ComponenteResidencial: React.FC<ComponenteResidencialProps> = ({ formData,
 
         <SubtituloForm subtitulo="Distancia al casco urbano" icon={FaMapMarkerAlt} />
         <Row>
-            <Col md={12} sm={12} className="mb-3">
+            <Col md={12} className="mb-3">
                 <FormGroup>
                     <FormLabel>
                         En caso de que la vivienda esté ubicada en zona rural, ¿cuál es la distancia aproximada al casco urbano más
