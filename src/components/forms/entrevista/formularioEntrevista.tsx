@@ -1,28 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { Form, Button, Card } from "react-bootstrap";
-import UbicacionFecha from "./infoGeneral";
-import HijosInfo from "./componenteFamiliar";
-import ComponenteBiografico from "./componenteBiografico";
-import { InfoLaboral } from "./componenteLaboral";
-import { ComponenteConyugal } from "./componenteConyugal";
-import { ComponenteFliaOrigen } from "./componentePadres";
-import { camposForm, steps } from "./configForm";
-import { datosOrden } from "../entorno/formularioEntorno";
-import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
-import ExpandableCard from "../../../shared/tarjetaExpandible";
-import PersonasCargoInfo from "./componentePersonasAcargo";
-import { Paginador } from "../../../shared/paginadorFormulario";
-import { RelacionFamiliar } from "./componenteRelacionFamilia";
+import {
+    React, useEffect, useState, Form, Button, Card, HijosInfo, ComponenteBiografico, InfoLaboral, ComponenteConyugal, ComponenteFliaOrigen, camposForm,
+    denuncias, desplazamientos, familiares, hijos, historialActividadPoblacional, personasCargo, steps, datosOrden, InformacionOrdenTrabajo, ExpandableCard,
+    PersonasCargoInfo, Paginador, RelacionFamiliar, ActividadPoblacional, HistorialInfo, InfoGeneral, DatosNotificacion, GrupoPoblacionalInfo, Medidas, RutasInfo,
+    Entorno, DenunciasInfo, RelatoHechos, ArchivosInfo, useNavigate
+} from './import';
 
 export const FormularioEntrevista: React.FC = () => {
 
     //Formulario
     const [formData, setFormData] = useState(camposForm);
     const [validated, setValidated] = useState(false);
+    const navigate = useNavigate();
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+    const handleChange = (e: React.ChangeEvent<any>) => {
+        const { name, value, type, checked } = e.target;
+        const fieldValue = type === "checkbox" || type === "switch" ? checked : value;
+        setFormData((prevState) => ({
+            ...prevState,
+            [name]: fieldValue,
+        }));
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -32,15 +28,17 @@ export const FormularioEntrevista: React.FC = () => {
             e.stopPropagation();
         } else {
             console.log("Formulario enviado:", formData);
+            alert('Formulario enviado')
+            setTimeout(() => {
+                navigate("/");
+            });
         }
         setValidated(true);
     };
 
     const handleFieldChange = (e: React.ChangeEvent<any>, location: string) => {
-        console.log(`Cambiando el campo ${e.target.name} a ${e.target.value}  que es ${location}`);
         const { name, value, type, checked } = e.target;
         const fieldValue = type === "checkbox" ? checked : value;
-
         setFormData((prevState: any) => ({
             ...prevState,
             [location + "Fields"]: {
@@ -50,67 +48,108 @@ export const FormularioEntrevista: React.FC = () => {
         }));
     };
 
-    //Hijos
-    const handleHijoChange = (index: number, e: React.ChangeEvent<any>) => {
+    //Métodos genéricos
+    type SeccionArray = keyof Pick<typeof camposForm, 'hijos' | 'familiares' | 'personasCargo' | 'historialActividadPoblacional' | 'desplazamientos' | 'denuncias' | 'anexos'>;
+
+    const handleAddItem = (section: SeccionArray, newItem: any) => {
+        if (Array.isArray(formData[section])) {
+            setFormData({
+                ...formData,
+                [section]: [...formData[section], newItem],
+            });
+        } else { console.error(`La sección "${section}" no es un array.`); }
+    };
+
+    const handleRemoveItem = (section: SeccionArray, index: number) => {
+        if (Array.isArray(formData[section])) {
+            setFormData({
+                ...formData,
+                [section]: formData[section].filter((_, i) => i !== index),
+            });
+        } else { console.error(`La sección "${section}" no es un array.`); }
+    };
+
+    const handleItemChange = (section: SeccionArray, index: number, e: React.ChangeEvent<any>) => {
         const { name, value } = e.target;
-        const newHijos = [...formData.hijos];
-        newHijos[index] = { ...newHijos[index], [name]: value };
-        setFormData({ ...formData, hijos: newHijos });
+        if (Array.isArray(formData[section])) {
+            const updatedSection = [...formData[section]];
+            updatedSection[index] = { ...updatedSection[index], [name]: value };
+            setFormData({ ...formData, [section]: updatedSection });
+        } else { console.error(`La sección "${section}" no es un array.`); }
     };
 
-    const handleAddHijo = () => {
-        setFormData({
-            ...formData,
-            hijos: [...formData.hijos, { nombres: "", apellidos: "", edad: "", actividad: "", numeroContacto: "", factorDiferencial: "", subfactorDifrencial: "", causaMuerte: "" }],
-        });
-    };
+    //Hijos
+    const handleHijoChange = (index: number, e: React.ChangeEvent<any>) =>
+        handleItemChange("hijos", index, e);
 
-    const handleRemoveHijo = (index: number) => {
-        const newHijos = formData.hijos.filter((_, i) => i !== index);
-        setFormData({ ...formData, hijos: newHijos });
-    };
+    const handleAddHijo = () =>
+        handleAddItem("hijos", hijos);
+
+    const handleRemoveHijo = (index: number) =>
+        handleRemoveItem("hijos", index);
 
     //Familia de origen
-    const handleFliaOrigenChange = (index: number, e: React.ChangeEvent<any>) => {
-        const { name, value } = e.target;
-        const newFamiliares = [...formData.familiares];
-        newFamiliares[index] = { ...newFamiliares[index], [name]: value };
-        setFormData({ ...formData, familiares: newFamiliares });
-    };
+    const handleFliaOrigenChange = (index: number, e: React.ChangeEvent<any>) =>
+        handleItemChange("familiares", index, e);
 
-    const handleAddFliaOrigen = () => {
-        setFormData({
-            ...formData,
-            familiares: [...formData.familiares, { tipo: "", nombres: "", apellidos: "", ocupacion: "", numeroContacto: "", factorDiferencial: "", subfactorDifrencial: "", causaMuerte: "" }],
-        });
-    };
+    const handleAddFliaOrigen = () =>
+        handleAddItem("familiares", familiares);
 
-    const handleRemoveFliaOrigen = (index: number) => {
-        const newFamiliares = formData.familiares.filter((_, i) => i !== index);
-        setFormData({ ...formData, familiares: newFamiliares });
-    };
+    const handleRemoveFliaOrigen = (index: number) =>
+        handleRemoveItem("familiares", index);
 
     //Personas a cargo
-    const handlePersonaAcargoChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        const newPersonasCargo = [...formData.personasCargo];
-        newPersonasCargo[index] = { ...newPersonasCargo[index], [name]: value };
-        setFormData({ ...formData, personasCargo: newPersonasCargo });
+    const handlePersonaAcargoChange = (index: number, e: React.ChangeEvent<any>) =>
+        handleItemChange("personasCargo", index, e);
+
+    const handleAddPersonaAcargo = () =>
+        handleAddItem("personasCargo", personasCargo);
+
+    const handleRemovePersonaAcargo = (index: number) =>
+        handleRemoveItem("personasCargo", index);
+
+    //Historial
+    const handleHistorialChange = (index: number, e: React.ChangeEvent<any>) =>
+        handleItemChange("historialActividadPoblacional", index, e);
+
+    const handleAddHistorial = () =>
+        handleAddItem("historialActividadPoblacional", historialActividadPoblacional);
+
+    const handleRemoveHistorial = (index: number) =>
+        handleRemoveItem("historialActividadPoblacional", index);
+
+    //Desplazamientos
+    const handleRutasChange = (index: number, e: React.ChangeEvent<any>) =>
+        handleItemChange("desplazamientos", index, e);
+
+    const handleAddRutas = () =>
+        handleAddItem("desplazamientos", desplazamientos);
+
+    const handleRemoveRuta = (index: number) =>
+        handleRemoveItem("desplazamientos", index);
+
+    //Denuncias
+    const handleDenunciasChange = (index: number, e: React.ChangeEvent<any>) =>
+        handleItemChange("denuncias", index, e);
+
+    const handleAddDenuncias = () =>
+        handleAddItem("denuncias", denuncias);
+
+    const handleRemoveDenuncias = (index: number) =>
+        handleRemoveItem("denuncias", index);
+
+    //Anexos
+    const handleArchivoChange = (index: number, e: React.ChangeEvent<any>) => {
+        const newArchivos = [...formData.anexos];
+        newArchivos[index].archivo = e.target.files ? e.target.files[0] : null;
+        setFormData({ ...formData, anexos: newArchivos });
     };
 
-    const handleAddPersonaAcargo = () => {
-        setFormData({
-            ...formData,
-            personasCargo: [
-                ...formData.personasCargo, { nombres: "", apellidos: "", edad: "", residencia: "", parentesco: "", factorDiferencial: "", subfactorDifrencial: "" },
-            ],
-        });
-    };
+    const handleAddArchivo = () =>
+        handleAddItem("anexos", { archivo: null });
 
-    const handleRemovePersonaAcargo = (index: number) => {
-        const newPersonasCargo = formData.personasCargo.filter((_, i) => i !== index);
-        setFormData({ ...formData, personasCargo: newPersonasCargo });
-    };
+    const handleRemoveArchivo = (index: number) =>
+        handleRemoveItem("anexos", index);
 
     // Paginador
     const totalPages = 10;
@@ -126,15 +165,13 @@ export const FormularioEntrevista: React.FC = () => {
                 return (
                     <>
                         <ExpandableCard title="Información general de la entrevista">
-                            <UbicacionFecha formData={formData} handleChange={handleChange} handleFieldChange={handleFieldChange} />
+                            <InfoGeneral formData={formData} handleChange={handleChange} handleFieldChange={handleFieldChange} />
                         </ExpandableCard>
                         <ExpandableCard title="Componente biográfico">
                             <ComponenteBiografico
                                 formData={formData}
                                 handleChange={handleChange}
-                                updateFormData={(field, value) =>
-                                    setFormData(prevState => ({ ...prevState, [field]: value }))
-                                }
+                                updateFormData={(field, value) => setFormData(prevState => ({ ...prevState, [field]: value }))}
                             />
                         </ExpandableCard>
                     </>
@@ -168,53 +205,123 @@ export const FormularioEntrevista: React.FC = () => {
                             <RelacionFamiliar formData={formData} handleChange={handleChange} ></RelacionFamiliar>
                         </ExpandableCard>
                     </div>
-
                 );
             case 3:
                 return (
-                    <ExpandableCard title="Componente laboral">
-                        <InfoLaboral formData={formData} handleChange={handleChange} handleFieldChange={handleFieldChange}/>
-                    </ExpandableCard>
+                    <div>
+                        <ExpandableCard title="Componente laboral">
+                            <InfoLaboral formData={formData} handleChange={handleChange} handleFieldChange={handleFieldChange} />
+                        </ExpandableCard>
+                        <ExpandableCard title="Componente actividad poblacional">
+                            <ActividadPoblacional formData={formData} handleChange={handleChange} handleFieldChange={handleFieldChange}></ActividadPoblacional>
+                        </ExpandableCard>
+                        <ExpandableCard title="Historial de actividad poblacional">
+                            <HistorialInfo
+                                historial={formData.historialActividadPoblacional}
+                                handleHistorialChange={handleHistorialChange}
+                                handleAddHistorial={handleAddHistorial}
+                                handleRemoveHistorial={handleRemoveHistorial}
+                            />
+                        </ExpandableCard>
+                    </div>
                 );
+            case 4:
+                return (
+                    <div>
+                        <ExpandableCard title="Datos de notificación">
+                            <DatosNotificacion formData={formData} handleChange={handleChange} handleFieldChange={handleFieldChange} />
+                        </ExpandableCard>
+                    </div>
+                )
+            case 5:
+                return (
+                    <ExpandableCard title="Grupo poblacional">
+                        <GrupoPoblacionalInfo formData={formData} handleChange={handleChange} handleFieldChange={handleFieldChange} />
+                    </ExpandableCard>
+                )
+            case 6:
+                return (
+                    <ExpandableCard title="Medidas de protección">
+                        <Medidas formData={formData} handleChange={handleChange} />
+                    </ExpandableCard>
+                )
+            case 7:
+                return (
+                    <div>
+                        <ExpandableCard title="Desplazamientos">
+                            <RutasInfo
+                                desplazamientos={formData.desplazamientos}
+                                handleRutasChange={handleRutasChange}
+                                handleAddRutas={handleAddRutas}
+                                handleRemoveRuta={handleRemoveRuta} />
+                        </ExpandableCard>
+                        <ExpandableCard title="Entorno sociocultural">
+                            <Entorno formData={formData} handleChange={handleChange} />
+                        </ExpandableCard>
+                    </div>
+
+                )
+            case 8:
+                return (
+                    <ExpandableCard title="Denuncias o quejas ante autoridades competentes">
+                        <DenunciasInfo
+                            denuncias={formData.denuncias}
+                            handleDenunciasChange={handleDenunciasChange}
+                            handleAddDenuncias={handleAddDenuncias}
+                            handleRemoveDenuncias={handleRemoveDenuncias} />
+                    </ExpandableCard>
+                )
+            case 9:
+                return (<>
+                    <ExpandableCard title="Relato de los hechos">
+                        <RelatoHechos formData={formData} handleChange={handleChange} />
+                    </ExpandableCard>
+                    <ExpandableCard title="Documentación entregada por el evaluado">
+                        <ArchivosInfo
+                            archivos={formData.anexos}
+                            handleArchivoChange={handleArchivoChange}
+                            handleAddArchivo={handleAddArchivo}
+                            handleRemoveArchivo={handleRemoveArchivo} />
+                    </ExpandableCard>
+                </>
+                )
             default:
                 return null;
         }
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
-
-            <Card className="border-0 shadow mt-5 mb-4 pt-3" style={{ backgroundColor: '#F9F9F9' }}>
-                <Paginador
-                    currentStep={currentPage}
-                    totalSteps={totalPages}
-                    onStepClick={(step) => setCurrentPage(step)}
-                    steps={steps}
-                />
-            </Card>
-
-            <InformacionOrdenTrabajo datos={datosOrden} titulo={"Entrevista"} />
-
-            {renderPageContent()} {/*Función que distribuye las páginas*/}
-
-            <div className="d-flex justify-content-between m-4">
-                {currentPage > 1 && (
-                    <Button variant="secondary" onClick={() => setCurrentPage(currentPage - 1)}>
-                        Anterior
-                    </Button>
-                )}
-                {currentPage < totalPages - 1 && (
-                    <Button variant="primary" onClick={() => setCurrentPage(currentPage + 1)}>
-                        Siguiente
-                    </Button>
-                )}
-                {currentPage === totalPages - 1 && (
-                    <Button type="submit" variant="success">
-                        Enviar
-                    </Button>
-                )}
-            </div>
-        </Form>
+        <>
+            <Form onSubmit={handleSubmit}>
+                <Card className="border-0 shadow mt-5 mb-4 pt-3" style={{ backgroundColor: '#F9F9F9' }}>
+                    <Paginador
+                        currentStep={currentPage}
+                        totalSteps={totalPages}
+                        onStepClick={(step) => setCurrentPage(step)}
+                        steps={steps}
+                    />
+                </Card>
+                <InformacionOrdenTrabajo datos={datosOrden} titulo={"Entrevista"} />
+                {renderPageContent()}
+                <div className="d-flex justify-content-center m-4" style={{ gap: '2rem' }}>
+                    {currentPage > 1 && (
+                        <Button variant="secondary" onClick={() => setCurrentPage(currentPage - 1)}>
+                            Anterior
+                        </Button>
+                    )}
+                    {currentPage < totalPages - 1 && (
+                        <Button variant="primary" onClick={() => setCurrentPage(currentPage + 1)}>
+                            Siguiente
+                        </Button>
+                    )}
+                    {currentPage === totalPages - 1 && (
+                        <Button type="submit" variant="success">
+                            Enviar
+                        </Button>
+                    )}
+                </div>
+            </Form>
+        </>
     );
 };
 

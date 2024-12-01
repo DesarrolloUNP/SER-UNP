@@ -2,10 +2,10 @@ import { SubtituloForm } from "eco-unp/ui";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Row, Col, Form } from "react-bootstrap";
 import { HiUsers } from "react-icons/hi2";
-import { fetchDepartamentos, fetchMunicipios } from "../../../services/ubicacion";
-import CamposRurales from "../../../shared/camposRurales";
-import CamposUrbanos from "../../../shared/camposUrbanos";
-import { ComponenteConyugalProps, factorDiferencialOptions } from "./configForm";
+import { fetchDepartamentos, fetchMunicipios } from '../../../../services/ubicacion'
+import CamposRurales from "../../../../shared/camposRurales";
+import CamposUrbanos from "../../../../shared/camposUrbanos";
+import { ComponenteConyugalProps, factorDiferencialOptions } from "../configForm";
 
 export const ComponenteConyugal: React.FC<ComponenteConyugalProps> = ({ formData, handleChange, handleFieldChange }) => {
 
@@ -183,7 +183,7 @@ export const ComponenteConyugal: React.FC<ComponenteConyugalProps> = ({ formData
             </Col>
             <Col md={6}>
                 <Form.Group controlId="ubicacionConyuge">
-                    <Form.Label>Ubicación</Form.Label>
+                    <Form.Label>Zona</Form.Label>
                     <Form.Select
                         name="ubicacionConyuge"
                         value={ubicacionConyuge}

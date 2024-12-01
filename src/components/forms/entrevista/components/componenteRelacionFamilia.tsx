@@ -15,7 +15,7 @@ export const RelacionFamiliar: React.FC<{ formData: any, handleChange: any }> = 
                     name="observaciones"
                     value={formData.observaciones}
                     onChange={handleChange}
-                    placeholder="Ingresa una descripción (máximo 400 caracteres)"
+                    placeholder="Ingresa una descripción"
                     maxLength={400}
                     rows={4}
                 />

@@ -7,6 +7,7 @@ import { Entorno } from './pages/entorno';
 import { Terceros } from './pages/terceros';
 import { Escoltas } from './pages/escoltas';
 import { Documental } from './pages/documental';
+import { Estandar } from './pages/estandar';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/terceros" element={<Terceros />} />
         <Route path="/escoltas" element={<Escoltas />} />
         <Route path="/documental" element={<Documental />} />
+        <Route path="/estandar" element={<Estandar />} />
       </Routes>
     </VentanaLienzo>
   );

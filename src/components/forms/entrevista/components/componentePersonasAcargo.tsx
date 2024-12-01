@@ -3,7 +3,7 @@ import React, { ChangeEvent } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa6";
 import { FaUsersLine } from "react-icons/fa6";
-import { factorDiferencialOptions, PersonasAcargo } from './configForm'
+import { factorDiferencialOptions, PersonasAcargo } from '../configForm'
 
 interface PersonasCargoInfoProps {
     personasCargo: PersonasAcargo[];
