@@ -2,9 +2,9 @@ import { SubtituloForm } from 'eco-unp/ui';
 import React, { useEffect, useState } from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
 import { FaBuildingUser } from "react-icons/fa6";
-import { fetchDepartamentos, fetchMunicipios } from '../../../services/ubicacion';
-import CamposRurales from '../../../shared/camposRurales';
-import CamposUrbanos from '../../../shared/camposUrbanos';
+import { fetchDepartamentos, fetchMunicipios } from '../../../../services/ubicacion';
+import CamposRurales from '../../../../shared/camposRurales';
+import CamposUrbanos from '../../../../shared/camposUrbanos';
 
 interface LaboralProps {
     formData: { ubicacionLaboral: string; profesion: string; oficio: string; telefonoLaboral: string; observacionesLaborales: string; departamentoLaboral: string; municipioLaboral: string; ruralLaboralFields: any; urbanaLaboralFields: any };
@@ -143,7 +143,7 @@ export const InfoLaboral: React.FC<LaboralProps> = ({ formData, handleChange, ha
                         name="oficio"
                         value={formData.oficio}
                         onChange={handleChange}
-                        placeholder="Ingresa la profesión"
+                        placeholder="Ingresa la oficio"
                     />
                     <Form.Control.Feedback type="invalid">Este campo es obligatorio.</Form.Control.Feedback>
                 </Form.Group>
@@ -170,7 +170,7 @@ export const InfoLaboral: React.FC<LaboralProps> = ({ formData, handleChange, ha
                     name="observacionesLaborales"
                     value={formData.observacionesLaborales}
                     onChange={handleChange}
-                    placeholder="Ingresa una descripción (máximo 400 caracteres)"
+                    placeholder="Ingresa una descripción"
                     maxLength={400}
                     rows={4}
                 />

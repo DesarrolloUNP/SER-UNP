@@ -2,17 +2,17 @@ import { SubtituloForm } from "eco-unp/ui";
 import React, { useEffect, useState } from "react";
 import { Row, Col, Form } from "react-bootstrap";
 import { RiUserLocationFill } from "react-icons/ri";
-import CamposRurales from "../../../shared/camposRurales";
-import CamposUrbanos from "../../../shared/camposUrbanos";
-import { fetchDepartamentos, fetchMunicipios } from "../../../services/ubicacion";
+import CamposRurales from "../../../../shared/camposRurales";
+import CamposUrbanos from "../../../../shared/camposUrbanos";
+import { fetchDepartamentos, fetchMunicipios } from "../../../../services/ubicacion";
 
-interface UbicacionFechaProps {
+interface InfoGeneralProps {
     formData: { ubicacion: string; fechaHora: string; departamento: string; ciudad: string; ruralFields: any; urbanaFields: any };
     handleChange: (e: React.ChangeEvent<any>) => void;
     handleFieldChange: (e: React.ChangeEvent<any>, location: string) => void;
 }
 
-const UbicacionFecha: React.FC<UbicacionFechaProps> = ({ formData, handleChange, handleFieldChange }) => {
+const InfoGeneral: React.FC<InfoGeneralProps> = ({ formData, handleChange, handleFieldChange }) => {
 
     const [ubicacion, setUbicacion] = useState<string>(formData.ubicacion);
     const [departamentos, setDepartamentos] = useState<{ id: number; name: string }[]>([]);
@@ -118,7 +118,7 @@ const UbicacionFecha: React.FC<UbicacionFechaProps> = ({ formData, handleChange,
                 </Col>
                 <Col md={6}>
                     <Form.Group controlId="ubicacion">
-                        <Form.Label>Ubicación</Form.Label>
+                        <Form.Label>Zona</Form.Label>
                         <Form.Select
                             required
                             name="ubicacion"
@@ -144,7 +144,7 @@ const UbicacionFecha: React.FC<UbicacionFechaProps> = ({ formData, handleChange,
     );
 };
 
-export default UbicacionFecha;
+export default InfoGeneral;
 
 
 

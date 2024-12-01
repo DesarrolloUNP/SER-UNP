@@ -1,8 +1,8 @@
 import { Encabezado } from "eco-unp/ui";
-import { FormularioEntrevista } from "../components/forms/entrevista/formularioEntrevista";
 import { Breadcrumb } from "react-bootstrap";
+import { FormularioEstandar } from "../components/forms/estandar/formularioEstandar";
 
-export const Entrevista: React.FC = () => {
+export const Estandar: React.FC = () => {
     return (
         <div className="main_container">
             <div className="my-3 container">
@@ -13,11 +13,11 @@ export const Entrevista: React.FC = () => {
                             <Breadcrumb.Item active>Entrevista</Breadcrumb.Item>
                         </Breadcrumb>
                     </div> */}
-                    <div className="col-xl-9 col-lg-11">
+                    <div>
                         <Encabezado
                             dependencia={"Subdirección de Evaluación de Riesgo"}
                         ></Encabezado>
-                        <FormularioEntrevista></FormularioEntrevista>
+                        <FormularioEstandar></FormularioEstandar>
                     </div>
                 </div>
             </div>

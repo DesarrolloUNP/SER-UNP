@@ -3,9 +3,11 @@ import { Procesos } from '../components/modals/procesos'
 import { Anexos } from '../components/modals/anexos'
 import { BootstrapTable } from 'eco-unp/ui'
 import { TipoSolicitud } from '../shared/tipoSolicitud'
+import { useEffect, useState } from 'react'
 
 export const OrdenesTrabajo: React.FC = () => {
 
+    const [currentPage] = useState();
     const dataTable: any[] = data
 
     const columns: any[] = [
@@ -23,6 +25,10 @@ export const OrdenesTrabajo: React.FC = () => {
         { key: "tipo_estudio", label: "Tipo de estudio" },
         { key: "anexos", label: "Anexos", hasModal: true },
     ]
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, [currentPage]);
 
     const renderModalContent = (row: Record<string, any>, column: any) => {
         switch (column.key) {
