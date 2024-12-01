@@ -23,7 +23,7 @@ const CamposUrbanos: React.FC<CamposUrbanosProps> = ({ formData, handleFieldChan
             formData.numeroViaSecundaria ? `# ${formData.numeroViaSecundaria}` : '',
             formData.letraSecundaria,
             formData.cuadranteSecundario,
-            formData.numeroPlaca ? `# ${formData.numeroPlaca}` : '',
+            formData.numeroPlaca ? `- ${formData.numeroPlaca}` : '',
             ' ',
             formData.complemento,
         ];

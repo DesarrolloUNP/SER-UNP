@@ -1,15 +1,44 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { SubtituloForm } from "eco-unp";
-import { CardHeader } from "react-bootstrap";
+import { SubtituloForm } from "eco-unp/ui";
+import React, { useEffect, useState } from "react";
+import { Row, Col, Form, CardHeader } from "react-bootstrap";
+import { RiUserLocationFill } from "react-icons/ri";
+import CamposRurales from "../../../shared/camposRurales";
+import CamposUrbanos from "../../../shared/camposUrbanos";
+import { fetchDepartamentos, fetchMunicipios } from "../../../services/ubicacion";
+import UbicacionFechaTerceros from "./componenteUbicacionTerceros";
 
-// Define la interfaz Seccion con campos en español
-interface Seccion {
+// Define las interfaces
+interface FormData {
+  ubicacion: string;
   fechaHora: string;
+  departamento: string;
+  ciudad: string;
+  ruralFields: {
+    centroPoblado: string;
+    corregimiento: string;
+    indicaciones: string;
+    vereda: string;
+  };
+  urbanaFields: {
+    nombreBarrio: string;
+    viaPrincipal: string;
+    numeroViaPrincipal: string;
+    letraPrincipal: string;
+    esBis: boolean;
+    cuadrantePrincipal: string;
+    numeroViaSecundaria: string;
+    letraSecundaria: string;
+    cuadranteSecundario: string;
+    numeroPlaca: string;
+    complemento: string;
+    indicaciones: string;
+  };
+}
+
+interface Seccion {
+  formData: FormData;
   entrevistaRealizada: string;
   tipoEntrevista: string;
-  departamento?: string;
-  municipio?: string;
   direccion?: string;
   telefonoOrigen?: string;
   telefonoDestino?: string;
@@ -27,12 +56,60 @@ interface Seccion {
 
 const Entrevistas: React.FC = () => {
   const [secciones, setSecciones] = useState<Seccion[]>([]);
+  const [departamentos, setDepartamentos] = useState<{ id: number; name: string }[]>([]);
+  const [municipios, setMunicipios] = useState<{ id: number; name: string }[]>([]);
+
+  useEffect(() => {
+    const fetchDepartamentosData = async () => {
+      try {
+        const data = await fetchDepartamentos();
+        setDepartamentos(data);
+      } catch (error) {
+        console.error("Error al obtener departamentos:", error);
+      }
+    };
+    fetchDepartamentosData();
+  }, []);
+
+  const fetchMunicipiosData = async (departamentoId: string) => {
+    try {
+      const data = await fetchMunicipios(departamentoId);
+      setMunicipios(data);
+    } catch (error) {
+      console.error("Error al obtener municipios:", error);
+    }
+  };
 
   const addSection = () => {
     setSecciones([
       ...secciones,
       {
-        fechaHora: "",
+        formData: {
+          ubicacion: "",
+          fechaHora: "",
+          departamento: "",
+          ciudad: "",
+          ruralFields: {
+            centroPoblado: "",
+            corregimiento: "",
+            vereda: "",
+            indicaciones: "",
+          },
+          urbanaFields: {
+            nombreBarrio: "",
+            viaPrincipal: "",
+            numeroViaPrincipal: "",
+            letraPrincipal: "",
+            esBis: false,
+            cuadrantePrincipal: "",
+            numeroViaSecundaria: "",
+            letraSecundaria: "",
+            cuadranteSecundario: "",
+            numeroPlaca: "",
+            complemento: "",
+            indicaciones: "",
+          },
+        },
         entrevistaRealizada: "",
         tipoEntrevista: "",
         nombreEntrevistado: "",
@@ -48,26 +125,54 @@ const Entrevistas: React.FC = () => {
     ]);
   };
 
-  const handleChange = (
+  const handleChangeUbicacion = (
     index: number,
-    campo: keyof Seccion,
-    valor: string | File | null
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const seccionesActualizadas = secciones.map((seccion, i) =>
-      i === index ? { ...seccion, [campo]: valor } : seccion
+    const { name, value } = e.target;
+    setSecciones((prevSecciones) =>
+      prevSecciones.map((seccion, i) =>
+        i === index
+          ? {
+              ...seccion,
+              formData: {
+                ...seccion.formData,
+                [name]: value,
+              },
+            }
+          : seccion
+      )
     );
-    setSecciones(seccionesActualizadas);
   };
-  
 
-  const handleSave = (index: number) => {
-    console.log("Sección guardada:", secciones[index]);
-    alert("Sección guardada: " + JSON.stringify(secciones[index]));
+  const handleFieldChange = (
+    index: number,
+    e: React.ChangeEvent<any>,
+    location: string
+  ) => {
+    const { name, value, type, checked } = e.target;
+    const fieldValue = type === "checkbox" ? checked : value;
+
+    setSecciones((prevSecciones) =>
+      prevSecciones.map((seccion, i) =>
+        i === index
+          ? {
+              ...seccion,
+              formData: {
+                ...seccion.formData,
+                [location + "Fields"]: {
+                  ...(seccion.formData as any)[location + "Fields"],
+                  [name]: fieldValue,
+                },
+              },
+            }
+          : seccion
+      )
+    );
   };
 
   const handleDelete = (index: number) => {
-    const seccionesActualizadas = secciones.filter((_, i) => i !== index);
-    setSecciones(seccionesActualizadas);
+    setSecciones(secciones.filter((_, i) => i !== index));
   };
 
   const handleSubmit = () => {
@@ -91,209 +196,23 @@ const Entrevistas: React.FC = () => {
             </span>
           </CardHeader>
 
-          {/* Diseño en cuadrícula para el formulario */}
-          <div className="row g-3">
-            <div className="col-md-6">
-              <label>Fecha y Hora de la Entrevista</label>
-              <input
-                type="datetime-local"
-                className="form-control"
-                value={seccion.fechaHora}
-                onChange={(e) => handleChange(index, "fechaHora", e.target.value)}
-              />
-            </div>
-            <div className="col-md-6">
-              <label>Tipo de Entrevista</label>
-              <select
-                className="form-control"
-                value={seccion.tipoEntrevista}
-                onChange={(e) => handleChange(index, "tipoEntrevista", e.target.value)}
-              >
-                <option value="">Seleccione...</option>
-                <option value="personal">
-                  Entrevista realizada personalmente
-                </option>
-                <option value="telefono">
-                  Entrevista realizada telefónicamente
-                </option>
-              </select>
-            </div>
-
-            {seccion.tipoEntrevista === "personal" && (
-              <>
-              <div className="col-md-6">
-                <label>Departamento</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  onChange={(e) => handleChange(index, "departamento", e.target.value)}
-                />
-              </div>
-              <div className="col-md-6">
-                <label>Municipio</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  onChange={(e) => handleChange(index, "municipio", e.target.value)}
-                />
-              </div>
-              <div>
-                <label>Dirección</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  onChange={(e) => handleChange(index, "direccion", e.target.value)}
-                />
-              </div>
-              <div>
-                <label>Adjuntar archivo</label>
-                <input
-                  type="file"
-                  className="form-control"
-                  onChange={(e) =>
-                    handleChange(index, "archivo", e.target.files ? e.target.files[0] : null)
-                  }
-                />
-              </div>
-            </>            
-            )}
-
-            {seccion.tipoEntrevista === "telefono" && (
-              <>
-                <div className="col-md-6">
-                  <label>Número Teléfono Origen</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    onChange={(e) =>
-                      handleChange(index, "telefonoOrigen", e.target.value)
-                    }
-                  />
-                </div>
-                <div className="col-md-6">
-                  <label>Número Teléfono Destino</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    onChange={(e) =>
-                      handleChange(index, "telefonoDestino", e.target.value)
-                    }
-                  />
-                </div>
-              </>
-            )}
-
-            <div className="col-md-6">
-              <label>Nombre de la Persona Entrevistada</label>
-              <input
-                type="text"
-                className="form-control"
-                value={seccion.nombreEntrevistado}
-                onChange={(e) =>
-                  handleChange(index, "nombreEntrevistado", e.target.value)
-                }
-              />
-            </div>
-            <div className="col-md-6">
-              <label>Tipo de Identificación</label>
-              <select
-                className="form-control"
-                value={seccion.tipoIdentificacion}
-                onChange={(e) =>
-                  handleChange(index, "tipoIdentificacion", e.target.value)
-                }
-              >
-                <option value="">Seleccione...</option>
-                <option value="CC">Cédula de Ciudadanía</option>
-                <option value="TI">Tarjeta de Identidad</option>
-                <option value="CE">Cédula de Extranjería</option>
-                <option value="PAS">Pasaporte</option>
-                <option value="NIT">NIT</option>
-              </select>
-            </div>
-            <div className="col-md-6">
-              <label>Número de Identificación</label>
-              <input
-                type="text"
-                className="form-control"
-                value={seccion.numeroIdentificacion}
-                onChange={(e) =>
-                  handleChange(index, "numeroIdentificacion", e.target.value)
-                }
-              />
-            </div>
-            <div className="col-md-6">
-              <label>En su Calidad De</label>
-              <input
-                type="text"
-                className="form-control"
-                value={seccion.rol}
-                onChange={(e) => handleChange(index, "rol", e.target.value)}
-              />
-            </div>
-            <div className="col-12">
-              <label>Sinopsis de la Información</label>
-              <textarea
-                className="form-control"
-                maxLength={1500}
-                value={seccion.sinopsis}
-                onChange={(e) => handleChange(index, "sinopsis", e.target.value)}
-              />
-            </div>
-            <h6 className="mt-3">Firmas</h6>
-            <div className="col-md-6">
-              <label>Firma de la Persona Entrevistada</label>
-              <input
-                type="text"
-                className="form-control"
-                value={seccion.firmaNombreEntrevistado}
-                onChange={(e) =>
-                  handleChange(index, "firmaNombreEntrevistado", e.target.value)
-                }
-              />
-              <label>Documento de Identidad del Entrevistado</label>
-              <input
-                type="text"
-                className="form-control"
-                value={seccion.firmaIdentificacionEntrevistado}
-                onChange={(e) =>
-                  handleChange(
-                    index,
-                    "firmaIdentificacionEntrevistado",
-                    e.target.value
-                  )
-                }
-              />
-            </div>
-            <div className="col-md-6">
-              <label>Firma del Analista</label>
-              <input
-                type="text"
-                className="form-control"
-                value={seccion.firmaNombreAnalista}
-                onChange={(e) =>
-                  handleChange(index, "firmaNombreAnalista", e.target.value)
-                }
-              />
-              <label>Documento de Identidad del Analista</label>
-              <input
-                type="text"
-                className="form-control"
-                value={seccion.firmaIdentificacionAnalista}
-                onChange={(e) =>
-                  handleChange(
-                    index,
-                    "firmaIdentificacionAnalista",
-                    e.target.value
-                  )
-                }
-              />
-            </div>
-          </div>
+          
+          <UbicacionFechaTerceros
+          formData={{
+            ubicacionTercero: seccion.formData.ubicacion,
+            fechaHoraTercero: seccion.formData.fechaHora,
+            departamentoTercero: seccion.formData.departamento,
+            ciudadTercero: seccion.formData.ciudad,
+            ruralFieldsTercero: seccion.formData.ruralFields,
+            urbanaFieldsTercero: seccion.formData.urbanaFields
+          }}
+            
+            handleChange={(e) => handleChangeUbicacion(index, e)}
+            handleFieldChange={(e, location) => handleFieldChange(index, e, location)}
+          />
 
           <div className="mt-3 d-flex justify-content-end">
-
-            <button className="btn btn-danger" onClick={() => handleDelete(index) }>
+            <button className="btn btn-danger" onClick={() => handleDelete(index)}>
               Eliminar
             </button>
           </div>

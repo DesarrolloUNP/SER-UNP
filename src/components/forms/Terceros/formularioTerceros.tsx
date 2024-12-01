@@ -7,6 +7,7 @@ import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
 
 
 
+
 export const FormularioTerceros: React.FC = () => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
 
