@@ -51,7 +51,6 @@ export const TipoSolicitud: React.FC<IconTooltipProps> = ({ solicitud }) => {
                     justifyContent: "center",
                     fontSize: "1.5em",
                     color,
-                    cursor: "pointer",
                 }}
             >
                 <Icon />

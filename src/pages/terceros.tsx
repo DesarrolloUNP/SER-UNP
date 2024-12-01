@@ -6,13 +6,13 @@ import { Breadcrumb } from "react-bootstrap";
 export const Terceros: React.FC = ({}) => {
   return (
     <>
-      <div className="main_container">
+      <div>
         <div className="my-3 container">
             {/* Contenedor del Encabezado con Breadcrumb */}
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="breadcrumb-container">
               {/* Breadcrumb alineado a la derecha */}
               <Breadcrumb className="mb-0">
-                <Breadcrumb.Item href={"/"}>Ordenes de Trabajo</Breadcrumb.Item>
+                <Breadcrumb.Item href={"/"}><u>Ordenes de Trabajo</u></Breadcrumb.Item>
                 <Breadcrumb.Item active >Terceros</Breadcrumb.Item>
                 
               </Breadcrumb>

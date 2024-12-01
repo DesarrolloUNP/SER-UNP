@@ -5,11 +5,7 @@ import { SubtituloForm } from "eco-unp/ui";
 
 interface ComponenteActividadProps {
     formData: {
-        inspeccionFecha: {
-            dia: string;
-            mes: string;
-            año: string;
-        };
+        inspeccionFechaActividad: string;
         actividadDistancia: string;
     };
     handleChange: (e: ChangeEvent<any>) => void;
@@ -19,44 +15,18 @@ const ComponenteActividad: React.FC<ComponenteActividadProps> = ({ formData, han
     <>
         <SubtituloForm subtitulo="Fecha de realización de la inspección" icon={FaCalendarAlt} />
         <Row>
-            <Col md={4} sm={12} className="mb-3">
+            <Col md={12} sm={12} className="mb-3">
                 <FormGroup>
-                    <FormLabel>Día *</FormLabel>
+                    <FormLabel>Fecha *</FormLabel>
                     <FormControl
-                        type="text"
-                        name="inspeccionFecha.dia"
-                        value={formData.inspeccionFecha.dia}
+                        type="date"
+                        name="inspeccionFechaActividad"
+                        value={formData.inspeccionFechaActividad}
                         onChange={handleChange}
-                        placeholder="Día"
-                    />
-                </FormGroup>
-            </Col>
-            <Col md={4} sm={12} className="mb-3">
-                <FormGroup>
-                    <FormLabel>Mes *</FormLabel>
-                    <FormControl
-                        type="text"
-                        name="inspeccionFecha.mes"
-                        value={formData.inspeccionFecha.mes}
-                        onChange={handleChange}
-                        placeholder="Mes"
-                    />
-                </FormGroup>
-            </Col>
-            <Col md={4} sm={12} className="mb-3">
-                <FormGroup>
-                    <FormLabel>Año *</FormLabel>
-                    <FormControl
-                        type="text"
-                        name="inspeccionFecha.año"
-                        value={formData.inspeccionFecha.año}
-                        onChange={handleChange}
-                        placeholder="Año"
                     />
                 </FormGroup>
             </Col>
         </Row>
-
         <SubtituloForm subtitulo="Distancia al casco urbano" icon={FaMapMarkerAlt} />
         <Row>
             <Col md={12} sm={12} className="mb-3">

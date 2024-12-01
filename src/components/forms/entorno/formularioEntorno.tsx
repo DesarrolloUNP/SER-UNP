@@ -8,11 +8,8 @@ import { Card, CardHeader, CardBody, Form, Button } from "react-bootstrap";
 import ExpandableCard from "../../../shared/tarjetaExpandible";
 
 interface FormData {
-    inspeccionFecha: {
-        dia: string;
-        mes: string;
-        año: string;
-    };
+    inspeccionFechaResidencial: string; 
+    inspeccionFechaActividad: string;
     residencialDistancia: string;
     actividadDistancia: string;
     barrerasFisicasResidencia: string;
@@ -43,7 +40,8 @@ export const datosOrden = {
 export const FormularioEntorno: React.FC = () => {
     const [validated, setValidated] = useState(false);
     const [formData, setFormData] = useState<FormData>({
-        inspeccionFecha: { dia: "", mes: "", año: "" },
+        inspeccionFechaResidencial: "",
+        inspeccionFechaActividad: "",
         residencialDistancia: "",
         actividadDistancia: "",
         barrerasFisicasResidencia: "",
@@ -59,16 +57,7 @@ export const FormularioEntorno: React.FC = () => {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-
-        if (name.startsWith("inspeccionFecha.")) {
-            const key = name.split(".")[1];
-            setFormData({
-                ...formData,
-                inspeccionFecha: { ...formData.inspeccionFecha, [key]: value },
-            });
-        } else {
-            setFormData({ ...formData, [name]: value });
-        }
+        setFormData({ ...formData, [name]: value });
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
