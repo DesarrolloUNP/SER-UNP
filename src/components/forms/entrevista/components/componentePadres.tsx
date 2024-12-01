@@ -1,8 +1,7 @@
 import { SubtituloForm } from "eco-unp/ui";
 import { ChangeEvent } from "react";
-import { IoWomanSharp, IoManSharp } from "react-icons/io5";
 import { Row, Col, Form, Button } from "react-bootstrap";
-import { factorDiferencialOptions, familiaOrigen } from "./configForm";
+import { factorDiferencialOptions, familiaOrigen } from "../configForm";
 import { ImManWoman } from "react-icons/im";
 import { FaTrash } from "react-icons/fa6";
 
@@ -57,7 +56,7 @@ export const ComponenteFliaOrigen: React.FC<familiaOrigenProps> = ({ familiares,
                     <Row className="mb-3">
                         <Col md={4}>
                         <Form.Group controlId={`tipo-${index}`}>
-                            <Form.Label>Tipo</Form.Label>
+                            <Form.Label>Parentesco</Form.Label>
                             <Form.Select
                                 name="tipo"
                                 value={familiar.tipo}
@@ -166,7 +165,7 @@ export const ComponenteFliaOrigen: React.FC<familiaOrigenProps> = ({ familiares,
                                 name="causaMuerte"
                                 value={familiar.causaMuerte}
                                 onChange={(e) => handleFliaOrigenChange(index, e)}
-                                placeholder="Ingresa una descripción (máximo 100 caracteres)"
+                                placeholder="Ingresa una descripción"
                                 maxLength={100}
                                 rows={1}
                             />

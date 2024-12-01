@@ -3,7 +3,7 @@ import React, { ChangeEvent } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa6";
 import { MdFamilyRestroom } from "react-icons/md";
-import { factorDiferencialOptions, Hijo } from './configForm';
+import { factorDiferencialOptions, Hijo } from '../configForm';
 
 interface HijosInfoProps {
     hijos: Hijo[];

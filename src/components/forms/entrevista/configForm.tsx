@@ -3,34 +3,62 @@ import { FaUser, FaUserPlus, FaUserShield } from "react-icons/fa6";
 
 export interface Hijo {
     nombres: string;
-    apellidos:string;
+    apellidos: string;
     edad: string;
     actividad: string;
     numeroContacto: string;
-    factorDiferencial:string;
-    subfactorDifrencial:string;
-    causaMuerte:string
+    factorDiferencial: string;
+    subfactorDifrencial: string;
+    causaMuerte: string
 }
 
 export interface familiaOrigen {
-    tipo:string
+    tipo: string
     nombres: string;
-    apellidos:string;
+    apellidos: string;
     ocupacion: string;
     numeroContacto: string;
-    factorDiferencial:string;
-    subfactorDifrencial:string;
-    causaMuerte:string
+    factorDiferencial: string;
+    subfactorDifrencial: string;
+    causaMuerte: string
 }
 
 export interface PersonasAcargo {
     nombres: string;
-    apellidos:string;
+    apellidos: string;
     edad: string;
     parentesco: string;
     residencia: string;
-    factorDiferencial:string;
-    subfactorDifrencial:string;
+    factorDiferencial: string;
+    subfactorDifrencial: string;
+}
+
+export interface Historial {
+    entidad: string;
+    departamento: string;
+    municipio: string;
+    cargo: string;
+    fechaInicial: any;
+    fechaFinal: any;
+    observaciones: string
+}
+
+export interface Rutas {
+    recorrido: string;
+    horario: string;
+    duracion:string;
+    frecuencia:string;
+    medioTransporte: string;
+    puntosVulnerabilidad: string;
+}
+
+export interface Denuncias {
+    entidad: string;
+    fecha: string;
+    numeroProceso:string;
+    delito: string;
+    estado: string;
+    observaciones:string
 }
 
 export const opcionesVia = [
@@ -98,6 +126,29 @@ export interface ComponenteConyugalProps {
     handleFieldChange: (e: React.ChangeEvent<any>, location: string) => void;
 }
 
+export interface formDataNotificacion {
+    departamentoResidencia: string,
+    municipioResidencia: string,
+    ubicacionResidenca: string,
+    ruralResidenciaFields: {},
+    urbanaResidenciaFields: {},
+    numeroContactoEvaluado: string,
+    correoElectronicoEvaluado: string,
+    esCorreoNotificacion: boolean,
+    correoElectronicoNotificacion: string,
+    esUbicacionNotificacion: boolean,
+    departamentoNotificacion: string,
+    municipioNotificacion: string,
+    ubicacionNotificacion: string,
+    ruralNotificacionFields: {},
+    urbanaNotificacionFields: {},
+    nombrePersonaContacto: string,
+    apellidoPersonaContacto:string,
+    numeroContactoPersona:string,
+    correoElectronicoContacto:string,
+    relacionConEvaluado: string
+}
+
 
 export const camposForm = {
     departamento: "",
@@ -108,45 +159,100 @@ export const camposForm = {
     urbanaFields: {},
     fechaNacimiento: "",
     edad: "",
-    nacionalidadColombiana:true,
+    nacionalidadColombiana: true,
     paisNacimiento: "",
-    ciudadNacimiento:'',
+    ciudadNacimiento: '',
     departamentoNacimiento: "",
     municipio: "",
     estadoCivil: "",
     nivelAcademico: "",
     tipoSangre: "",
     rh: "",
-    nombreConyuge:"",
-    apellidoConyuge:"",
-    tipoIdConyuge:"",
-    noIdConyuge:"",
-    telConyuge:"",
-    celConyuge:"",
-    departamentoConyuge:"",
-    municipioConyuge:"",
-    ubicacionConyuge:"",
+    nombreConyuge: "",
+    apellidoConyuge: "",
+    tipoIdConyuge: "",
+    noIdConyuge: "",
+    telConyuge: "",
+    celConyuge: "",
+    departamentoConyuge: "",
+    municipioConyuge: "",
+    ubicacionConyuge: "",
     ruralConyugalFields: {},
     urbanaConyugalFields: {},
-    ocupacionConyuge:"",
-    empresaConyuge:"",
-    factorDiferencialConyuge:'',
-    subfactorDiferencialConyuge:'',
-    causaMuerteConyuge:"",
+    ocupacionConyuge: "",
+    empresaConyuge: "",
+    factorDiferencialConyuge: '',
+    subfactorDiferencialConyuge: '',
+    causaMuerteConyuge: "",
     hijos: [] as Hijo[],
     familiares: [] as familiaOrigen[],
     observaciones: "",
     personasCargo: [] as PersonasAcargo[],
-    relacionFamiliar:'',
-    departamentoLaboral:"",
-    municipioLaboral:"",
-    ubicacionLaboral:"",
+    relacionFamiliar: '',
+    departamentoLaboral: "",
+    municipioLaboral: "",
+    ubicacionLaboral: "",
     ruralLaboralFields: {},
     urbanaLaboralFields: {},
-    profesion:"",
-    oficio:"",
-    telefonoLaboral:"",
-    observacionesLaborales:""
+    profesion: "",
+    oficio: "",
+    telefonoLaboral: "",
+    observacionesLaborales: "",
+    departamentoActividadPoblacional: "",
+    municipioActividadPoblacional: "",
+    ubicacionActividadaPoblacional: "",
+    ruralActividadPoblacionalFields: {},
+    urbanaActividadPoblacionalFields: {},
+    cargo: "",
+    telefonoActividadPoblacional: "",
+    observacionesActividadPoblacional: "",
+    historialActividadPoblacional: [] as Historial[],
+    departamentoResidencia: '',
+    municipioResidencia: '',
+    ubicacionResidenca: '',
+    ruralResidenciaFields: {},
+    urbanaResidenciaFields: {},
+    numeroContactoEvaluado: '',
+    correoElectronicoEvaluado: '',
+    esCorreoNotificacion: true,
+    correoElectronicoNotificacion: '',
+    esUbicacionNotificacion: true,
+    departamentoNotificacion: '',
+    municipioNotificacion: '',
+    ubicacionNotificacion: '',
+    ruralNotificacionFields: {},
+    urbanaNotificacionFields: {},
+    nombrePersonaContacto: '',
+    apellidoPersonaContacto:'',
+    numeroContactoPersona:'',
+    correoElectronicoContacto:'',
+    relacionConEvaluado: '',
+    poblacion:'',
+    subpoblacion:'',
+    factorDiferencial:'',
+    subfactorDiferencial:'',
+    observacionesDiferenciales:'',
+    tieneMedidasCautelares:false,
+    medidasCautelares:'',
+    tieneMedidasEspeciales:false,
+    medidasEspeciales:'',
+    entidadSeguridad:'',
+    conoceMedidasAutoproteccion:false,
+    aplicaMedidasAutoproteccion:false,
+    entregaFolletoAutoproteccion:false,
+    observacionesAutoproteccion:'',
+    desplazamientos: [] as Rutas[],
+    observacionesEntorno:'',
+    denuncias: [] as Denuncias[],
+    parteIntroductoria:'',
+    variablesRiesgo:'',
+    relatoHechos:'',
+    antecedentesRiesgo:'',
+    vulnerabilidad:'',
+    aspectosAdicionales:'',
+    constanciaEvaluado:'',
+    peticionEvaluado:'',
+    anexos: [] as any[]
 }
 
 export const factorDiferencialOptions = [
@@ -164,8 +270,68 @@ export const steps = [
     { label: "Actividad laboral y/o poblacional", icon: <FaUserShield /> },
     { label: "Datos de notificación", icon: <FaUserShield /> },
     { label: "Grupo poblacional", icon: <FaUserShield /> },
-    { label: "Desplazamientos", icon: <FaUserShield /> },
-    { label: "Medidas", icon: <FaUserShield /> },
+    { label: "Medidas de protección", icon: <FaUserShield /> },
+    { label: "Desplazamientos y entorno", icon: <FaUserShield /> },
+    { label: "Denuncias y quejas", icon: <FaUserShield /> },
     { label: "Relato de hechos", icon: <FaUserShield /> },
-    { label: "Anexos", icon: <FaUserShield /> },
 ];
+
+export const hijos = {
+    nombres: "",
+    apellidos: "",
+    edad: "",
+    actividad: "",
+    numeroContacto: "",
+    factorDiferencial: "",
+    subfactorDifrencial: "",
+    causaMuerte: "",
+}
+
+export const familiares = {
+    tipo: "",
+    nombres: "",
+    apellidos: "",
+    ocupacion: "",
+    numeroContacto: "",
+    factorDiferencial: "",
+    subfactorDifrencial: "",
+    causaMuerte: "",
+}
+
+export const personasCargo = {
+    nombres: "",
+    apellidos: "",
+    edad: "",
+    residencia: "",
+    parentesco: "",
+    factorDiferencial: "",
+    subfactorDifrencial: "",
+}
+
+export const historialActividadPoblacional = {
+    entidad: "",
+    departamento: "",
+    municipio: "",
+    cargo: "",
+    fechaInicial: "",
+    fechaFinal: "",
+    observaciones: "",
+}
+
+export const desplazamientos = {
+    recorrido: "",
+    horario: "",
+    duracion: "",
+    frecuencia: "",
+    medioTransporte: "",
+    puntosVulnerabilidad: "",
+}
+
+export const denuncias = {
+    entidad: "",
+    fecha: "",
+    numeroProceso: "",
+    delito: "",
+    estado: "",
+    observaciones: "",
+}
