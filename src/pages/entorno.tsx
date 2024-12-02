@@ -15,7 +15,7 @@ export const Entorno: React.FC = ({ }) => {
               <Breadcrumb.Item active>Entorno</Breadcrumb.Item>
             </Breadcrumb>
           </div>
-          <div >
+          <div className="col-xl-9 col-lg-11">
             <Encabezado
               dependencia={"Subdirección de Evaluación de Riesgo"}
             ></Encabezado>

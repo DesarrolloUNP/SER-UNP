@@ -20,7 +20,7 @@ export const Terceros: React.FC = ({}) => {
           <div className="justify-content-center row">
             
 
-            <div>
+            <div className="col-xl-9 col-lg-11">
               <Encabezado
                 dependencia={"Subdirección de Evaluación de Riesgo"}
               ></Encabezado>

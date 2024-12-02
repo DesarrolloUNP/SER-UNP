@@ -16,7 +16,7 @@ export const Escoltas: React.FC = ({}) => {
             </Breadcrumb>
           </div>
         <div className="justify-content-center row">
-          <div>
+          <div className="col-xl-9 col-lg-11">
             <Encabezado
               dependencia={"Subdirección de Evaluación de Riesgo"}
             ></Encabezado>
