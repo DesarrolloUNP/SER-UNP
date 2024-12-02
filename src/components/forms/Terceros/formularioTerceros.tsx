@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import { Row, Col, Card, CardHeader, CardBody, Button } from "react-bootstrap";
 import { FaUsers } from "react-icons/fa";
 import { SubtituloForm } from "eco-unp/ui";
-import Entrevistas from "../terceros/componenteEntrevistaTerceros";
+import EntrevistasTerceros from "../terceros/componenteEntrevistaTerceros";
 import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
-
-
-
 
 export const FormularioTerceros: React.FC = () => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
@@ -31,16 +28,16 @@ export const FormularioTerceros: React.FC = () => {
   };
 
   return (
-    <Card className="border-0 shadow mt-4 mt-4">
+    <div>
       <InformacionOrdenTrabajo datos={datosOrden} titulo="TERCEROS" />
-      <CardHeader className="text-center bg-unp text-light py-3">
-        <span className="formMainTitle">INFORMACIÓN DE LAS ENTREVISTAS</span>
-      </CardHeader>
-      <CardBody>
-        <Entrevistas />
-      </CardBody>
-
-     
-    </Card>
+      <Card className="border-0 shadow mt-4 mt-4">
+        <CardHeader className="text-center bg-unp text-light py-3">
+          <span className="formMainTitle">INFORMACIÓN DE LAS ENTREVISTAS</span>
+        </CardHeader>
+        <CardBody>
+          <EntrevistasTerceros />
+        </CardBody>
+      </Card>
+    </div>
   );
 };

@@ -2,7 +2,7 @@ import { Encabezado } from "eco-unp/ui";
 import { FormularioEntorno } from "../components/forms/entorno/formularioEntorno";
 import { Breadcrumb } from "react-bootstrap";
 
-export const Entorno: React.FC = ({}) => {
+export const Entorno: React.FC = ({ }) => {
   return (
     <div>
       <div className="my-3 container">
@@ -15,7 +15,7 @@ export const Entorno: React.FC = ({}) => {
               <Breadcrumb.Item active>Entorno</Breadcrumb.Item>
             </Breadcrumb>
           </div>
-          <div className="col-xl-9 col-lg-11">
+          <div >
             <Encabezado
               dependencia={"Subdirección de Evaluación de Riesgo"}
             ></Encabezado>

@@ -15,7 +15,7 @@ export const Documental: React.FC = ({}) => {
                 <Breadcrumb.Item active>Documental</Breadcrumb.Item>
               </Breadcrumb>
             </div>
-            <div className="col-xl-9 col-lg-11">
+            <div>
               <Encabezado
                 dependencia={"Subdirección de Evaluación de Riesgo"}
               ></Encabezado>
