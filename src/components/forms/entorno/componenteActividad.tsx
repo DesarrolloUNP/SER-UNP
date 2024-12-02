@@ -15,7 +15,7 @@ const ComponenteActividad: React.FC<ComponenteActividadProps> = ({ formData, han
     <>
         <SubtituloForm subtitulo="Fecha de realización de la inspección" icon={FaCalendarAlt} />
         <Row>
-            <Col md={12} sm={12} className="mb-3">
+            <Col md={6} className="mb-3">
                 <FormGroup>
                     <FormLabel>Fecha *</FormLabel>
                     <FormControl
@@ -29,7 +29,7 @@ const ComponenteActividad: React.FC<ComponenteActividadProps> = ({ formData, han
         </Row>
         <SubtituloForm subtitulo="Distancia al casco urbano" icon={FaMapMarkerAlt} />
         <Row>
-            <Col md={12} sm={12} className="mb-3">
+            <Col md={12} className="mb-3">
                 <FormGroup>
                     <FormLabel>
                         En caso de que el lugar de la actividad, función o condición esté ubicado en zona rural, ¿cuál es la distancia
