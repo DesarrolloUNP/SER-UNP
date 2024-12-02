@@ -13,11 +13,12 @@ interface ComponenteActividadProps {
 
 const ComponenteActividad: React.FC<ComponenteActividadProps> = ({ formData, handleChange }) => (
     <>
-        <SubtituloForm subtitulo="Fecha de realización de la inspección" icon={FaCalendarAlt} />
         <Row>
             <Col md={6} className="mb-3">
+            <SubtituloForm subtitulo="Fecha de realización de la inspección" icon={FaCalendarAlt} />
+
                 <FormGroup>
-                    <FormLabel>Fecha *</FormLabel>
+                    <FormLabel>Fecha</FormLabel>
                     <FormControl
                         type="date"
                         name="inspeccionFechaActividad"
@@ -26,17 +27,16 @@ const ComponenteActividad: React.FC<ComponenteActividadProps> = ({ formData, han
                     />
                 </FormGroup>
             </Col>
-        </Row>
-        <SubtituloForm subtitulo="Distancia al casco urbano" icon={FaMapMarkerAlt} />
-        <Row>
-            <Col md={12} className="mb-3">
+            <Col md={6} className="mb-3">
+            <SubtituloForm subtitulo="Distancia al casco urbano" icon={FaMapMarkerAlt} />
+
                 <FormGroup>
                     <FormLabel>
                         En caso de que el lugar de la actividad, función o condición esté ubicado en zona rural, ¿cuál es la distancia
                         aproximada al casco urbano más cercano?
                     </FormLabel>
                     <FormControl
-                        type="text"
+                        type="number"
                         name="actividadDistancia"
                         value={formData.actividadDistancia}
                         onChange={handleChange}

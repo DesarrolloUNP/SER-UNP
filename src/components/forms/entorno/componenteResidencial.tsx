@@ -5,7 +5,7 @@ import { SubtituloForm } from "eco-unp/ui";
 
 interface ComponenteResidencialProps {
     formData: {
-        inspeccionFechaResidencial: string; 
+        inspeccionFechaResidencial: string;
         residencialDistancia: string;
     };
     handleChange: (e: ChangeEvent<any>) => void;
@@ -13,11 +13,11 @@ interface ComponenteResidencialProps {
 
 const ComponenteResidencial: React.FC<ComponenteResidencialProps> = ({ formData, handleChange }) => (
     <>
-        <SubtituloForm subtitulo="Fecha de realización de la inspección" icon={FaCalendarAlt} />
         <Row>
             <Col md={6} className="mb-3">
+            <SubtituloForm subtitulo="Fecha de realización de la inspección" icon={FaCalendarAlt} />
                 <FormGroup>
-                    <FormLabel>Fecha *</FormLabel>
+                    <FormLabel>Fecha</FormLabel>
                     <FormControl
                         type="date"
                         name="inspeccionFechaResidencial"
@@ -26,18 +26,15 @@ const ComponenteResidencial: React.FC<ComponenteResidencialProps> = ({ formData,
                     />
                 </FormGroup>
             </Col>
-        </Row>
-
-        <SubtituloForm subtitulo="Distancia al casco urbano" icon={FaMapMarkerAlt} />
-        <Row>
-            <Col md={12} className="mb-3">
+            <Col md={6} className="mb-3">
+            <SubtituloForm subtitulo="Distancia al casco urbano" icon={FaMapMarkerAlt} />
                 <FormGroup>
                     <FormLabel>
                         En caso de que la vivienda esté ubicada en zona rural, ¿cuál es la distancia aproximada al casco urbano más
                         cercano?
                     </FormLabel>
                     <FormControl
-                        type="text"
+                        type="number"
                         name="residencialDistancia"
                         value={formData.residencialDistancia}
                         onChange={handleChange}

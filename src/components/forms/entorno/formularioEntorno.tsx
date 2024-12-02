@@ -6,6 +6,7 @@ import ComponenteSeguridad from "./componenteSeguridad";
 import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
 import { Card, CardHeader, CardBody, Form, Button } from "react-bootstrap";
 import ExpandableCard from "../../../shared/tarjetaExpandible";
+import { useNavigate } from "react-router-dom";
 
 interface FormData {
     inspeccionFechaResidencial: string; 
@@ -55,6 +56,8 @@ export const FormularioEntorno: React.FC = () => {
         analisisDesplazamientos: "",
     });
 
+    const navigate = useNavigate();
+
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -68,6 +71,10 @@ export const FormularioEntorno: React.FC = () => {
             e.stopPropagation();
         } else {
             console.log("Formulario enviado:", formData);
+            alert('Formulario enviado')
+            setTimeout(() => {
+                navigate("/");
+            });
         }
         setValidated(true);
     };
@@ -77,24 +84,24 @@ export const FormularioEntorno: React.FC = () => {
 
             <InformacionOrdenTrabajo datos={datosOrden} titulo={"Entornos"} />
 
-            <ExpandableCard title="ANÁLISIS E INSPECCIÓN">
+            <ExpandableCard title="Análisis e Inspección">
                 <ComponenteAnalisis />
             </ExpandableCard>
 
-            <ExpandableCard title="RESIDENCIAL">
+            <ExpandableCard title="Residencial">
                 <ComponenteResidencial formData={formData} handleChange={handleChange} />
             </ExpandableCard>
 
-            <ExpandableCard title="Actividad o función (poblacional) programa UNP">
+            <ExpandableCard title="Actividad ó Función (Poblacional) Programa UNP">
                 <ComponenteActividad formData={formData} handleChange={handleChange} />
             </ExpandableCard>
 
-            <ExpandableCard title="SEGURIDAD DEL SITIO">
+            <ExpandableCard title="Seguridad del Sitio">
                 <ComponenteSeguridad formData={formData} handleChange={handleChange} />
             </ExpandableCard>
 
             <div className="d-flex justify-content-end mt-4 mb-4">
-                <Button type="submit" variant="primary">
+                <Button type="submit" variant="success">
                     Enviar
                 </Button>
             </div>

@@ -22,16 +22,6 @@ interface ComponenteDatosInforme2Props {
 
 const ComponenteDatosInforme2: React.FC<ComponenteDatosInforme2Props> = ({ formData, handleChange }) => {
 
-    const poblacionObjetoRef = useRef<HTMLTextAreaElement>(null);
-
-
-    const adjustTextareaHeight = () => {
-        if (poblacionObjetoRef.current) {
-            poblacionObjetoRef.current.style.height = "auto";
-            poblacionObjetoRef.current.style.height = `${poblacionObjetoRef.current.scrollHeight}px`;
-        }
-    };
-
     return (
             <>
                 <SubtituloForm subtitulo={"Evaluaciones Anteriores"} icon={FaUserShield} />
@@ -53,7 +43,7 @@ const ComponenteDatosInforme2: React.FC<ComponenteDatosInforme2Props> = ({ formD
                 </FormGroup>
 
                 <SubtituloForm subtitulo={"Medidas de Proteccion"} icon={FaUserShield} />
-                <FormGroup className="mb-3">
+                <FormGroup>
                     <FormLabel>Recomendaciones de Medidas de Protección*</FormLabel>
                     <FormControl
                         as="textarea"
@@ -62,12 +52,17 @@ const ComponenteDatosInforme2: React.FC<ComponenteDatosInforme2Props> = ({ formD
                         value={formData.sugerenciasRecomendaciones}
                         onChange={handleChange}
                         placeholder="Escriba las recomendaciones."
+                        maxLength={1000}
                     />
                 </FormGroup>
+                <Form.Text muted>
+                    {1000 - formData.sugerenciasRecomendaciones.length} caracteres restantes
+                </Form.Text>
 
-                <FormGroup className="mb-3">
+                <FormGroup>
                     <FormLabel>Medidas de Protección Vigentes*</FormLabel>
-                    <FormControl
+                    <FormControl 
+                        className="mb-3"
                         as="textarea"
                         name="medidasProteccionVigentes"
                         value={formData.medidasProteccionVigentes}
@@ -82,7 +77,7 @@ const ComponenteDatosInforme2: React.FC<ComponenteDatosInforme2Props> = ({ formD
                     />
                 </FormGroup>
 
-                <FormGroup className="mb-3">
+                <FormGroup>
                     <FormLabel>Medidas de Emergencia</FormLabel>
                     <FormControl
                         as="textarea"
@@ -91,11 +86,15 @@ const ComponenteDatosInforme2: React.FC<ComponenteDatosInforme2Props> = ({ formD
                         value={formData.medidasEmergencia}
                         onChange={handleChange}
                         placeholder="Indique las medidas de emergencia."
+                        maxLength={1000}
                     />
                 </FormGroup>
+                <Form.Text muted>
+                    {1000 - formData.medidasEmergencia.length} caracteres restantes
+                </Form.Text>
                 
                 <SubtituloForm subtitulo={"Contexto"} icon={FaMagnifyingGlass} />
-                <FormGroup className="mb-3">
+                <FormGroup>
                     <FormLabel>Contexto Orden Público*</FormLabel>
                     <FormControl
                         as="textarea"
@@ -104,11 +103,15 @@ const ComponenteDatosInforme2: React.FC<ComponenteDatosInforme2Props> = ({ formD
                         value={formData.contextoOrdenPublico}
                         onChange={handleChange}
                         placeholder="Describa el contexto de orden público"
+                        maxLength={1000}
                     />
                 </FormGroup>
+                <Form.Text muted>
+                    {1000 - formData.contextoOrdenPublico.length} caracteres restantes
+                </Form.Text>
 
                 <SubtituloForm subtitulo={"Familia"} icon={FaHouseUser} />
-                <FormGroup className="mb-3">
+                <FormGroup>
                     <FormLabel>Núcleo Familiar</FormLabel>
                     <FormControl
                         as="textarea"
@@ -117,11 +120,15 @@ const ComponenteDatosInforme2: React.FC<ComponenteDatosInforme2Props> = ({ formD
                         value={formData.nucleoFamiliar}
                         onChange={handleChange}
                         placeholder="Describa el núcleo familiar."
+                        maxLength={1000}
                     />
                 </FormGroup>
+                <Form.Text muted>
+                    {1000 - formData.nucleoFamiliar.length} caracteres restantes
+                </Form.Text>
 
                 <SubtituloForm subtitulo={"Informes de Riesgo / Alertas Tempranas"} icon={BsFileEarmarkSpreadsheetFill} />
-                <FormGroup className="mb-3">
+                <FormGroup>
                     <FormLabel>Informes de Riesgo y Alertas Tempranas Vigentes</FormLabel>
                     <FormControl
                         as="textarea"
@@ -130,11 +137,15 @@ const ComponenteDatosInforme2: React.FC<ComponenteDatosInforme2Props> = ({ formD
                         value={formData.informesRiesgoDefensoria}
                         onChange={handleChange}
                         placeholder="Escriba los informes de riesgo actuales."
+                        maxLength={1000}
                     />
                 </FormGroup>
+                <Form.Text muted>
+                    {1000 - formData.informesRiesgoDefensoria.length} caracteres restantes
+                </Form.Text>
 
                 <SubtituloForm subtitulo={"Medidas Cautelares"} icon={FaScaleBalanced} />
-                <FormGroup className="mb-3">
+                <FormGroup>
                     <FormLabel>Medidas Cautelares</FormLabel>
                     <FormControl
                         as="textarea"
@@ -143,11 +154,15 @@ const ComponenteDatosInforme2: React.FC<ComponenteDatosInforme2Props> = ({ formD
                         value={formData.medidasCautelares}
                         onChange={handleChange}
                         placeholder="Especifique las medidas cautelares."
+                        maxLength={1000}
                     />
                 </FormGroup>
+                <Form.Text muted>
+                    {1000 - formData.medidasCautelares.length} caracteres restantes
+                </Form.Text>
 
                 <SubtituloForm subtitulo={"Factor Diferencial"} icon={FaUserTag} />
-                <FormGroup className="mb-3">
+                <FormGroup>
                     <FormLabel>Factor Diferencial y/o de Género</FormLabel>
                     <FormControl
                         type="text"

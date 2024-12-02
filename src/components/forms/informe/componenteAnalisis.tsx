@@ -79,7 +79,7 @@ const ComponenteDatosInforme: React.FC<ComponenteDatosInformeProps> = ({ formDat
                 </Col>
 
                 <SubtituloForm subtitulo={"Hechos"} icon={FaBook} />
-                <FormGroup className="mb-2">
+                <FormGroup>
                     <FormLabel>Hechos Anteriores / Antecedentes*</FormLabel>
                     <FormControl
                         as="textarea"
@@ -88,10 +88,14 @@ const ComponenteDatosInforme: React.FC<ComponenteDatosInformeProps> = ({ formDat
                         value={formData.hechosAnteriores}
                         onChange={handleChange}
                         placeholder="Describa los antecedentes o hechos anteriores."
+                        maxLength={1000}
                     />
                 </FormGroup>
+                <Form.Text muted>
+                    {1000 - formData.hechosAnteriores.length} caracteres restantes
+                </Form.Text>
 
-                <FormGroup className="mb-2">
+                <FormGroup>
                     <FormLabel>Hechos Actuales*</FormLabel>
                     <FormControl
                         as="textarea"
@@ -100,11 +104,15 @@ const ComponenteDatosInforme: React.FC<ComponenteDatosInformeProps> = ({ formDat
                         value={formData.hechosActuales}
                         onChange={handleChange}
                         placeholder="Describa los hechos actuales."
+                        maxLength={1000}
                     />
                 </FormGroup>
+                <Form.Text muted>
+                    {1000 - formData.hechosActuales.length} caracteres restantes
+                </Form.Text>
 
                 <SubtituloForm subtitulo={"Verificación"} icon={FaClipboardList} />
-                <FormGroup className="mb-3">
+                <FormGroup>
                     <FormLabel>Actividades de Verificación*</FormLabel>
                     <FormControl
                         as="textarea"
@@ -113,11 +121,15 @@ const ComponenteDatosInforme: React.FC<ComponenteDatosInformeProps> = ({ formDat
                         value={formData.actividadesVerificacion}
                         onChange={handleChange}
                         placeholder="Describa las actividades de verificación realizadas."
+                        maxLength={1000}
                     />
                 </FormGroup>
+                <Form.Text muted>
+                    {1000 - formData.actividadesVerificacion.length} caracteres restantes
+                </Form.Text>
 
                 <SubtituloForm subtitulo={"Conclusión del Analisis"} icon={FaUserPen} />
-                <FormGroup className="mb-3">
+                <FormGroup>
                     <FormLabel>Conclusión *</FormLabel>
                     <FormControl
                         as="textarea"
@@ -126,11 +138,15 @@ const ComponenteDatosInforme: React.FC<ComponenteDatosInformeProps> = ({ formDat
                         value={formData.conclusion}
                         onChange={handleChange}
                         placeholder="Ingrese la conclusión del analisis."
+                        maxLength={1000}
                     />
                 </FormGroup>
+                <Form.Text muted>
+                    {1000 - formData.conclusion.length} caracteres restantes
+                </Form.Text>
 
                 <SubtituloForm subtitulo={"Pretenciones"} icon={FaMagnifyingGlass} />
-                <FormGroup className="mb-3">
+                <FormGroup>
                     <FormLabel>Pretenciones de la Persona a Evaluar*</FormLabel>
                     <FormControl
                         as="textarea"
@@ -139,8 +155,12 @@ const ComponenteDatosInforme: React.FC<ComponenteDatosInformeProps> = ({ formDat
                         value={formData.pretencionesEvaluar}
                         onChange={handleChange}
                         placeholder="Describa las pretenciones de la persona evaluada."
+                        maxLength={1000}
                     />
                 </FormGroup>
+                <Form.Text muted>
+                    {1000 - formData.pretencionesEvaluar.length} caracteres restantes
+                </Form.Text>
             </>
     );
 };

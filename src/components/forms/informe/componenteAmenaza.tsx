@@ -186,7 +186,6 @@ const ComponenteAmenaza: React.FC<ComponenteAmenazaProps> = ({ formData, handleC
                         </FormSelect>
                     </FormGroup>
                 </Col>
-
                 <Col md={6}>
                     <FormGroup className="mb-3">
                         <FormLabel>Telefónica</FormLabel>
@@ -203,7 +202,7 @@ const ComponenteAmenaza: React.FC<ComponenteAmenazaProps> = ({ formData, handleC
                     </FormGroup>
                 </Col>
             </Row>
-
+            <Row>
             <Col md={6}>
                 <FormGroup className="mb-3">
                     <FormLabel>Medios magnéticos</FormLabel>
@@ -219,7 +218,7 @@ const ComponenteAmenaza: React.FC<ComponenteAmenazaProps> = ({ formData, handleC
                     </FormSelect>
                 </FormGroup>
             </Col>
-
+            </Row>
             <Row>
                 <Col md={4}>
                     <FormGroup className="mb-3">
@@ -277,7 +276,7 @@ const ComponenteAmenaza: React.FC<ComponenteAmenazaProps> = ({ formData, handleC
                         { label: "Ideológico", name: "ideologico" },
                         { label: "Otras", name: "otras" },
                     ].map((motivo, index) => (
-                        <Col key={index} xs={12} md={6}>
+                        <Col key={index} xs={12} md={3}>
                             <FormCheck
                                 type="checkbox"
                                 label={motivo.label}
@@ -301,7 +300,7 @@ const ComponenteAmenaza: React.FC<ComponenteAmenazaProps> = ({ formData, handleC
             </FormGroup>
 
             <SubtituloForm subtitulo={"Observaciones"} icon={FaCommentAlt} />
-            <FormGroup className="mb-3">
+            <FormGroup>
                 <FormControl
                     as="textarea"
                     name="observaciones"

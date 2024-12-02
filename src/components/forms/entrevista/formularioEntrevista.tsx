@@ -293,6 +293,7 @@ export const FormularioEntrevista: React.FC = () => {
     return (
         <>
             <Form onSubmit={handleSubmit}>
+                <InformacionOrdenTrabajo datos={datosOrden} titulo={"Entrevista"} />
                 <Card className="border-0 shadow mt-5 mb-4 pt-3" style={{ backgroundColor: '#F9F9F9' }}>
                     <Paginador
                         currentStep={currentPage}
@@ -301,9 +302,8 @@ export const FormularioEntrevista: React.FC = () => {
                         steps={steps}
                     />
                 </Card>
-                <InformacionOrdenTrabajo datos={datosOrden} titulo={"Entrevista"} />
                 {renderPageContent()}
-                <div className="d-flex justify-content-center m-4" style={{ gap: '2rem' }}>
+                <div className="d-flex justify-content-between m-4">
                     {currentPage > 1 && (
                         <Button variant="secondary" onClick={() => setCurrentPage(currentPage - 1)}>
                             Anterior

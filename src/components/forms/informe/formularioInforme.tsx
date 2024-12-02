@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
-import { Card, Button, Form } from "react-bootstrap";
+import { Card, Button, Form, CardHeader } from "react-bootstrap";
 import ExpandableCard from "../../../shared/tarjetaExpandible";
 import ComponenteDatosInforme from "./componenteAnalisis";
 import ComponenteDatosInforme2 from "./componenteAnalisis2";
-import ComponenteAmenaza from "./componenteAmenaza"; // Importar el componente
+import ComponenteAmenaza from "./componenteAmenaza";
 import { Paginador } from "../../../shared/paginadorFormulario";
 import { steps } from "./pasosPaginador";
+import { useNavigate } from "react-router-dom";
 
 const datosOrden = {
     ordenTrabajoNo: "12345",
@@ -20,7 +21,7 @@ const datosOrden = {
     segundoNombre: "Carlos",
     primerApellido: "Pérez",
     segundoApellido: "González",
-    poblacionObjeto: "Víctimas de violaciones a los DDHH e infracciones al DIH...",
+    poblacionObjeto: "Víctimas de violaciones a los DDHH e infracciones al DIH, incluyendo dirigentes, líderes, representantes de Organizaciones  de población desplazada o de reclamantes de tierras en situación de riesgo extraordinario o extremo. (Numeral 9 artículo 2.4.1.2.6. del Decreto 1066 de 2015). Comprende las victimas relacionados en el inciso primero del artículo 31 de la ley 1448 de 2011, que intervienen en los procesos administrativos y judiciales de reparación y en especial de restitución de tierras. ",
     evaluacionesRiesgoAnteriores: "Evaluación de riesgo otra solicitud",
     medidasProteccionVigentes: "Medidas Vigentes...",
     factorDiferencialGenero: "Victima del conflicto armado",
@@ -56,12 +57,12 @@ export const FormularioInforme: React.FC = () => {
             otro: "",
         },
         forma: {
-            escrita: "", 
-            telefonica: "", 
-            mediosMagneticos: "", 
-            informacionTerceros: false, 
-            objetoSimbolico: false, 
-            verbal: false, 
+            escrita: "",
+            telefonica: "",
+            mediosMagneticos: "",
+            informacionTerceros: false,
+            objetoSimbolico: false,
+            verbal: false,
         },
         causaOMotivo: {
             laboral: false,
@@ -79,8 +80,9 @@ export const FormularioInforme: React.FC = () => {
         observaciones: "",
     });
 
-    const totalPages = 3; 
+    const totalPages = 3;
     const [currentPage, setCurrentPage] = useState(1);
+    const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -93,7 +95,7 @@ export const FormularioInforme: React.FC = () => {
         const checked = type === "checkbox" && (e.target as HTMLInputElement).checked;
 
         if (name.includes(".")) {
-            // Manejo de campos anidados
+
             const [parent, child] = name.split(".");
             setFormData((prev) => ({
                 ...prev,
@@ -117,6 +119,10 @@ export const FormularioInforme: React.FC = () => {
             e.stopPropagation();
         } else {
             console.log("Formulario enviado:", formData);
+            alert('Formulario enviado')
+            setTimeout(() => {
+                navigate("/");
+            });
         }
         setValidated(true);
     };
@@ -148,6 +154,9 @@ export const FormularioInforme: React.FC = () => {
 
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
+
+            <InformacionOrdenTrabajo datos={datosOrden} titulo={"Informe Ejecución"} />
+
             <Card className="border-0 shadow mt-5 mb-4 pt-3" style={{ backgroundColor: "#F9F9F9" }}>
                 <Paginador
                     currentStep={currentPage}
@@ -157,7 +166,6 @@ export const FormularioInforme: React.FC = () => {
                 />
             </Card>
 
-            <InformacionOrdenTrabajo datos={datosOrden} titulo={"INFORME EJECUCIÓN"} />
 
             {renderPageContent()}
 

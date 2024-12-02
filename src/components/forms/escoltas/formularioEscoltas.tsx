@@ -4,9 +4,7 @@ import { Card, CardHeader, CardBody, Form, Button } from "react-bootstrap";
 import ComponenteInfoEntrevista from "./componenteInfoEntrevista";
 import ComponenteObservaciones from "./comportenteObservaciones";
 import ExpandableCard from "../../../shared/tarjetaExpandible";
-import CamposRurales from "../../../shared/camposRurales";
-import CamposUrbanos from "../../../shared/camposUrbanos";
-import { fetchDepartamentos, fetchMunicipios } from "../../../services/ubicacion";
+import { useNavigate } from "react-router-dom";
 
 
 const datosOrden = {
@@ -49,6 +47,8 @@ export const FormularioEscoltas: React.FC = () => {
         urbanaFields: {},
     });
 
+    const navigate = useNavigate();
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -61,6 +61,10 @@ export const FormularioEscoltas: React.FC = () => {
             e.stopPropagation();
         } else {
             console.log("Formulario enviado:", formData);
+            alert('Formulario enviado')
+            setTimeout(() => {
+                navigate("/");
+            });
         }
         setValidated(true);
     };
@@ -82,7 +86,7 @@ export const FormularioEscoltas: React.FC = () => {
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
-            <InformacionOrdenTrabajo datos={datosOrden} titulo={"ESCOLTAS"} />
+            <InformacionOrdenTrabajo datos={datosOrden} titulo={"Escoltas"} />
 
             <ExpandableCard title="Información de la Entrevista">
                 <ComponenteInfoEntrevista formData={formData} handleChange={handleChange} handleFieldChange={handleFieldChange} />
@@ -93,7 +97,7 @@ export const FormularioEscoltas: React.FC = () => {
             </ExpandableCard>
 
             <div className="d-flex justify-content-end mt-4 mb-4">
-                <Button type="submit" variant="primary">
+                <Button type="submit" variant="success">
                     Enviar
                 </Button>
             </div>

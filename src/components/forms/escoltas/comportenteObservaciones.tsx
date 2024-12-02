@@ -12,10 +12,10 @@ interface ComponenteObservacionesProps {
 
 const ComponenteObservaciones: React.FC<ComponenteObservacionesProps> = ({ formData, handleChange }) => (
     <>
-        <Row className="mb-3">
+        <SubtituloForm subtitulo={"Observaciones Generales"} icon={FaCommentAlt} />
+        <Row>
             <Col>
                 <FormGroup controlId="observaciones">
-                    <FormLabel>Observaciones</FormLabel>
                     <FormControl
                         as="textarea"
                         rows={5}
@@ -23,8 +23,12 @@ const ComponenteObservaciones: React.FC<ComponenteObservacionesProps> = ({ formD
                         value={formData.observaciones}
                         onChange={handleChange}
                         placeholder="Ingrese aquí sus observaciones generales"
+                        maxLength={1000}
                     />
                 </FormGroup>
+                <Form.Text muted>
+                    {1000 - formData.observaciones.length} caracteres restantes
+                </Form.Text>
             </Col>
         </Row>
     </>

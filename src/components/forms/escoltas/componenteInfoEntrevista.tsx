@@ -1,10 +1,11 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Row, Col, Form, FormGroup, FormLabel, FormControl } from "react-bootstrap";
 import { SubtituloForm } from 'eco-unp/ui';
-import { FaMapMarkedAlt, FaPhoneAlt } from "react-icons/fa";
+import { FaMapMarkedAlt, FaPhoneAlt, FaUser, FaUserShield, FaRoute } from "react-icons/fa";
 import CamposRurales from "../../../shared/camposRurales";
 import CamposUrbanos from "../../../shared/camposUrbanos";
 import { fetchDepartamentos, fetchMunicipios } from "../../../services/ubicacion";
+import { FaSheetPlastic, FaUserGroup } from "react-icons/fa6";
 
 interface ComponenteInfoEntrevistaProps {
     formData: {
@@ -83,6 +84,7 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
     return (
 
         <>
+            <SubtituloForm subtitulo={"Características de la Entrevista"} icon={FaSheetPlastic} />
             <Row className="mb-3">
                 <Col md={6}>
                     <Form.Group controlId="tipoEntrevista">
@@ -216,6 +218,8 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
                 </>
             )}
 
+            <SubtituloForm subtitulo={"Datos Básicos"} icon={FaUser} />
+
             <Row className="mb-3">
                 <Col md={6}>
                     <Form.Group controlId="numeroIdentificacion">
@@ -301,7 +305,8 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
                 </Col>
             </Row>
 
-            <FormGroup className="mb-3">
+            <SubtituloForm subtitulo={"Sitaciones de amenaza"} icon={FaUserShield} />
+            <FormGroup>
                 <FormLabel>¿Conoce de situaciones de amenazas contra la persona beneficiaria de medidas de protección de la UNP? En caso positivo, realicé una descripción en tiempo, modo y lugar de los hechos conocidos por usted, refiriendo la fuente de información.</FormLabel>
                 <FormControl
                     as="textarea"
@@ -310,10 +315,15 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
                     value={formData.amenazas}
                     onChange={handleChange}
                     placeholder="Describa las amenazas conocidas"
+                    maxLength={1000}
                 />
             </FormGroup>
+            <Form.Text muted>
+                {1000 - formData.amenazas.length} caracteres restantes
+            </Form.Text>
 
-            <FormGroup className="mb-3">
+            <SubtituloForm subtitulo={"Desplazamientos"} icon={FaRoute} />
+            <FormGroup>
                 <FormLabel>Describa los desplazamientos que la persona beneficiaria de medidas de protección de la UNP realiza en razón a sus actividades personales y poblacional.</FormLabel>
                 <FormControl
                     as="textarea"
@@ -322,10 +332,15 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
                     value={formData.desplazamientos}
                     onChange={handleChange}
                     placeholder="Describa los desplazamientos realizados"
+                    maxLength={1000}
                 />
             </FormGroup>
+            <Form.Text muted>
+                {1000 - formData.desplazamientos.length} caracteres restantes
+            </Form.Text>
 
-            <FormGroup className="mb-3">
+            <SubtituloForm subtitulo={"Actividades"} icon={FaUserGroup} />
+            <FormGroup>
                 <FormLabel>Indique las actividades específicas que realiza la persona beneficiaria de medidas de protección de la UNP en relación con el grupo o grupos poblacionales al que hace parte.</FormLabel>
                 <FormControl
                     as="textarea"
@@ -334,10 +349,15 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
                     value={formData.actividades}
                     onChange={handleChange}
                     placeholder="Indique las actividades específicas realizadas"
+                    maxLength={1000}
                 />
             </FormGroup>
+            <Form.Text muted>
+                {1000 - formData.actividades.length} caracteres restantes
+            </Form.Text>
 
-            <FormGroup className="mb-3">
+            <SubtituloForm subtitulo={"Conductas"} icon={FaUserShield} />
+            <FormGroup>
                 <FormLabel>Refiera si la persona beneficiaria de medidas de protección de la UNP realiza conductas inapropiadas que le puedan generar riesgo adicional.</FormLabel>
                 <FormControl
                     as="textarea"
@@ -346,8 +366,12 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
                     value={formData.conductas}
                     onChange={handleChange}
                     placeholder="Describa conductas inapropiadas si existen"
+                    maxLength={1000}
                 />
             </FormGroup>
+            <Form.Text muted>
+                {1000 - formData.conductas.length} caracteres restantes
+            </Form.Text>
         </>
 
     );
