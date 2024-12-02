@@ -11,7 +11,7 @@
 /* Estilo de los enlaces en la miga de pan */
 .breadcrumb-container a {
     text-decoration: none; /* Elimina subrayados */
-    color: #007bff; /* Azul para enlaces */
+    color: #303D50; /* Azul para enlaces */
     font-weight: 500; /* Peso medio para texto */
     font-size: 14px; /* Tamaño de fuente */
     transition: color 0.3s ease; /* Transición suave para hover */

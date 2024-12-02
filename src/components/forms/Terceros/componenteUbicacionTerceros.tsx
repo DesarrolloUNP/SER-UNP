@@ -7,7 +7,7 @@ import CamposUrbanos from "../../../shared/camposUrbanos";
 import { fetchDepartamentos, fetchMunicipios } from "../../../services/ubicacion";
 
 interface UbicacionFechaTercerosProps {
-    formData: { ubicacionTercero: string; fechaHoraTercero: string; departamentoTercero: string; ciudadTercero: string; ruralFieldsTercero: any; urbanaFieldsTercero: any };
+    formData: {  ubicacionTercero: string;  departamentoTercero: string; ciudadTercero: string; ruralFieldsTercero: any; urbanaFieldsTercero: any };
     handleChange: (e: React.ChangeEvent<any>) => void;
     handleFieldChange: (e: React.ChangeEvent<any>, location: string) => void;
 }
@@ -18,12 +18,16 @@ const UbicacionFechaTerceros: React.FC<UbicacionFechaTercerosProps> = ({ formDat
     const [departamentos, setDepartamentos] = useState<{ id: number; name: string }[]>([]);
     const [municipios, setMunicipios] = useState<{ id: number; name: string }[]>([]);
     const [selectedDepartamento, setSelectedDepartamento] = useState<string>("");
+    
 
     const handleUbicacionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedValue = e.target.value;
         setUbicacion(selectedValue);
         handleChange(e);
     };
+
+  
+
 
      //Departamentos y Municipios
     useEffect(() => {
@@ -62,21 +66,10 @@ const UbicacionFechaTerceros: React.FC<UbicacionFechaTercerosProps> = ({ formDat
 
     return (
         <>
-            <SubtituloForm subtitulo="Fecha y Ubicación" icon={RiUserLocationFill} />
+            <SubtituloForm subtitulo="Fecha y Ubicación de la Entrevista" icon={RiUserLocationFill} />
             <Row className="mb-3">
-                <Col md={6}>
-                    <Form.Group controlId="fechaHora">
-                        <Form.Label>Fecha y hora</Form.Label>
-                        <Form.Control
-                            required
-                            type="datetime-local"
-                            name="fechaHora"
-                            value={formData.fechaHoraTercero}
-                            onChange={handleChange}
-                            placeholder="Ingresa la fecha y la hora"
-                        />
-                    </Form.Group>
-                </Col>
+                
+                
                 <Col md={6}>
                     <Form.Group controlId="departamento">
                         <Form.Label>Departamento</Form.Label>
@@ -95,8 +88,6 @@ const UbicacionFechaTerceros: React.FC<UbicacionFechaTercerosProps> = ({ formDat
                         </Form.Select>
                     </Form.Group>
                 </Col>
-            </Row>
-            <Row className="mb-3">
                 <Col md={6}>
                     <Form.Group controlId="ciudad">
                         <Form.Label>Ciudad/Municipio</Form.Label>
@@ -116,7 +107,10 @@ const UbicacionFechaTerceros: React.FC<UbicacionFechaTercerosProps> = ({ formDat
                         </Form.Select>
                     </Form.Group>
                 </Col>
-                <Col md={6}>
+            </Row>
+            <Row className="mb-3">
+                
+                <Col md={12}>
                     <Form.Group controlId="ubicacion">
                         <Form.Label>Ubicación</Form.Label>
                         <Form.Select
