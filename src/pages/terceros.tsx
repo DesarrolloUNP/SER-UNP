@@ -1,5 +1,5 @@
 import { Encabezado } from "eco-unp/ui";
-import { FormularioTerceros } from "../components/forms/terceros/formularioTerceros";
+import { FormularioTerceros } from "../components/forms/Terceros/formularioTerceros";
 import ruteo from "../shared/rutas";
 import { Breadcrumb } from "react-bootstrap";
 

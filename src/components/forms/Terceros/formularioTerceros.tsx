@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Row, Col, Card, CardHeader, CardBody, Button } from "react-bootstrap";
 import { FaUsers } from "react-icons/fa";
 import { SubtituloForm } from "eco-unp/ui";
-import EntrevistasTerceros from "../terceros/componenteEntrevistaTerceros";
+import EntrevistasTerceros from "../Terceros/componenteEntrevistaTerceros";
 import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
 
 export const FormularioTerceros: React.FC = () => {

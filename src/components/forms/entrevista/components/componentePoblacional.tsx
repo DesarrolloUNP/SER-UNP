@@ -51,14 +51,15 @@ const GrupoPoblacionalInfo: React.FC<GrupoPoblacionalProps> = ({ formData, handl
     return (
         <>
             <SubtituloForm subtitulo="Grupo de población objeto al que pertenece" icon={FaUsersLine} />
-            <Row className="mb-3">
-                <Col md={6}>
+            <Col className="mb-3">
+                <Col md={12} className="mb-3">
                     <Form.Group controlId="poblacion">
                         <Form.Label>Población</Form.Label>
                         <Form.Select
                             name="poblacion"
                             value={selectedGroup}
                             onChange={handleGroupChange}
+                            className="custom-select" /* Clase personalizada */
                         >
                             <option value="">Selecciona un grupo</option>
                             {GrupoPoblacional.map(group => (
@@ -69,7 +70,7 @@ const GrupoPoblacionalInfo: React.FC<GrupoPoblacionalProps> = ({ formData, handl
                         </Form.Select>
                     </Form.Group>
                 </Col>
-                <Col md={6}>
+                <Col md={12}>
                     <Form.Group controlId="subpoblacion">
                         <Form.Label>Subpoblación</Form.Label>
                         <Form.Select
@@ -77,6 +78,7 @@ const GrupoPoblacionalInfo: React.FC<GrupoPoblacionalProps> = ({ formData, handl
                             value={formData.subpoblacion}
                             onChange={handleSubGroupChange}
                             disabled={!subGroups.length}
+                            className="custom-select" /* Clase personalizada */
                         >
                             <option value="">Selecciona un subgrupo</option>
                             {subGroups.map(subGroup => (
@@ -87,7 +89,7 @@ const GrupoPoblacionalInfo: React.FC<GrupoPoblacionalProps> = ({ formData, handl
                         </Form.Select>
                     </Form.Group>
                 </Col>
-            </Row>
+            </Col>
             <SubtituloForm subtitulo="Factor diferencial" icon={FaUsersRectangle} />
             <Row className="mb-3">
                 <Col md={6}>

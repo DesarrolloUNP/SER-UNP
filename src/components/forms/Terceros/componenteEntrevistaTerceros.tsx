@@ -22,7 +22,7 @@ import {
   fetchDepartamentos,
   fetchMunicipios,
 } from "../../../services/ubicacion";
-import UbicacionFechaTerceros from "./componenteUbicacionTerceros";
+import UbicacionFechaTerceros from "../Terceros/componenteUbicacionTerceros";
 import { FaSheetPlastic, FaTrash } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 

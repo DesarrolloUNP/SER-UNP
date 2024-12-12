@@ -1,6 +1,7 @@
 .main_container {
     margin: 3rem 1rem;
 }
+
 .ser-container {
     margin: 1rem 0;
 }
@@ -40,17 +41,30 @@
 }
 
 .custom-btn-dark {
-    background-color: #303D50; /* Color de fondo personalizado (puedes cambiarlo) */
-    color: #ffffff; /* Color del texto */
-    border: 1px solid #343a40; /* Borde del botón */
-    border-radius: 4px; /* Bordes redondeados */
-    padding: 10px 20px; /* Espaciado interno */
-    font-size: 16px; /* Tamaño de fuente */
-    transition: all 0.3s ease; /* Animación al pasar el ratón */
-  }
-  
-  .custom-btn-dark:hover {
-    background-color: #495057; /* Color de fondo al pasar el ratón */
-    color: #ffffff; /* Color del texto al pasar el ratón */
-    border-color: #495057; /* Color del borde al pasar el ratón */
-  }
+    background-color: #303D50;
+    color: #ffffff;
+    border: 1px solid #343a40;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.custom-btn-dark:hover {
+    background-color: #495057;
+    color: #ffffff;
+    border-color: #495057;
+}
+
+.custom-select {
+    width: 100%;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+}
+
+.custom-select option {
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    text-overflow: ellipsis !important;
+}
