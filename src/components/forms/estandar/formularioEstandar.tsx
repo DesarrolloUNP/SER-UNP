@@ -147,11 +147,11 @@ export const FormularioEstandar: React.FC = () => {
                                                 value={row.fuentesInformacion}
                                                 onChange={(e) => handleFuentesInformacionChange(row.originalIndex, e.target.value)}
                                                 placeholder="Ingresa las fuentes"
-                                                maxLength={250}
-                                                rows={5}
+                                                maxLength={300}
+                                                rows={10}
                                             />
                                             <Form.Text muted>
-                                                {250 - row.fuentesInformacion.length} caracteres restantes
+                                                {300 - row.fuentesInformacion.length} caracteres restantes
                                             </Form.Text>
                                         </Form.Group></td>
                                 </tr>
@@ -195,11 +195,11 @@ export const FormularioEstandar: React.FC = () => {
                                                 value={row.fuentesInformacion}
                                                 onChange={(e) => handleFuentesInformacionChange(row.originalIndex, e.target.value)}
                                                 placeholder="Ingresa las fuentes"
-                                                maxLength={250}
-                                                rows={5}
+                                                maxLength={300}
+                                                rows={10}
                                             />
                                             <Form.Text muted>
-                                                {250 - row.fuentesInformacion.length} caracteres restantes
+                                                {300 - row.fuentesInformacion.length} caracteres restantes
                                             </Form.Text>
                                         </Form.Group>
                                     </td>
@@ -244,11 +244,11 @@ export const FormularioEstandar: React.FC = () => {
                                                 value={row.fuentesInformacion}
                                                 onChange={(e) => handleFuentesInformacionChange(row.originalIndex, e.target.value)}
                                                 placeholder="Ingresa las fuentes"
-                                                maxLength={250}
-                                                rows={5}
+                                                maxLength={300}
+                                                rows={10}
                                             />
                                             <Form.Text muted>
-                                                {250 - row.fuentesInformacion.length} caracteres restantes
+                                                {300 - row.fuentesInformacion.length} caracteres restantes
                                             </Form.Text>
                                         </Form.Group>
                                     </td>

@@ -5,7 +5,7 @@ import { FaMapMarkedAlt, FaPhoneAlt, FaUser, FaUserShield, FaRoute } from "react
 import CamposRurales from "../../../shared/camposRurales";
 import CamposUrbanos from "../../../shared/camposUrbanos";
 import { fetchDepartamentos, fetchMunicipios } from "../../../services/ubicacion";
-import { FaSheetPlastic, FaUserGroup } from "react-icons/fa6";
+import { FaSheetPlastic, FaUserGroup, FaComputer } from "react-icons/fa6";
 
 interface ComponenteInfoEntrevistaProps {
     formData: {
@@ -24,6 +24,8 @@ interface ComponenteInfoEntrevistaProps {
         urbanaFields: any;
         telefonoOrigen: string;
         telefonoDestino: string;
+        plataforma: string;
+        duracion: string;
         amenazas: string;
         desplazamientos: string;
         actividades: string;
@@ -98,6 +100,7 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
                             <option value="">Seleccione el tipo de entrevista</option>
                             <option value="personal">Personal</option>
                             <option value="telefonica">Telefónica</option>
+                            <option value="virtual">Virtual</option>
                         </Form.Select>
                     </Form.Group>
                 </Col>
@@ -211,6 +214,40 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
                                     value={formData.telefonoDestino}
                                     onChange={handleChange}
                                     placeholder="Teléfono de Destino"
+                                />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                </>
+            )}
+
+            {formData.tipoEntrevista === "virtual" && (
+                <>
+                    <SubtituloForm subtitulo="Para las entrevistas realizadas virtualmente:" icon={FaComputer} />
+                    <Row className="mb-3">
+                        <Col md={6}>
+                            <Form.Group controlId="plataforma">
+                                <Form.Label>Plataforma</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    name="plataforma"
+                                    value={formData.telefonoOrigen}
+                                    onChange={handleChange}
+                                    placeholder="Ingrese el nombre de la plataforma"
+                                />
+                            </Form.Group>
+                        </Col>
+                        <Col md={6}>
+                            <Form.Group controlId="duracion">
+                                <Form.Label>Duración (Horas)</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    name="duracion"
+                                    value={formData.telefonoDestino}
+                                    onChange={handleChange}
+                                    placeholder="Ingrese la duración en horas"
                                 />
                             </Form.Group>
                         </Col>

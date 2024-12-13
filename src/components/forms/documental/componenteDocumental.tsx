@@ -123,10 +123,14 @@ const FormularioInformacion: React.FC = () => {
                   as="textarea"
                   rows={3}
                   value={seccion.resultadosObtenidos}
+                  maxLength={1500}
                   onChange={(e) =>
                     handleChange(index, "resultadosObtenidos", e.target.value)
                   }
                 />
+                <Form.Text muted>
+                    {1500 - seccion.resultadosObtenidos.length} caracteres restantes
+                </Form.Text>
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Label>Adjuntar Archivo</Form.Label>
@@ -142,7 +146,7 @@ const FormularioInformacion: React.FC = () => {
                 />
               </Form.Group>
               <SubtituloForm
-                subtitulo="Datos para Citas APA"
+                subtitulo="Referencia bibliográfica"
                 icon={RiReservedFill}
               />
               <Row className="mb-3">
@@ -186,7 +190,7 @@ const FormularioInformacion: React.FC = () => {
                 </Col>
                 <Col md={6}>
                   <Form.Group>
-                    <Form.Label>Publicación</Form.Label>
+                    <Form.Label>URL</Form.Label>
                     <Form.Control
                       type="text"
                       value={seccion.publicacion}

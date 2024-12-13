@@ -15,6 +15,7 @@ import {
   RiCellphoneFill,
   RiSearchEyeFill,
 } from "react-icons/ri";
+import { FaComputer } from 'react-icons/fa6'
 
 import CamposRurales from "../../../shared/camposRurales";
 import CamposUrbanos from "../../../shared/camposUrbanos";
@@ -62,6 +63,8 @@ interface Seccion {
   direccion?: string;
   telefonoOrigen?: string;
   telefonoDestino?: string;
+  plataforma?: string;
+  duracion?: string;
   archivo?: File | null;
   nombreEntrevistado: string;
   tipoIdentificacion: string;
@@ -283,6 +286,7 @@ const EntrevistasTerceros: React.FC = () => {
                     <option value="">Seleccione...</option>
                     <option value="personal">Entrevista Personal</option>
                     <option value="telefonica">Entrevista Telefónica</option>
+                    <option value="virtual">Entrevista Virtual</option>
                   </Form.Select>
                 </Form.Group>
               </Col>
@@ -334,11 +338,44 @@ const EntrevistasTerceros: React.FC = () => {
                 </Col>
               </Row>
             )}
+            {seccion.tipoEntrevista === "virtual" && (
+              <Row>
+                <SubtituloForm
+                  subtitulo="Detalles de la Entrevista Virtual"
+                  icon={FaComputer}
+                />
+                <Col md={6}>
+                  <Form.Group controlId={`plataforma-${index}`}>
+                    <Form.Label>Plataforma</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="plataforma"
+                      value={seccion.plataforma}
+                      onChange={(e) => handleChange(e, index)}
+                      placeholder="Ingrese el nombre de la plataforma"
+                    />
+                  </Form.Group>
+                </Col>
+
+                <Col md={6}>
+                  <Form.Group controlId={`duracion-${index}`}>
+                    <Form.Label>Duración (Horas)</Form.Label>
+                    <Form.Control
+                      type="number"
+                      name="duracion"
+                      value={seccion.duracion}
+                      onChange={(e) => handleChange(e, index)}
+                      placeholder="Ingrese la duración en horas"
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+            )}
             <SubtituloForm
               subtitulo="Detalles de la Entrevista"
               icon={RiNewspaperFill}
             />
-            <Row>
+            <Row className="mb-4">
               <Col md={6}>
                 <Form.Group controlId="nombreEntrevistado">
                   <Form.Label>Nombre de la Persona Entrevistada</Form.Label>
@@ -368,7 +405,8 @@ const EntrevistasTerceros: React.FC = () => {
                   </Form.Select>
                 </Form.Group>
               </Col>
-
+            </Row>
+            <Row className="mb-4">
               <Col md={6}>
                 <Form.Group controlId="numeroIdentificacion">
                   <Form.Label>Número de Identificación</Form.Label>
@@ -392,7 +430,8 @@ const EntrevistasTerceros: React.FC = () => {
                   />
                 </Form.Group>
               </Col>
-
+              </Row>
+              <Row className="mb-4">
               <Col md={12}>
                 <Form.Group controlId="sinopsis">
                   <Form.Label>Sinopsis de la Información</Form.Label>
@@ -402,12 +441,15 @@ const EntrevistasTerceros: React.FC = () => {
                     name="sinopsis"
                     value={seccion.sinopsis}
                     onChange={(e) => handleChange(e, index)}
-                    maxLength={1500}
+                    maxLength={1000}
                   />
                 </Form.Group>
+                <Form.Text muted>
+                    {1000 - seccion.sinopsis.length} caracteres restantes
+                </Form.Text>
               </Col>
 
-              <Col md={6}>
+              {/* <Col md={6}>
                 <Form.Group controlId="firmaNombreEntrevistado">
                   <Form.Label>Firma de la Persona Entrevistada</Form.Label>
                   <Form.Control
@@ -432,8 +474,9 @@ const EntrevistasTerceros: React.FC = () => {
                     maxLength={1500}
                   />
                 </Form.Group>
-              </Col>
-
+              </Col> */}
+              </Row>
+              {/* <Row className="mb-4">
               <Col md={6}>
                 <Form.Group controlId="firmaIdentificacionEntrevistado">
                   <Form.Label>
@@ -459,7 +502,7 @@ const EntrevistasTerceros: React.FC = () => {
                   />
                 </Form.Group>
               </Col>
-            </Row>
+            </Row> */}
           </Card.Body>
 
         </Card>

@@ -37,6 +37,8 @@ export const FormularioEscoltas: React.FC = () => {
         municipio: "",
         telefonoOrigen: "",
         telefonoDestino: "",
+        plataforma: "",
+        duracion: "",
         amenazas: "",
         desplazamientos: "",
         actividades: "",

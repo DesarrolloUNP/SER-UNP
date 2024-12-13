@@ -203,21 +203,21 @@ const ComponenteAmenaza: React.FC<ComponenteAmenazaProps> = ({ formData, handleC
                 </Col>
             </Row>
             <Row>
-            <Col md={6}>
-                <FormGroup className="mb-3">
-                    <FormLabel>Medios magnéticos</FormLabel>
-                    <FormSelect
-                        name="forma.mediosMagneticos"
-                        value={formData.forma.mediosMagneticos}
-                        onChange={handleChange}
-                    >
-                        <option value="">Seleccione</option>
-                        <option value="Mail">Mail</option>
-                        <option value="Redes Sociales">Redes Sociales</option>
-                        <option value="WhatsApp">WhatsApp</option>
-                    </FormSelect>
-                </FormGroup>
-            </Col>
+                <Col md={6}>
+                    <FormGroup className="mb-3">
+                        <FormLabel>Medios magnéticos</FormLabel>
+                        <FormSelect
+                            name="forma.mediosMagneticos"
+                            value={formData.forma.mediosMagneticos}
+                            onChange={handleChange}
+                        >
+                            <option value="">Seleccione</option>
+                            <option value="Mail">Mail</option>
+                            <option value="Redes Sociales">Redes Sociales</option>
+                            <option value="WhatsApp">WhatsApp</option>
+                        </FormSelect>
+                    </FormGroup>
+                </Col>
             </Row>
             <Row>
                 <Col md={4}>
@@ -299,6 +299,15 @@ const ComponenteAmenaza: React.FC<ComponenteAmenazaProps> = ({ formData, handleC
                 )}
             </FormGroup>
 
+            <div style={{display:'flex', justifyContent:'center', margin:'2rem 0'}}>
+                <div className="risk_container">
+                    <h5>Total nivel de riesgo:</h5>
+                    <span style={{ fontSize: "1.25rem", fontWeight: "bold", color: "#007bff" }}>
+                        00.0
+                    </span>
+                </div>
+            </div>
+
             <SubtituloForm subtitulo={"Observaciones"} icon={FaCommentAlt} />
             <FormGroup>
                 <FormControl
@@ -314,6 +323,8 @@ const ComponenteAmenaza: React.FC<ComponenteAmenazaProps> = ({ formData, handleC
             <Form.Text muted>
                 {1500 - formData.observaciones.length} caracteres restantes
             </Form.Text>
+
+
         </>
     );
 };

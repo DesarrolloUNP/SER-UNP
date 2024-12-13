@@ -13,6 +13,7 @@ interface ComponenteDatosInformeProps {
         actividadesVerificacion: string;
         conclusion: string;
         pretencionesEvaluar: string;
+        entidad: string;
     };
     handleChange: (e: ChangeEvent<any>) => void;
 }
@@ -45,9 +46,9 @@ const ComponenteDatosInforme: React.FC<ComponenteDatosInformeProps> = ({ formDat
 
     return (
             <>
-                <SubtituloForm subtitulo={"Población"} icon={FaUsers} />
+                <SubtituloForm subtitulo={"SubPoblación"} icon={FaUsers} />
                 <FormGroup>
-                    <FormLabel>Población Objeto</FormLabel>
+                    <FormLabel>SubPoblación Objeto</FormLabel>
                     <FormControl
                         as="textarea"
                         name="poblacionObjeto"
@@ -61,6 +62,17 @@ const ComponenteDatosInforme: React.FC<ComponenteDatosInformeProps> = ({ formDat
                             resize: "none",
                             overflow: "hidden",
                         }}
+                    />
+                </FormGroup>
+
+                <SubtituloForm subtitulo={"Entidad Solicitante"} icon={FaUsers} />
+                <FormGroup>
+                    <FormControl
+                        type="text"
+                        name="entidad"
+                        value={formData.entidad}
+                        onChange={handleChange}
+                        maxLength={150}
                     />
                 </FormGroup>
 
@@ -104,11 +116,11 @@ const ComponenteDatosInforme: React.FC<ComponenteDatosInformeProps> = ({ formDat
                         value={formData.hechosActuales}
                         onChange={handleChange}
                         placeholder="Describa los hechos actuales."
-                        maxLength={1000}
+                        maxLength={2000}
                     />
                 </FormGroup>
                 <Form.Text muted>
-                    {1000 - formData.hechosActuales.length} caracteres restantes
+                    {2000 - formData.hechosActuales.length} caracteres restantes
                 </Form.Text>
 
                 <SubtituloForm subtitulo={"Verificación"} icon={FaClipboardList} />
@@ -121,11 +133,11 @@ const ComponenteDatosInforme: React.FC<ComponenteDatosInformeProps> = ({ formDat
                         value={formData.actividadesVerificacion}
                         onChange={handleChange}
                         placeholder="Describa las actividades de verificación realizadas."
-                        maxLength={1000}
+                        maxLength={3000}
                     />
                 </FormGroup>
                 <Form.Text muted>
-                    {1000 - formData.actividadesVerificacion.length} caracteres restantes
+                    {3000 - formData.actividadesVerificacion.length} caracteres restantes
                 </Form.Text>
 
                 <SubtituloForm subtitulo={"Conclusión del Analisis"} icon={FaUserPen} />
@@ -138,11 +150,11 @@ const ComponenteDatosInforme: React.FC<ComponenteDatosInformeProps> = ({ formDat
                         value={formData.conclusion}
                         onChange={handleChange}
                         placeholder="Ingrese la conclusión del analisis."
-                        maxLength={1000}
+                        maxLength={500}
                     />
                 </FormGroup>
                 <Form.Text muted>
-                    {1000 - formData.conclusion.length} caracteres restantes
+                    {500 - formData.conclusion.length} caracteres restantes
                 </Form.Text>
 
                 <SubtituloForm subtitulo={"Pretenciones"} icon={FaMagnifyingGlass} />
