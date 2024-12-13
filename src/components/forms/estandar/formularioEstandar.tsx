@@ -12,13 +12,13 @@ export const FormularioEstandar: React.FC = () => {
 
     const [rows, setRows] = useState<TableRow[]>(initialRows);
     const navigate = useNavigate();
-    
+
     //Algoritmos y estados
     useEffect(() => {
         const updatedRows = initialRows.map(row => {
             const escala33 = (row.escala100 * 33.33) / 100;
             const valorRelativoPonderado = ((escala33 * row.valorAbsoluto) / 3);
-    
+
             return {
                 ...row,
                 escala33: parseFloat(escala33.toFixed(2)),
@@ -34,7 +34,7 @@ export const FormularioEstandar: React.FC = () => {
                 const updatedRow = { ...row, [key]: value };
                 const escala33 = (updatedRow.escala100 * 33.33) / 100;
                 const valorRelativoPonderado = ((escala33 * updatedRow.valorAbsoluto) / 3);
-    
+
                 return {
                     ...updatedRow,
                     escala33: parseFloat(escala33.toFixed(2)),
@@ -46,7 +46,7 @@ export const FormularioEstandar: React.FC = () => {
         setRows(updatedRows);
     };
 
-    const handleValorAbsolutoChange = (originalIndex: number, value: number) => {
+    const handleValorAbsolutoChange = (originalIndex: any, value: any) => {
         if (value >= 0 && value <= 3) {
             handleChange(originalIndex, 'valorAbsoluto', value);
         }
@@ -91,14 +91,25 @@ export const FormularioEstandar: React.FC = () => {
         calculateSubtotal("EVALUACION DEL RIESGO ESPECÍFICO").valorRelativoPonderado +
         calculateSubtotal("EVALUACION DE LA VULNERABILIDAD").valorRelativoPonderado;
 
+    //Valores absolutos dinámicos
+    const getAllowedValues = (descriptor: string): number[] => {
+        if (descriptor.startsWith('0')) {
+            return [0, 1, 2, 3];
+        } else if (descriptor.startsWith('1')) {
+            return [1, 2, 3];
+        }
+        return [];
+    };
+
     // Envio
     const handleSubmit = () => {
         console.log(rows);
         alert('Formulario enviado')
-            setTimeout(() => {
-                navigate("/");
-            });
+        setTimeout(() => {
+            navigate("/");
+        });
     };
+
 
     return (
         <>
@@ -130,15 +141,25 @@ export const FormularioEstandar: React.FC = () => {
                                     <td style={{ textAlign: 'center' }}>{row.escala100}</td>
                                     <td style={{ textAlign: 'center' }}>{row.escala33}</td>
                                     <td>
-                                        <Form.Group>
-                                            <Form.Control
-                                                type="number"
-                                                value={row.valorAbsoluto}
-                                                onChange={(e) => handleValorAbsolutoChange(row.originalIndex, Number(e.target.value))}
-                                                placeholder="Ingresa la duración"
-                                                min={0} max={3}
-                                            />
-                                        </Form.Group></td>
+                                        <Form.Control
+                                            as="select"
+                                            style={{ width: '70px' }}
+                                            value={row.valorAbsoluto ?? ''} // Mostrar vacío si no hay valor
+                                            onChange={(e) =>
+                                                handleValorAbsolutoChange(
+                                                    row.originalIndex,
+                                                    e.target.value === '' ? null : Number(e.target.value)
+                                                )
+                                            }
+                                        >
+                                            <option value="">Valor</option>
+                                            {getAllowedValues(row.descriptores).map((value) => (
+                                                <option key={value} value={value}>
+                                                    {value}
+                                                </option>
+                                            ))}
+                                        </Form.Control>
+                                    </td>
                                     <td style={{ textAlign: 'center' }}>{row.valorRelativoPonderado}</td>
                                     <td>
                                         <Form.Group style={{ width: '200px' }}>
@@ -177,15 +198,23 @@ export const FormularioEstandar: React.FC = () => {
                                     <td style={{ textAlign: 'center' }}>{row.escala100}</td>
                                     <td style={{ textAlign: 'center' }}>{row.escala33}</td>
                                     <td>
-                                        <Form.Group>
-                                            <Form.Control
-                                                type="number"
-                                                value={row.valorAbsoluto}
-                                                onChange={(e) => handleValorAbsolutoChange(row.originalIndex, Number(e.target.value))}
-                                                placeholder="Ingresa la duración"
-                                                min={0} max={3}
-                                            />
-                                        </Form.Group>
+                                        <Form.Control
+                                            as="select"
+                                            value={row.valorAbsoluto ?? ''} // Mostrar vacío si no hay valor
+                                            onChange={(e) =>
+                                                handleValorAbsolutoChange(
+                                                    row.originalIndex,
+                                                    e.target.value === '' ? null : Number(e.target.value)
+                                                )
+                                            }
+                                        >
+                                            <option value="">Valor</option>
+                                            {getAllowedValues(row.descriptores).map((value) => (
+                                                <option key={value} value={value}>
+                                                    {value}
+                                                </option>
+                                            ))}
+                                        </Form.Control>
                                     </td>
                                     <td style={{ textAlign: 'center' }}>{row.valorRelativoPonderado}</td>
                                     <td>
@@ -226,15 +255,23 @@ export const FormularioEstandar: React.FC = () => {
                                     <td style={{ textAlign: 'center' }}>{row.escala100}</td>
                                     <td style={{ textAlign: 'center' }}>{row.escala33}</td>
                                     <td>
-                                        <Form.Group>
-                                            <Form.Control
-                                                type="number"
-                                                value={row.valorAbsoluto}
-                                                onChange={(e) => handleValorAbsolutoChange(row.originalIndex, Number(e.target.value))}
-                                                placeholder="Ingresa la duración"
-                                                min={0} max={3}
-                                            />
-                                        </Form.Group>
+                                        <Form.Control
+                                            as="select"
+                                            value={row.valorAbsoluto ?? ''} // Mostrar vacío si no hay valor
+                                            onChange={(e) =>
+                                                handleValorAbsolutoChange(
+                                                    row.originalIndex,
+                                                    e.target.value === '' ? null : Number(e.target.value)
+                                                )
+                                            }
+                                        >
+                                            <option value="">Valor</option>
+                                            {getAllowedValues(row.descriptores).map((value) => (
+                                                <option key={value} value={value}>
+                                                    {value}
+                                                </option>
+                                            ))}
+                                        </Form.Control>
                                     </td>
                                     <td style={{ textAlign: 'center' }}>{row.valorRelativoPonderado}</td>
                                     <td>
@@ -272,37 +309,38 @@ export const FormularioEstandar: React.FC = () => {
             <ExpandableCard title={"Valores de referencia y resultados"}>
                 <div className="results_container">
                     <div className="rangeTable_container">
-                            <table className="valueTable-table">
-                                <thead>
-                                    <tr>
-                                        <th>Rangos</th>
-                                        <th>Mínimos</th>
-                                        <th>Máximos</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Ordinario</td>
-                                        <td>15</td>
-                                        <td>50</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Extraordinario</td>
-                                        <td>51</td>
-                                        <td>80</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Extremo</td>
-                                        <td>81</td>
-                                        <td>100</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <table className="valueTable-table">
+                            <thead>
+                                <tr>
+                                    <th>Rangos</th>
+                                    <th>Mínimos</th>
+                                    <th>Máximos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Ordinario</td>
+                                    <td>15</td>
+                                    <td>50</td>
+                                </tr>
+                                <tr>
+                                    <td>Extraordinario</td>
+                                    <td>51</td>
+                                    <td>80</td>
+                                </tr>
+                                <tr>
+                                    <td>Extremo</td>
+                                    <td>81</td>
+                                    <td>100</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div className="totalRisk_container">
                         <h5>Total nivel de riesgo:</h5>
                         <span style={{ fontSize: "1.25rem", fontWeight: "bold", color: "#007bff" }}>
-                            {totalValorRelativoPonderado.toFixed(2)}
+                            {/* {totalValorRelativoPonderado.toFixed(2)} */}
+                            {Math.round(totalValorRelativoPonderado)}
                         </span>
                     </div>
                 </div>
