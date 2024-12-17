@@ -1,5 +1,5 @@
 import './App.css';
-import { VentanaLienzo } from 'eco-unp/ui';
+import { VentanaLienzo } from 'eco-unp/Ui';
 import { Route, Routes } from 'react-router-dom';
 import { OrdenesTrabajo } from './pages/ordenesTrabajo'
 import { Entrevista } from './pages/entrevista';

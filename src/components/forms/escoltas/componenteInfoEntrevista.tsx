@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Row, Col, Form, FormGroup, FormLabel, FormControl } from "react-bootstrap";
-import { SubtituloForm } from 'eco-unp/ui';
+import { SubtituloForm } from 'eco-unp/Ui';
 import { FaMapMarkedAlt, FaPhoneAlt, FaUser, FaUserShield, FaRoute } from "react-icons/fa";
 import CamposRurales from "../../../shared/camposRurales";
 import CamposUrbanos from "../../../shared/camposUrbanos";

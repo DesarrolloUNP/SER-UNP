@@ -1,4 +1,4 @@
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Row, Col, Form } from "react-bootstrap";
 import { HiUsers } from "react-icons/hi2";

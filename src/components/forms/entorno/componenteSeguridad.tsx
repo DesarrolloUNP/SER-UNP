@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import { Form, FormGroup, FormLabel, FormControl } from "react-bootstrap";
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import { FaRoadBarrier, FaRoute } from "react-icons/fa6";
 import { BsFillHospitalFill } from "react-icons/bs";
 import { MdSecurity } from "react-icons/md";

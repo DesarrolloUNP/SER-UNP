@@ -1,4 +1,4 @@
-import { SubtituloForm } from 'eco-unp/ui';
+import { SubtituloForm } from 'eco-unp/Ui';
 import React from 'react';
 import { Form, Row } from 'react-bootstrap';
 import { BsFillFileEarmarkPersonFill } from "react-icons/bs";

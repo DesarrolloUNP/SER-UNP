@@ -28,6 +28,12 @@
 
 .bg-unp {
     border-radius: 6px 6px 0 0 !important;
+    background-color: #303D50 !important;
+}
+
+.unp-row-subtitle{
+    display: flex;
+    justify-content: space-between;
 }
 
 .formMainTitle {

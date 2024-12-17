@@ -1,4 +1,4 @@
-import { Encabezado } from "eco-unp/ui";
+import { Encabezado } from "eco-unp/Ui";
 import { FormularioDocumental } from "../components/forms/documental/formularioDocumental";
 import { Breadcrumb } from "react-bootstrap";
 export const Documental: React.FC = ({}) => {

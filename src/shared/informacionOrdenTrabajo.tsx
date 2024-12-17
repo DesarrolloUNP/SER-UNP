@@ -1,6 +1,6 @@
 import React from "react";
 import { Table, Card, CardHeader, CardBody } from "react-bootstrap";
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import { FaUserCircle } from "react-icons/fa";
 
 interface Fecha {

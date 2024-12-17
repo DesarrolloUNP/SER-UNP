@@ -1,7 +1,7 @@
 import data from './../services/data.json'
 import { Procesos } from '../components/modals/procesos'
 import { Anexos } from '../components/modals/anexos'
-import { BootstrapTable } from 'eco-unp/ui'
+import { BootstrapTable } from 'eco-unp/Tables'
 import { TipoSolicitud } from '../shared/tipoSolicitud'
 import { useEffect, useState } from 'react'
 

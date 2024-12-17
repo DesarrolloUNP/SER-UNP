@@ -1,4 +1,4 @@
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import React, { useState } from "react";
 import { Card, Form, Row, Col, Button, CardHeader } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa6";

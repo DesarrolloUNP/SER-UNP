@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import { Form, FormGroup, FormLabel, FormCheck, Row, Col, FormControl, FormSelect } from "react-bootstrap";
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import { FaUserShield, FaCommentAlt } from "react-icons/fa";
 
 interface ComponenteAmenazaProps {

@@ -1,4 +1,4 @@
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import { ChangeEvent } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { factorDiferencialOptions, familiaOrigen } from "../configForm";

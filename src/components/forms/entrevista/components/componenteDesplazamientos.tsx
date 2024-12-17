@@ -1,4 +1,4 @@
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import React, { ChangeEvent } from "react";
 import { Row, Col, Form, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa6";

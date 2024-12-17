@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useRef } from "react";
 import { Form, Col, FormGroup, FormLabel, FormControl, FormSelect } from "react-bootstrap";
 import { FaUserShield, FaHouseUser } from "react-icons/fa";
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import { FaMagnifyingGlass, FaScaleBalanced, FaUserTag } from "react-icons/fa6";
 import { BsFileEarmarkSpreadsheetFill } from "react-icons/bs";
 

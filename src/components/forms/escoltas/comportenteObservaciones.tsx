@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import { Row, Col, Form, FormGroup, FormLabel, FormControl } from "react-bootstrap";
-import { SubtituloForm } from 'eco-unp/ui';
+import { SubtituloForm } from 'eco-unp/Ui';
 import { FaCommentAlt } from "react-icons/fa";
 
 interface ComponenteObservacionesProps {

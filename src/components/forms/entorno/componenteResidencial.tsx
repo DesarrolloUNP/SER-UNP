@@ -10,7 +10,7 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 
 interface ComponenteResidencialProps {
   formData: {

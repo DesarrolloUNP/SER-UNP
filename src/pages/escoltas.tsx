@@ -1,4 +1,4 @@
-import { Encabezado } from "eco-unp/ui";
+import { Encabezado } from "eco-unp/Ui";
 import { FormularioEscoltas } from "../components/forms/escoltas/formularioEscoltas";
 import { Breadcrumb } from "react-bootstrap";
 import "../styles/migaDePan.css"

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useRef } from "react";
 import { Form, Col, FormGroup, FormLabel, FormControl, FormSelect } from "react-bootstrap";
 import { FaUsers, FaUserShield, FaBook, FaClipboardList } from "react-icons/fa";
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import { FaUserPen, FaMagnifyingGlass } from "react-icons/fa6";
 
 interface ComponenteDatosInformeProps {

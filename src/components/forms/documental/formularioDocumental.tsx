@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Row, Col, Card, CardHeader, CardBody, Button } from "react-bootstrap";
 import { FaUsers } from "react-icons/fa";
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
 import DetalleInformacionDocumental from "./componenteDocumental";
 

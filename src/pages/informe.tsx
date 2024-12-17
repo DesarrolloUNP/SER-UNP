@@ -1,4 +1,4 @@
-import { Encabezado } from "eco-unp/ui";
+import { Encabezado } from "eco-unp/Ui";
 import { FormularioInforme } from "../components/forms/informe/formularioInforme";
 import { Breadcrumb } from "react-bootstrap";
 

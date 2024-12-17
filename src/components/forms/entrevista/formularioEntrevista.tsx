@@ -24,7 +24,7 @@ export const FormularioEntrevista: React.FC = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = e.currentTarget;
-        if (form.checkValidity() === true) {
+        if (form.checkValidity() === false) {
             e.stopPropagation();
         } else {
             console.log("Formulario enviado:", formData);
@@ -292,7 +292,7 @@ export const FormularioEntrevista: React.FC = () => {
 
     return (
         <>
-            <Form onSubmit={handleSubmit} validated={validated}>
+            <Form onSubmit={handleSubmit} >
                 <InformacionOrdenTrabajo datos={datosOrden} titulo={"Entrevista"} />
                 <Card className="border-0 shadow mt-5 mb-4 pt-3" style={{ backgroundColor: '#F9F9F9' }}>
                     <Paginador
