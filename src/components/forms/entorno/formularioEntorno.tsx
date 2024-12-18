@@ -3,10 +3,16 @@ import ComponenteActividad from "./componenteActividad";
 import ComponenteAnalisis from "./componenteAnalisis";
 import ComponenteResidencial from "./componenteResidencial";
 import ComponenteSeguridad from "./componenteSeguridad";
+
+import ComponenteEntornoResidencia from "./componenteEntornoResidencia";
+import ComponenteEntornoLaboral from "./componenteEntornoLaboral";
+
 import InformacionOrdenTrabajo from "../../../shared/informacionOrdenTrabajo";
 import { Card, CardHeader, CardBody, Form, Button } from "react-bootstrap";
 import ExpandableCard from "../../../shared/tarjetaExpandible";
 import { useNavigate } from "react-router-dom";
+
+
 
 interface FormData {
     inspeccionFechaResidencial: string; 
@@ -21,7 +27,6 @@ interface FormData {
     medidasTecnicasActividad: string;
     puntosApoyoResidencia: string;
     puntosApoyoActividad: string;
-    analisisDesplazamientos: string;
 }
 
 export const datosOrden = {
@@ -53,7 +58,6 @@ export const FormularioEntorno: React.FC = () => {
         medidasTecnicasActividad: "",
         puntosApoyoResidencia: "",
         puntosApoyoActividad: "",
-        analisisDesplazamientos: "",
     });
 
     const navigate = useNavigate();
@@ -96,8 +100,12 @@ export const FormularioEntorno: React.FC = () => {
                 <ComponenteActividad formData={formData} handleChange={handleChange} />
             </ExpandableCard>
 
-            <ExpandableCard title="Seguridad del Sitio">
-                <ComponenteSeguridad formData={formData} handleChange={handleChange} />
+            <ExpandableCard title="Entorno Residencial">
+                <ComponenteEntornoResidencia formData={formData} handleChange={handleChange} />
+            </ExpandableCard>
+
+            <ExpandableCard title="Entorno Laboral">
+                <ComponenteEntornoLaboral formData={formData} handleChange={handleChange} />
             </ExpandableCard>
 
             <div className="d-flex justify-content-end mt-4 mb-4">

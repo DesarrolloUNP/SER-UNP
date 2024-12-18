@@ -342,9 +342,9 @@ const ComponenteInfoEntrevista: React.FC<ComponenteInfoEntrevistaProps> = ({ for
                 </Col>
             </Row>
 
-            <SubtituloForm subtitulo={"Sitaciones de amenaza"} icon={FaUserShield} />
+            <SubtituloForm subtitulo={"Situaciones de amenaza"} icon={FaUserShield} />
             <FormGroup>
-                <FormLabel>¿Conoce de situaciones de amenazas contra la persona beneficiaria de medidas de protección de la UNP? En caso positivo, realicé una descripción en tiempo, modo y lugar de los hechos conocidos por usted, refiriendo la fuente de información.</FormLabel>
+                <FormLabel>¿Conoce de situaciones de amenazas contra la persona beneficiaria de medidas de protección de la UNP? En caso positivo, realice una descripción en tiempo, modo y lugar de los hechos conocidos por usted, refiriendo la fuente de información.</FormLabel>
                 <FormControl
                     as="textarea"
                     rows={3}

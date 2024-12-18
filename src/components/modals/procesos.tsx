@@ -15,7 +15,7 @@ const sections = [
     { label: "Escoltas", icon: FaUserShield, route: "/escoltas", closed: false },
     { label: "Documental", icon: IoDocuments, route: "/documental", closed: true },
     { label: "Estándar", icon: BsTable, route: "/estandar", closed: false },
-    { label: "Informe de ejecución", icon: HiClipboardDocumentList, route: "/informe", closed: true },
+    { label: "Informe Ejecutivo", icon: HiClipboardDocumentList, route: "/informe", closed: true },
 ];
 
 export const Procesos: React.FC<any> = ({ row }) => {

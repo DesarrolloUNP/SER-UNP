@@ -4,8 +4,7 @@ import { Card, CardHeader, CardBody, Alert } from "react-bootstrap";
 const ComponenteAnalisis: React.FC = () => (
     <>
         <Alert variant="warning" className="shadow-sm mt-4">
-            La UNP informa que durante el desarrollo de la actuación adelantada por la Entidad podrá solicitar revocar esta autorización
-            y solicitar por escrito que las notificaciones o comunicaciones sucesivas se realicen a través de otros medios previstos en la Ley 1437 de 2011 - CPACA
+            Paca cada uno de los entornos, diligencie la información recolectada de la visita in situ que realice el analista, seleccionando la opción según corresponda, haciendo las observaciones que se requieren y tomando registro fotográfico, cuándo haya el consentimiento del evaluado.
         </Alert>
     </>
 );

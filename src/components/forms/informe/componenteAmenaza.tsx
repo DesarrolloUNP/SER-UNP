@@ -301,7 +301,7 @@ const ComponenteAmenaza: React.FC<ComponenteAmenazaProps> = ({ formData, handleC
 
             <div style={{display:'flex', justifyContent:'center', margin:'2rem 0'}}>
                 <div className="risk_container">
-                    <h5>Total nivel de riesgo:</h5>
+                    <h5>Ponderación instrumento estándar de valoración %</h5>
                     <span style={{ fontSize: "1.25rem", fontWeight: "bold", color: "#007bff" }}>
                         00.0
                     </span>

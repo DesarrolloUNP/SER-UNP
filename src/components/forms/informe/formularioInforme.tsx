@@ -156,7 +156,7 @@ export const FormularioInforme: React.FC = () => {
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
-            <InformacionOrdenTrabajo datos={datosOrden} titulo={"Informe Ejecución"} />
+            <InformacionOrdenTrabajo datos={datosOrden} titulo={"Informe Ejecutivo"} />
 
             <Card className="border-0 shadow mt-5 mb-4 pt-3" style={{ backgroundColor: "#F9F9F9" }}>
                 <Paginador

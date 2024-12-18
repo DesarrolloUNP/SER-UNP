@@ -14,6 +14,7 @@ interface ComponenteDatosInformeProps {
         conclusion: string;
         pretencionesEvaluar: string;
         entidad: string;
+        sugerenciasRecomendaciones: string;
     };
     handleChange: (e: ChangeEvent<any>) => void;
 }
@@ -45,39 +46,38 @@ const ComponenteDatosInforme: React.FC<ComponenteDatosInformeProps> = ({ formDat
     }, []);
 
     return (
-            <>
-                <SubtituloForm subtitulo={"SubPoblación"} icon={FaUsers} />
-                <FormGroup>
-                    <FormLabel>SubPoblación Objeto</FormLabel>
-                    <FormControl
-                        as="textarea"
-                        name="poblacionObjeto"
-                        value={formData.poblacionObjeto}
-                        onChange={handleChange}
-                        readOnly
-                        ref={poblacionObjetoRef}
-                        style={{
-                            backgroundColor: "#f5f5f5",
-                            color: "#6c757d",
-                            resize: "none",
-                            overflow: "hidden",
-                        }}
-                    />
-                </FormGroup>
+        <>
+            <SubtituloForm subtitulo={"Entidad Solicitante"} icon={FaUsers} />
+            <FormGroup>
+                <FormControl
+                    type="text"
+                    name="entidad"
+                    value={formData.entidad}
+                    onChange={handleChange}
+                    maxLength={150}
+                />
+            </FormGroup>
 
-                <SubtituloForm subtitulo={"Entidad Solicitante"} icon={FaUsers} />
-                <FormGroup>
-                    <FormControl
-                        type="text"
-                        name="entidad"
-                        value={formData.entidad}
-                        onChange={handleChange}
-                        maxLength={150}
-                    />
-                </FormGroup>
+            <SubtituloForm subtitulo={"SubPoblación"} icon={FaUsers} />
+            <FormGroup>
+                <FormLabel>SubPoblación Objeto</FormLabel>
+                <FormControl
+                    as="textarea"
+                    name="poblacionObjeto"
+                    value={formData.poblacionObjeto}
+                    onChange={handleChange}
+                    ref={poblacionObjetoRef}
+                    style={{
+                        backgroundColor: "#f5f5f5",
+                        color: "#6c757d",
+                        resize: "none",
+                        overflow: "hidden",
+                    }}
+                />
+            </FormGroup>
 
-                <SubtituloForm subtitulo={"Tipo de Estudio"} icon={FaUserShield} />
-                <Col md={6}>
+            <SubtituloForm subtitulo={"Tipo de Estudio"} icon={FaUserShield} />
+            <Col md={6}>
                 <FormGroup>
                     <FormSelect>
                         <option value="">Seleccione...</option>
@@ -88,92 +88,109 @@ const ComponenteDatosInforme: React.FC<ComponenteDatosInformeProps> = ({ formDat
                         <option>Evaluación de riesgo otra solicitud</option>
                     </FormSelect>
                 </FormGroup>
-                </Col>
+            </Col>
 
-                <SubtituloForm subtitulo={"Hechos"} icon={FaBook} />
-                <FormGroup>
-                    <FormLabel>Hechos Anteriores / Antecedentes*</FormLabel>
-                    <FormControl
-                        as="textarea"
-                        rows={3}
-                        name="hechosAnteriores"
-                        value={formData.hechosAnteriores}
-                        onChange={handleChange}
-                        placeholder="Describa los antecedentes o hechos anteriores."
-                        maxLength={1000}
-                    />
-                </FormGroup>
-                <Form.Text muted>
-                    {1000 - formData.hechosAnteriores.length} caracteres restantes
-                </Form.Text>
+            <SubtituloForm subtitulo={"Hechos"} icon={FaBook} />
+            <FormGroup>
+                <FormLabel>Hechos Anteriores / Antecedentes*</FormLabel>
+                <FormControl
+                    as="textarea"
+                    rows={3}
+                    name="hechosAnteriores"
+                    value={formData.hechosAnteriores}
+                    onChange={handleChange}
+                    placeholder="Describa los antecedentes o hechos anteriores."
+                    maxLength={1000}
+                />
+            </FormGroup>
+            <Form.Text muted>
+                {1000 - formData.hechosAnteriores.length} caracteres restantes
+            </Form.Text>
 
-                <FormGroup>
-                    <FormLabel>Hechos Actuales*</FormLabel>
-                    <FormControl
-                        as="textarea"
-                        rows={3}
-                        name="hechosActuales"
-                        value={formData.hechosActuales}
-                        onChange={handleChange}
-                        placeholder="Describa los hechos actuales."
-                        maxLength={2000}
-                    />
-                </FormGroup>
-                <Form.Text muted>
-                    {2000 - formData.hechosActuales.length} caracteres restantes
-                </Form.Text>
+            <FormGroup>
+                <FormLabel>Hechos Actuales*</FormLabel>
+                <FormControl
+                    as="textarea"
+                    rows={3}
+                    name="hechosActuales"
+                    value={formData.hechosActuales}
+                    onChange={handleChange}
+                    placeholder="Describa los hechos actuales."
+                    maxLength={2000}
+                />
+            </FormGroup>
+            <Form.Text muted>
+                {2000 - formData.hechosActuales.length} caracteres restantes
+            </Form.Text>
 
-                <SubtituloForm subtitulo={"Verificación"} icon={FaClipboardList} />
-                <FormGroup>
-                    <FormLabel>Actividades de Verificación*</FormLabel>
-                    <FormControl
-                        as="textarea"
-                        rows={3}
-                        name="actividadesVerificacion"
-                        value={formData.actividadesVerificacion}
-                        onChange={handleChange}
-                        placeholder="Describa las actividades de verificación realizadas."
-                        maxLength={3000}
-                    />
-                </FormGroup>
-                <Form.Text muted>
-                    {3000 - formData.actividadesVerificacion.length} caracteres restantes
-                </Form.Text>
+            <SubtituloForm subtitulo={"Verificación"} icon={FaClipboardList} />
+            <FormGroup>
+                <FormLabel>Actividades de Verificación*</FormLabel>
+                <FormControl
+                    as="textarea"
+                    rows={3}
+                    name="actividadesVerificacion"
+                    value={formData.actividadesVerificacion}
+                    onChange={handleChange}
+                    placeholder="Describa las actividades de verificación realizadas."
+                    maxLength={3000}
+                />
+            </FormGroup>
+            <Form.Text muted>
+                {3000 - formData.actividadesVerificacion.length} caracteres restantes
+            </Form.Text>
 
-                <SubtituloForm subtitulo={"Conclusión del Analisis"} icon={FaUserPen} />
-                <FormGroup>
-                    <FormLabel>Conclusión *</FormLabel>
-                    <FormControl
-                        as="textarea"
-                        rows={3}
-                        name="conclusion"
-                        value={formData.conclusion}
-                        onChange={handleChange}
-                        placeholder="Ingrese la conclusión del analisis."
-                        maxLength={500}
-                    />
-                </FormGroup>
-                <Form.Text muted>
-                    {500 - formData.conclusion.length} caracteres restantes
-                </Form.Text>
+            <SubtituloForm subtitulo={"Conclusión del Analisis"} icon={FaUserPen} />
+            <FormGroup>
+                <FormLabel>Conclusión *</FormLabel>
+                <FormControl
+                    as="textarea"
+                    rows={3}
+                    name="conclusion"
+                    value={formData.conclusion}
+                    onChange={handleChange}
+                    placeholder="Ingrese la conclusión del analisis."
+                    maxLength={500}
+                />
+            </FormGroup>
+            <Form.Text muted>
+                {500 - formData.conclusion.length} caracteres restantes
+            </Form.Text>
 
-                <SubtituloForm subtitulo={"Pretenciones"} icon={FaMagnifyingGlass} />
-                <FormGroup>
-                    <FormLabel>Pretenciones de la Persona a Evaluar*</FormLabel>
-                    <FormControl
-                        as="textarea"
-                        rows={3}
-                        name="pretencionesEvaluar"
-                        value={formData.pretencionesEvaluar}
-                        onChange={handleChange}
-                        placeholder="Describa las pretenciones de la persona evaluada."
-                        maxLength={1000}
-                    />
-                </FormGroup>
-                <Form.Text muted>
-                    {1000 - formData.pretencionesEvaluar.length} caracteres restantes
-                </Form.Text>
-            </>
+            <SubtituloForm subtitulo={"Pretenciones"} icon={FaMagnifyingGlass} />
+            <FormGroup>
+                <FormLabel>Pretenciones de la Persona a Evaluar*</FormLabel>
+                <FormControl
+                    as="textarea"
+                    rows={3}
+                    name="pretencionesEvaluar"
+                    value={formData.pretencionesEvaluar}
+                    onChange={handleChange}
+                    placeholder="Describa las pretenciones de la persona evaluada."
+                    maxLength={1000}
+                />
+            </FormGroup>
+            <Form.Text muted>
+                {1000 - formData.pretencionesEvaluar.length} caracteres restantes
+            </Form.Text>
+
+            <SubtituloForm subtitulo={"Medidas de Proteccion"} icon={FaUserShield} />
+            <FormGroup>
+                <FormLabel>Sugerencia de Recomendaciones de Medidas de Protecciòn</FormLabel>
+                <FormControl
+                    as="textarea"
+                    rows={3}
+                    name="sugerenciasRecomendaciones"
+                    value={formData.sugerenciasRecomendaciones}
+                    onChange={handleChange}
+                    placeholder="Escriba la sugerencia de recomendaciones."
+                    maxLength={1000}
+                />
+            </FormGroup>
+            <Form.Text muted>
+                {1000 - formData.sugerenciasRecomendaciones.length} caracteres restantes
+            </Form.Text>
+        </>
     );
 };
 
